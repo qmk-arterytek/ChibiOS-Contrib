@@ -46,9 +46,9 @@
                                      AT32_DMA2_NUM_CHANNELS)
 
 /**
- * @brief   Mask of the ISR bits passed to the DMA callback functions.
+ * @brief   Mask of the STS bits passed to the DMA callback functions.
  */
-#define AT32_DMA_ISR_MASK          0x0E
+#define AT32_DMA_STS_MASK          0x0E
 
 /**
  * @brief   Returns the request line associated to the specified stream.
@@ -174,9 +174,6 @@
 #if AT32_DMA1_NUM_CHANNELS > 6
 #define AT32_DMA1_STREAM7          AT32_DMA_STREAM(6)
 #endif
-#if AT32_DMA1_NUM_CHANNELS > 7
-#define AT32_DMA1_STREAM8          AT32_DMA_STREAM(7)
-#endif
 #if AT32_DMA2_NUM_CHANNELS > 0
 #define AT32_DMA2_STREAM1          AT32_DMA_STREAM(AT32_DMA1_NUM_CHANNELS + 0)
 #endif
@@ -198,70 +195,36 @@
 #if AT32_DMA2_NUM_CHANNELS > 6
 #define AT32_DMA2_STREAM7          AT32_DMA_STREAM(AT32_DMA1_NUM_CHANNELS + 6)
 #endif
-#if AT32_DMA2_NUM_CHANNELS > 7
-#define AT32_DMA2_STREAM8          AT32_DMA_STREAM(AT32_DMA1_NUM_CHANNELS + 7)
-#endif
 /** @} */
 
 /**
- * @name    CR register constants common to all DMA types
+ * @name    CCTRL register constants common to all DMA types
  * @{
  */
-#define AT32_DMA_CCR_RESET_VALUE   0x00000000U
-#define AT32_DMA_CR_EN             DMA_CTRL_CHEN
-#define AT32_DMA_CR_TEIE           DMA_CTRL_DTERRIEN
-#define AT32_DMA_CR_HTIE           DMA_CTRL_HDTIEN 
-#define AT32_DMA_CR_TCIE           DMA_CTRL_FDTIEN
-#define AT32_DMA_CR_DIR_MASK       (DMA_CTRL_DTD | DMA_CTRL_M2M)
-#define AT32_DMA_CR_DIR_P2M        0U
-#define AT32_DMA_CR_DIR_M2P        DMA_CTRL_DTD
-#define AT32_DMA_CR_DIR_M2M        DMA_CTRL_M2M
-#define AT32_DMA_CR_CIRC           DMA_CTRL_LM
-#define AT32_DMA_CR_PINC           DMA_CTRL_PINCM
-#define AT32_DMA_CR_MINC           DMA_CTRL_MINCM
-#define AT32_DMA_CR_PSIZE_MASK     DMA_CTRL_PWIDTH
-#define AT32_DMA_CR_PSIZE_BYTE     0U
-#define AT32_DMA_CR_PSIZE_HWORD    DMA_CTRL_PWIDTH_16BITS
-#define AT32_DMA_CR_PSIZE_WORD     DMA_CTRL_PWIDTH_32BITS
-#define AT32_DMA_CR_MSIZE_MASK     DMA_CTRL_MWIDTH
-#define AT32_DMA_CR_MSIZE_BYTE     0U
-#define AT32_DMA_CR_MSIZE_HWORD    DMA_CTRL_MWIDTH_16BITS
-#define AT32_DMA_CR_MSIZE_WORD     DMA_CTRL_MWIDTH_32BITS
-#define AT32_DMA_CR_SIZE_MASK      (AT32_DMA_CR_PSIZE_MASK |              \
-                                     AT32_DMA_CR_MSIZE_MASK)
-#define AT32_DMA_CR_PL_MASK        DMA_CTRL_CHPL
-#define AT32_DMA_CR_PL(n)          ((n) << 12U)
-/** @} */
-
-/**
- * @name    Request line selector macro
- * @{
- */
-#if AT32_DMA_SUPPORTS_CSELR || defined(__DOXYGEN__)
-#define AT32_DMA_CR_CHSEL_MASK     (15U << 16U)
-#define AT32_DMA_CR_CHSEL(n)       ((n) << 16U)
-#else
-#define AT32_DMA_CR_CHSEL_MASK     0U
-#define AT32_DMA_CR_CHSEL(n)       0U
-#endif
-/** @} */
-
-/**
- * @name    CR register constants only found in enhanced DMA
- * @{
- */
-#define AT32_DMA_CR_DMEIE          0U  /**< @brief Ignored by normal DMA.  */
-/** @} */
-
-/**
- * @name    Status flags passed to the ISR callbacks
- * @{
- */
-#define AT32_DMA_ISR_FEIF          0U
-#define AT32_DMA_ISR_DMEIF         0U
-#define AT32_DMA_ISR_TEIF          (0x1U << 3)
-#define AT32_DMA_ISR_HTIF          (0x1U << 2)
-#define AT32_DMA_ISR_TCIF          (0x1U << 1)
+#define AT32_DMA_CCTRL_RESET_VALUE  0x00000000U
+#define AT32_DMA_CCTRL_CHEN         DMA_CCTRL_CHEN
+#define AT32_DMA_CCTRL_DTERRIEN     DMA_CCTRL_DTERRIEN
+#define AT32_DMA_CCTRL_HDTIEN       DMA_CCTRL_HDTIEN
+#define AT32_DMA_CCTRL_FDTIEN       DMA_CCTRL_FDTIEN
+#define AT32_DMA_CCTRL_DTD_MASK     (DMA_CCTRL_DTD | DMA_CCTRL_M2M)
+#define AT32_DMA_CCTRL_DTD_P2M      0U
+#define AT32_DMA_CCTRL_DTD_M2P      DMA_CCTRL_DTD
+#define AT32_DMA_CCTRL_DTD_M2M      DMA_CCTRL_M2M
+#define AT32_DMA_CCTRL_LM           DMA_CCTRL_LM
+#define AT32_DMA_CCTRL_PINCM        DMA_CCTRL_PINCM
+#define AT32_DMA_CCTRL_MINCM        DMA_CCTRL_MINCM
+#define AT32_DMA_CCTRL_PWIDTH_MASK  DMA_CCTRL_PWIDTH
+#define AT32_DMA_CCTRL_PWIDTH_BYTE  0U
+#define AT32_DMA_CCTRL_PWIDTH_HWORD DMA_CCTRL_PWIDTH_0
+#define AT32_DMA_CCTRL_PWIDTH_WORD  DMA_CCTRL_PWIDTH_1
+#define AT32_DMA_CCTRL_MWIDTH_MASK  DMA_CCTRL_MWIDTH
+#define AT32_DMA_CCTRL_MWIDTH_BYTE  0U
+#define AT32_DMA_CCTRL_MWIDTH_HWORD DMA_CCTRL_MWIDTH_0
+#define AT32_DMA_CCTRL_MWIDTH_WORD  DMA_CCTRL_MWIDTH_1
+#define AT32_DMA_CCTRL_SIZE_MASK    (AT32_DMA_CCTRL_PWIDTH_MASK |           \
+                                     AT32_DMA_CCTRL_MWIDTH_MASK)
+#define AT32_DMA_CCTRL_CHPL_MASK    DMA_CCTRL_CHPL
+#define AT32_DMA_CCTRL_CHPL(n)      ((n) << 12U)
 /** @} */
 
 /*===========================================================================*/
@@ -274,14 +237,6 @@
 
 #if !defined(AT32_DMA_SUPPORTS_DMAMUX)
 #error "AT32_DMA_SUPPORTS_DMAMUX not defined in registry"
-#endif
-
-#if !defined(AT32_DMA_SUPPORTS_CSELR)
-#error "AT32_DMA_SUPPORTS_CSELR not defined in registry"
-#endif
-
-#if AT32_DMA_SUPPORTS_DMAMUX && AT32_DMA_SUPPORTS_CSELR
-#error "AT32_DMA_SUPPORTS_DMAMUX and AT32_DMA_SUPPORTS_CSELR both TRUE"
 #endif
 
 #if !defined(AT32_DMA1_NUM_CHANNELS)
@@ -316,10 +271,10 @@
  * @brief   Type of a DMA callback.
  *
  * @param[in] p         parameter for the registered function
- * @param[in] flags     pre-shifted content of the ISR register, the bits
+ * @param[in] flags     pre-shifted content of the STS register, the bits
  *                      are aligned to bit zero
  */
-typedef void (*at32_dmaisr_t)(void *p, uint32_t flags);
+typedef void (*at32_dmasts_t)(void *p, uint32_t flags);
 
 /**
  * @brief   AT32 DMA stream descriptor structure.
@@ -329,13 +284,8 @@ typedef struct {
   DMA_Channel_TypeDef   *channel;       /**< @brief Associated DMA channel. */
   uint32_t              cmask;          /**< @brief Mask of streams sharing
                                              the same ISR.                  */
-#if (AT32_DMA_SUPPORTS_CSELR == TRUE) || defined(__DOXYGEN__)
-  volatile uint32_t     *cselr;         /**< @brief Associated CSELR reg.   */
-#else
   uint8_t               dummy;          /**< @brief Filler.                 */
-#endif
-  uint8_t               shift;          /**< @brief Bit offset in ISR, CLR
-                                             and CSELR registers.           */
+  uint8_t               shift;          /**< @brief Bit offset in STS, CLR  */
   uint8_t               selfindex;      /**< @brief Index to self in array. */
   uint8_t               vector;         /**< @brief Associated IRQ vector.  */
 } at32_dma_stream_t;
@@ -413,23 +363,13 @@ typedef struct {
  * @post    After use the stream can be released using @p dmaStreamRelease().
  *
  * @param[in] dmastp    pointer to a at32_dma_stream_t structure
- * @param[in] mode      value to be written in the CCR register
+ * @param[in] mode      value to be written in the CCTRL register
  *
  * @special
  */
-#if AT32_DMA_SUPPORTS_CSELR || defined(__DOXYGEN__)
 #define dmaStreamSetMode(dmastp, mode) {                                    \
-  uint32_t cselr = *(dmastp)->cselr;                                        \
-  cselr &= ~(0x0000000FU << (dmastp)->shift);                               \
-  cselr |=  (((uint32_t)(mode) >> 16U) << (dmastp)->shift);                 \
-  *(dmastp)->cselr = cselr;                                                 \
-  (dmastp)->channel->CTRL  = (uint32_t)(mode);                               \
+  (dmastp)->channel->CCTRL = (uint32_t)(mode);                              \
 }
-#else
-#define dmaStreamSetMode(dmastp, mode) {                                    \
-  (dmastp)->channel->CTRL  = (uint32_t)(mode);                               \
-}
-#endif
 
 /**
  * @brief   DMA stream enable.
@@ -442,7 +382,7 @@ typedef struct {
  * @special
  */
 #define dmaStreamEnable(dmastp) {                                           \
-  (dmastp)->channel->CTRL |= AT32_DMA_CR_EN;                                \
+  (dmastp)->channel->CCTRL |= AT32_DMA_CCTRL_CHEN;                          \
 }
 
 /**
@@ -460,8 +400,10 @@ typedef struct {
  * @special
  */
 #define dmaStreamDisable(dmastp) {                                          \
-  (dmastp)->channel->CTRL &= ~(AT32_DMA_CR_TCIE | AT32_DMA_CR_HTIE |       \
-                              AT32_DMA_CR_TEIE | AT32_DMA_CR_EN);         \
+  (dmastp)->channel->CCTRL &= ~(AT32_DMA_CCTRL_FDTIEN |                     \
+                                AT32_DMA_CCTRL_HDTIEN |                     \
+                                AT32_DMA_CCTRL_DTERRIEN |                   \
+                                AT32_DMA_CCTRL_CHEN);                       \
   dmaStreamClearInterrupt(dmastp);                                          \
 }
 
@@ -476,7 +418,7 @@ typedef struct {
  * @special
  */
 #define dmaStreamClearInterrupt(dmastp) {                                   \
-  (dmastp)->dma->CLR = AT32_DMA_ISR_MASK << (dmastp)->shift;              \
+  (dmastp)->dma->CLR = AT32_DMA_STS_MASK << (dmastp)->shift;              \
 }
 
 /**
@@ -487,12 +429,12 @@ typedef struct {
  * @post    After use the stream can be released using @p dmaStreamRelease().
  *
  * @param[in] dmastp    pointer to a at32_dma_stream_t structure
- * @param[in] mode      value to be written in the CCR register, this value
+ * @param[in] mode      value to be written in the CCTRL register, this value
  *                      is implicitly ORed with:
- *                      - @p AT32_DMA_CR_MINC
- *                      - @p AT32_DMA_CR_PINC
- *                      - @p AT32_DMA_CR_DIR_M2M
- *                      - @p AT32_DMA_CR_EN
+ *                      - @p AT32_DMA_CCTRL_MINCM
+ *                      - @p AT32_DMA_CCTRL_PINCM
+ *                      - @p AT32_DMA_CCTRL_DTD_M2M
+ *                      - @p AT32_DMA_CCTRL_CHEN
  *                      .
  * @param[in] src       source address
  * @param[in] dst       destination address
@@ -503,8 +445,8 @@ typedef struct {
   dmaStreamSetMemory0(dmastp, dst);                                         \
   dmaStreamSetTransactionSize(dmastp, n);                                   \
   dmaStreamSetMode(dmastp, (mode) |                                         \
-                           AT32_DMA_CR_MINC | AT32_DMA_CR_PINC |          \
-                           AT32_DMA_CR_DIR_M2M | AT32_DMA_CR_EN);         \
+                           AT32_DMA_CCTRL_MINCM | AT32_DMA_CCTRL_PINCM |    \
+                           AT32_DMA_CCTRL_DTD_M2M | AT32_DMA_CCTRL_CHEN);   \
 }
 
 /**
@@ -535,11 +477,11 @@ extern "C" {
   void dmaInit(void);
   const at32_dma_stream_t *dmaStreamAllocI(uint32_t id,
                                             uint32_t priority,
-                                            at32_dmaisr_t func,
+                                            at32_dmasts_t func,
                                             void *param);
   const at32_dma_stream_t *dmaStreamAlloc(uint32_t id,
                                            uint32_t priority,
-                                           at32_dmaisr_t func,
+                                           at32_dmasts_t func,
                                            void *param);
   void dmaStreamFreeI(const at32_dma_stream_t *dmastp);
   void dmaStreamFree(const at32_dma_stream_t *dmastp);

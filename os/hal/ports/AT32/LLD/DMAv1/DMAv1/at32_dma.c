@@ -45,39 +45,6 @@
 #define AT32_DMA2_STREAMS_MASK     (((1U << AT32_DMA2_NUM_CHANNELS) -     \
                                       1U) << AT32_DMA1_NUM_CHANNELS)
 
-#if AT32_DMA_SUPPORTS_CSELR == TRUE
-
-#if defined(DMA1_CSELR)
-#define __DMA1_CSELR                &DMA1_CSELR->CSELR
-#else
-#define __DMA1_CSELR                &DMA1->CSELR
-#endif
-
-#if defined(DMA2_CSELR)
-#define __DMA2_CSELR                &DMA2_CSELR->CSELR
-#else
-#define __DMA2_CSELR                &DMA2->CSELR
-#endif
-
-#define DMA1_CH1_VARIANT            __DMA1_CSELR
-#define DMA1_CH2_VARIANT            __DMA1_CSELR
-#define DMA1_CH3_VARIANT            __DMA1_CSELR
-#define DMA1_CH4_VARIANT            __DMA1_CSELR
-#define DMA1_CH5_VARIANT            __DMA1_CSELR
-#define DMA1_CH6_VARIANT            __DMA1_CSELR
-#define DMA1_CH7_VARIANT            __DMA1_CSELR
-#define DMA1_CH8_VARIANT            __DMA1_CSELR
-#define DMA2_CH1_VARIANT            __DMA2_CSELR
-#define DMA2_CH2_VARIANT            __DMA2_CSELR
-#define DMA2_CH3_VARIANT            __DMA2_CSELR
-#define DMA2_CH4_VARIANT            __DMA2_CSELR
-#define DMA2_CH5_VARIANT            __DMA2_CSELR
-#define DMA2_CH6_VARIANT            __DMA2_CSELR
-#define DMA2_CH7_VARIANT            __DMA2_CSELR
-#define DMA2_CH8_VARIANT            __DMA2_CSELR
-
-#else 
-
 #define DMA1_CH1_VARIANT            0
 #define DMA1_CH2_VARIANT            0
 #define DMA1_CH3_VARIANT            0
@@ -93,10 +60,8 @@
 #define DMA2_CH6_VARIANT            0
 #define DMA2_CH7_VARIANT            0
 
-#endif
-
 /*
- * Default ISR collision masks.
+ * Default STS collision masks.
  */
 #if !defined(AT32_DMA1_CH1_CMASK)
 #define AT32_DMA1_CH1_CMASK        (1U << 0U)
@@ -126,10 +91,6 @@
 #define AT32_DMA1_CH7_CMASK        (1U << 6U)
 #endif
 
-#if !defined(AT32_DMA1_CH8_CMASK)
-#define AT32_DMA1_CH8_CMASK        (1U << 7U)
-#endif
-
 #if !defined(AT32_DMA2_CH1_CMASK)
 #define AT32_DMA2_CH1_CMASK        (1U << (AT32_DMA1_NUM_CHANNELS + 0U))
 #endif
@@ -156,10 +117,6 @@
 
 #if !defined(AT32_DMA2_CH7_CMASK)
 #define AT32_DMA2_CH7_CMASK        (1U << (AT32_DMA1_NUM_CHANNELS + 6U))
-#endif
-
-#if !defined(AT32_DMA2_CH8_CMASK)
-#define AT32_DMA2_CH8_CMASK        (1U << (AT32_DMA1_NUM_CHANNELS + 7U))
 #endif
 
 /*===========================================================================*/
@@ -219,9 +176,6 @@ const at32_dma_stream_t _at32_dma_streams[AT32_DMA_STREAMS] = {
 #if AT32_DMA2_NUM_CHANNELS > 6
   {DMA2, DMA2_Channel7, AT32_DMA2_CH7_CMASK, DMA2_CH7_VARIANT, 24, 6 + AT32_DMA1_NUM_CHANNELS, AT32_DMA2_CH7_NUMBER},
 #endif
-#if AT32_DMA2_NUM_CHANNELS > 7
-  {DMA2, DMA2_Channel8, AT32_DMA2_CH8_CMASK, DMA2_CH8_VARIANT, 28, 7 + AT32_DMA1_NUM_CHANNELS, AT32_DMA2_CH8_NUMBER},
-#endif
 };
 
 /*===========================================================================*/
@@ -237,9 +191,9 @@ static struct {
    */
   uint32_t          allocated_mask;
   /**
-   * @brief   Mask of the enabled streams ISRs.
+   * @brief   Mask of the enabled streams STSs.
    */
-  uint32_t          isr_mask;
+  uint32_t          sts_mask;
   /**
    * @brief   DMA IRQ redirectors.
    */
@@ -247,7 +201,7 @@ static struct {
     /**
      * @brief   DMA callback function.
      */
-    at32_dmaisr_t    func;
+    at32_dmasts_t    func;
     /**
      * @brief   DMA callback parameter.
      */
@@ -265,9 +219,9 @@ static struct {
 
 #if defined(AT32_DMA1_CH1_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA1 stream 1 shared ISR.
+ * @brief   DMA1 stream 1 shared STS.
  *
- * @isr
+ * @sts
  */
 OSAL_IRQ_HANDLER(AT32_DMA1_CH1_HANDLER) {
 
@@ -281,9 +235,9 @@ OSAL_IRQ_HANDLER(AT32_DMA1_CH1_HANDLER) {
 
 #if defined(AT32_DMA1_CH2_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA1 stream 2 shared ISR.
+ * @brief   DMA1 stream 2 shared STS.
  *
- * @isr
+ * @sts
  */
 OSAL_IRQ_HANDLER(AT32_DMA1_CH2_HANDLER) {
 
@@ -297,9 +251,9 @@ OSAL_IRQ_HANDLER(AT32_DMA1_CH2_HANDLER) {
 
 #if defined(AT32_DMA1_CH3_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA1 stream 3 shared ISR.
+ * @brief   DMA1 stream 3 shared STS.
  *
- * @isr
+ * @sts
  */
 OSAL_IRQ_HANDLER(AT32_DMA1_CH3_HANDLER) {
 
@@ -313,9 +267,9 @@ OSAL_IRQ_HANDLER(AT32_DMA1_CH3_HANDLER) {
 
 #if defined(AT32_DMA1_CH4_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA1 stream 4 shared ISR.
+ * @brief   DMA1 stream 4 shared STS.
  *
- * @isr
+ * @sts
  */
 OSAL_IRQ_HANDLER(AT32_DMA1_CH4_HANDLER) {
 
@@ -329,9 +283,9 @@ OSAL_IRQ_HANDLER(AT32_DMA1_CH4_HANDLER) {
 
 #if defined(AT32_DMA1_CH5_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA1 stream 5 shared ISR.
+ * @brief   DMA1 stream 5 shared STS.
  *
- * @isr
+ * @sts
  */
 OSAL_IRQ_HANDLER(AT32_DMA1_CH5_HANDLER) {
 
@@ -345,9 +299,9 @@ OSAL_IRQ_HANDLER(AT32_DMA1_CH5_HANDLER) {
 
 #if defined(AT32_DMA1_CH6_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA1 stream 6 shared ISR.
+ * @brief   DMA1 stream 6 shared STS.
  *
- * @isr
+ * @sts
  */
 OSAL_IRQ_HANDLER(AT32_DMA1_CH6_HANDLER) {
 
@@ -361,9 +315,9 @@ OSAL_IRQ_HANDLER(AT32_DMA1_CH6_HANDLER) {
 
 #if defined(AT32_DMA1_CH7_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA1 stream 7 shared ISR.
+ * @brief   DMA1 stream 7 shared STS.
  *
- * @isr
+ * @sts
  */
 OSAL_IRQ_HANDLER(AT32_DMA1_CH7_HANDLER) {
 
@@ -375,27 +329,11 @@ OSAL_IRQ_HANDLER(AT32_DMA1_CH7_HANDLER) {
 }
 #endif
 
-#if defined(AT32_DMA1_CH8_HANDLER) || defined(__DOXYGEN__)
-/**
- * @brief   DMA1 stream 8 shared ISR.
- *
- * @isr
- */
-OSAL_IRQ_HANDLER(AT32_DMA1_CH8_HANDLER) {
-
-  OSAL_IRQ_PROLOGUE();
-
-  dmaServeInterrupt(AT32_DMA1_STREAM8);
-
-  OSAL_IRQ_EPILOGUE();
-}
-#endif
-
 #if defined(AT32_DMA2_CH1_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA2 stream 1 shared ISR.
+ * @brief   DMA2 stream 1 shared STS.
  *
- * @isr
+ * @sts
  */
 OSAL_IRQ_HANDLER(AT32_DMA2_CH1_HANDLER) {
 
@@ -409,9 +347,9 @@ OSAL_IRQ_HANDLER(AT32_DMA2_CH1_HANDLER) {
 
 #if defined(AT32_DMA2_CH2_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA2 stream 2 shared ISR.
+ * @brief   DMA2 stream 2 shared STS.
  *
- * @isr
+ * @sts
  */
 OSAL_IRQ_HANDLER(AT32_DMA2_CH2_HANDLER) {
 
@@ -425,9 +363,9 @@ OSAL_IRQ_HANDLER(AT32_DMA2_CH2_HANDLER) {
 
 #if defined(AT32_DMA2_CH3_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA2 stream 3 shared ISR.
+ * @brief   DMA2 stream 3 shared STS.
  *
- * @isr
+ * @sts
  */
 OSAL_IRQ_HANDLER(AT32_DMA2_CH3_HANDLER) {
 
@@ -441,9 +379,9 @@ OSAL_IRQ_HANDLER(AT32_DMA2_CH3_HANDLER) {
 
 #if defined(AT32_DMA2_CH4_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA2 stream 4 shared ISR.
+ * @brief   DMA2 stream 4 shared STS.
  *
- * @isr
+ * @sts
  */
 OSAL_IRQ_HANDLER(AT32_DMA2_CH4_HANDLER) {
 
@@ -457,9 +395,9 @@ OSAL_IRQ_HANDLER(AT32_DMA2_CH4_HANDLER) {
 
 #if defined(AT32_DMA2_CH5_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA2 stream 5 shared ISR.
+ * @brief   DMA2 stream 5 shared STS.
  *
- * @isr
+ * @sts
  */
 OSAL_IRQ_HANDLER(AT32_DMA2_CH5_HANDLER) {
 
@@ -473,9 +411,9 @@ OSAL_IRQ_HANDLER(AT32_DMA2_CH5_HANDLER) {
 
 #if defined(AT32_DMA2_CH6_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA2 stream 6 shared ISR.
+ * @brief   DMA2 stream 6 shared STS.
  *
- * @isr
+ * @sts
  */
 OSAL_IRQ_HANDLER(AT32_DMA2_CH6_HANDLER) {
 
@@ -489,31 +427,15 @@ OSAL_IRQ_HANDLER(AT32_DMA2_CH6_HANDLER) {
 
 #if defined(AT32_DMA2_CH7_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA2 stream 7 shared ISR.
+ * @brief   DMA2 stream 7 shared STS.
  *
- * @isr
+ * @sts
  */
 OSAL_IRQ_HANDLER(AT32_DMA2_CH7_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
   dmaServeInterrupt(AT32_DMA2_STREAM7);
-
-  OSAL_IRQ_EPILOGUE();
-}
-#endif
-
-#if defined(AT32_DMA2_CH8_HANDLER) || defined(__DOXYGEN__)
-/**
- * @brief   DMA2 stream 8 shared ISR.
- *
- * @isr
- */
-OSAL_IRQ_HANDLER(AT32_DMA2_CH8_HANDLER) {
-
-  OSAL_IRQ_PROLOGUE();
-
-  dmaServeInterrupt(AT32_DMA2_STREAM8);
 
   OSAL_IRQ_EPILOGUE();
 }
@@ -532,9 +454,9 @@ void dmaInit(void) {
   int i;
 
   dma.allocated_mask = 0U;
-  dma.isr_mask       = 0U;
+  dma.sts_mask       = 0U;
   for (i = 0; i < AT32_DMA_STREAMS; i++) {
-    _at32_dma_streams[i].channel->CTRL = AT32_DMA_CCR_RESET_VALUE;
+    _at32_dma_streams[i].channel->CTRL = AT32_DMA_CTRL_RESET_VALUE;
     dma.streams[i].func = NULL;
   }
   DMA1->CLR = 0xFFFFFFFFU;
@@ -567,7 +489,7 @@ void dmaInit(void) {
  */
 const at32_dma_stream_t *dmaStreamAllocI(uint32_t id,
                                           uint32_t priority,
-                                          at32_dmaisr_t func,
+                                          at32_dmasts_t func,
                                           void *param) {
   uint32_t i, startid, endid;
 
@@ -628,15 +550,15 @@ const at32_dma_stream_t *dmaStreamAllocI(uint32_t id,
       /* Enables the associated IRQ vector if not already enabled and if a
          callback is defined.*/
       if (func != NULL) {
-        if ((dma.isr_mask & dmastp->cmask) == 0U) {
+        if ((dma.sts_mask & dmastp->cmask) == 0U) {
           nvicEnableVector(dmastp->vector, priority);
         }
-        dma.isr_mask |= mask;
+        dma.sts_mask |= mask;
       }
 
       /* Putting the stream in a known state.*/
       dmaStreamDisable(dmastp);
-      dmastp->channel->CTRL = AT32_DMA_CCR_RESET_VALUE;
+      dmastp->channel->CTRL = AT32_DMA_CTRL_RESET_VALUE;
 
       return dmastp;
     }
@@ -669,7 +591,7 @@ const at32_dma_stream_t *dmaStreamAllocI(uint32_t id,
  */
 const at32_dma_stream_t *dmaStreamAlloc(uint32_t id,
                                          uint32_t priority,
-                                         at32_dmaisr_t func,
+                                         at32_dmasts_t func,
                                          void *param) {
   const at32_dma_stream_t *dmastp;
 
@@ -701,10 +623,10 @@ void dmaStreamFreeI(const at32_dma_stream_t *dmastp) {
 
   /* Marks the stream as not allocated.*/
   dma.allocated_mask &= ~(1U << selfindex);
-  dma.isr_mask &= ~(1U << selfindex);
+  dma.sts_mask &= ~(1U << selfindex);
 
   /* Disables the associated IRQ vector if it is no more in use.*/
-  if ((dma.isr_mask & dmastp->cmask) == 0U) {
+  if ((dma.sts_mask & dmastp->cmask) == 0U) {
     nvicDisableVector(dmastp->vector);
   }
 
@@ -758,7 +680,7 @@ void dmaServeInterrupt(const at32_dma_stream_t *dmastp) {
   uint32_t flags;
   uint32_t selfindex = (uint32_t)dmastp->selfindex;
 
-  flags = (dmastp->dma->STS >> dmastp->shift) & AT32_DMA_ISR_MASK;
+  flags = (dmastp->dma->STS >> dmastp->shift) & AT32_DMA_STS_MASK;
   if (flags & dmastp->channel->CTRL) {
     dmastp->dma->CLR = flags << dmastp->shift;
     if (dma.streams[selfindex].func) {
@@ -770,7 +692,7 @@ void dmaServeInterrupt(const at32_dma_stream_t *dmastp) {
 #if (AT32_DMA_SUPPORTS_DMAMUX == TRUE) || defined(__DOXYGEN__)
 /**
  * @brief   Associates a peripheral request to a DMA stream.
- * @note    This function can be invoked in both ISR or thread context.
+ * @note    This function can be invoked in both STS or thread context.
  *
  * @param[in] dmastp    pointer to a @p at32_dma_stream_t structure
  * @param[in] channel   channel to use
