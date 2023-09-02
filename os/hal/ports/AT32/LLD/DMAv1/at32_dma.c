@@ -456,7 +456,7 @@ void dmaInit(void) {
   dma.allocated_mask = 0U;
   dma.sts_mask       = 0U;
   for (i = 0; i < AT32_DMA_STREAMS; i++) {
-    _at32_dma_streams[i].channel->CTRL = AT32_DMA_CTRL_RESET_VALUE;
+    _at32_dma_streams[i].channel->CCTRL = AT32_DMA_CCTRL_RESET_VALUE;
     dma.streams[i].func = NULL;
   }
   DMA1->CLR = 0xFFFFFFFFU;
@@ -558,7 +558,7 @@ const at32_dma_stream_t *dmaStreamAllocI(uint32_t id,
 
       /* Putting the stream in a known state.*/
       dmaStreamDisable(dmastp);
-      dmastp->channel->CTRL = AT32_DMA_CTRL_RESET_VALUE;
+      dmastp->channel->CCTRL = AT32_DMA_CCTRL_RESET_VALUE;
 
       return dmastp;
     }
@@ -681,7 +681,7 @@ void dmaServeInterrupt(const at32_dma_stream_t *dmastp) {
   uint32_t selfindex = (uint32_t)dmastp->selfindex;
 
   flags = (dmastp->dma->STS >> dmastp->shift) & AT32_DMA_STS_MASK;
-  if (flags & dmastp->channel->CTRL) {
+  if (flags & dmastp->channel->CCTRL) {
     dmastp->dma->CLR = flags << dmastp->shift;
     if (dma.streams[selfindex].func) {
       dma.streams[selfindex].func(dma.streams[selfindex].param, flags);
