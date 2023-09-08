@@ -101,6 +101,11 @@
 #define AT32_DMA2_CH6_NUMBER               AT32_DMA2_CH6_7_NUMBER
 #define AT32_DMA2_CH7_NUMBER               AT32_DMA2_CH6_7_NUMBER
 
+#define AT32_DMA2_CH4_CMASK                0x00000C00U
+#define AT32_DMA2_CH5_CMASK                0x00000C00U
+#define AT32_DMA2_CH6_CMASK                0x00003000U
+#define AT32_DMA2_CH7_CMASK                0x00003000U
+
 /* EXINT attributes.*/
 #define AT32_EXINT_NUM_LINES               23
 #define AT32_EXINT_INTEN_MASK              0x00000000U
@@ -264,6 +269,11 @@
 #define AT32_DMA2_CH5_NUMBER               AT32_DMA2_CH4_5_NUMBER
 #define AT32_DMA2_CH6_NUMBER               AT32_DMA2_CH6_7_NUMBER
 #define AT32_DMA2_CH7_NUMBER               AT32_DMA2_CH6_7_NUMBER
+
+#define AT32_DMA2_CH4_CMASK                0x00000C00U
+#define AT32_DMA2_CH5_CMASK                0x00000C00U
+#define AT32_DMA2_CH6_CMASK                0x00003000U
+#define AT32_DMA2_CH7_CMASK                0x00003000U
 
 /* EXINT attributes.*/
 #define AT32_EXINT_NUM_LINES               23
@@ -429,6 +439,11 @@
 #define AT32_DMA2_CH6_NUMBER               AT32_DMA2_CH6_7_NUMBER
 #define AT32_DMA2_CH7_NUMBER               AT32_DMA2_CH6_7_NUMBER
 
+#define AT32_DMA2_CH4_CMASK                0x00000C00U
+#define AT32_DMA2_CH5_CMASK                0x00000C00U
+#define AT32_DMA2_CH6_CMASK                0x00003000U
+#define AT32_DMA2_CH7_CMASK                0x00003000U
+
 /* EXINT attributes.*/
 #define AT32_EXINT_NUM_LINES               23
 #define AT32_EXINT_INTEN_MASK              0x00000000U
@@ -592,6 +607,11 @@
 #define AT32_DMA2_CH5_NUMBER               AT32_DMA2_CH4_5_NUMBER
 #define AT32_DMA2_CH6_NUMBER               AT32_DMA2_CH6_7_NUMBER
 #define AT32_DMA2_CH7_NUMBER               AT32_DMA2_CH6_7_NUMBER
+
+#define AT32_DMA2_CH4_CMASK                0x00000C00U
+#define AT32_DMA2_CH5_CMASK                0x00000C00U
+#define AT32_DMA2_CH6_CMASK                0x00003000U
+#define AT32_DMA2_CH7_CMASK                0x00003000U
 
 /* EXINT attributes.*/
 #define AT32_EXINT_NUM_LINES               23
@@ -757,6 +777,11 @@
 #define AT32_DMA2_CH6_NUMBER               AT32_DMA2_CH6_7_NUMBER
 #define AT32_DMA2_CH7_NUMBER               AT32_DMA2_CH6_7_NUMBER
 
+#define AT32_DMA2_CH4_CMASK                0x00000C00U
+#define AT32_DMA2_CH5_CMASK                0x00000C00U
+#define AT32_DMA2_CH6_CMASK                0x00003000U
+#define AT32_DMA2_CH7_CMASK                0x00003000U
+
 /* EXINT attributes.*/
 #define AT32_EXINT_NUM_LINES               23
 #define AT32_EXINT_INTEN_MASK              0x00000000U
@@ -920,6 +945,11 @@
 #define AT32_DMA2_CH5_NUMBER               AT32_DMA2_CH4_5_NUMBER
 #define AT32_DMA2_CH6_NUMBER               AT32_DMA2_CH6_7_NUMBER
 #define AT32_DMA2_CH7_NUMBER               AT32_DMA2_CH6_7_NUMBER
+
+#define AT32_DMA2_CH4_CMASK                0x00000C00U
+#define AT32_DMA2_CH5_CMASK                0x00000C00U
+#define AT32_DMA2_CH6_CMASK                0x00003000U
+#define AT32_DMA2_CH7_CMASK                0x00003000U
 
 /* EXINT attributes.*/
 #define AT32_EXINT_NUM_LINES               23

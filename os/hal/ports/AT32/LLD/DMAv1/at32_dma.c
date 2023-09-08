@@ -219,9 +219,9 @@ static struct {
 
 #if defined(AT32_DMA1_CH1_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA1 stream 1 shared STS.
+ * @brief   DMA1 stream 1 shared interrupt handler.
  *
- * @sts
+ * @isr
  */
 OSAL_IRQ_HANDLER(AT32_DMA1_CH1_HANDLER) {
 
@@ -235,9 +235,9 @@ OSAL_IRQ_HANDLER(AT32_DMA1_CH1_HANDLER) {
 
 #if defined(AT32_DMA1_CH2_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA1 stream 2 shared STS.
+ * @brief   DMA1 stream 2 shared interrupt handler.
  *
- * @sts
+ * @isr
  */
 OSAL_IRQ_HANDLER(AT32_DMA1_CH2_HANDLER) {
 
@@ -251,9 +251,9 @@ OSAL_IRQ_HANDLER(AT32_DMA1_CH2_HANDLER) {
 
 #if defined(AT32_DMA1_CH3_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA1 stream 3 shared STS.
+ * @brief   DMA1 stream 3 shared interrupt handler.
  *
- * @sts
+ * @isr
  */
 OSAL_IRQ_HANDLER(AT32_DMA1_CH3_HANDLER) {
 
@@ -267,9 +267,9 @@ OSAL_IRQ_HANDLER(AT32_DMA1_CH3_HANDLER) {
 
 #if defined(AT32_DMA1_CH4_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA1 stream 4 shared STS.
+ * @brief   DMA1 stream 4 shared interrupt handler.
  *
- * @sts
+ * @isr
  */
 OSAL_IRQ_HANDLER(AT32_DMA1_CH4_HANDLER) {
 
@@ -283,9 +283,9 @@ OSAL_IRQ_HANDLER(AT32_DMA1_CH4_HANDLER) {
 
 #if defined(AT32_DMA1_CH5_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA1 stream 5 shared STS.
+ * @brief   DMA1 stream 5 shared interrupt handler.
  *
- * @sts
+ * @isr
  */
 OSAL_IRQ_HANDLER(AT32_DMA1_CH5_HANDLER) {
 
@@ -299,9 +299,9 @@ OSAL_IRQ_HANDLER(AT32_DMA1_CH5_HANDLER) {
 
 #if defined(AT32_DMA1_CH6_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA1 stream 6 shared STS.
+ * @brief   DMA1 stream 6 shared interrupt handler.
  *
- * @sts
+ * @isr
  */
 OSAL_IRQ_HANDLER(AT32_DMA1_CH6_HANDLER) {
 
@@ -315,9 +315,9 @@ OSAL_IRQ_HANDLER(AT32_DMA1_CH6_HANDLER) {
 
 #if defined(AT32_DMA1_CH7_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA1 stream 7 shared STS.
+ * @brief   DMA1 stream 7 shared interrupt handler.
  *
- * @sts
+ * @isr
  */
 OSAL_IRQ_HANDLER(AT32_DMA1_CH7_HANDLER) {
 
@@ -331,9 +331,9 @@ OSAL_IRQ_HANDLER(AT32_DMA1_CH7_HANDLER) {
 
 #if defined(AT32_DMA2_CH1_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA2 stream 1 shared STS.
+ * @brief   DMA2 stream 1 shared interrupt handler.
  *
- * @sts
+ * @isr
  */
 OSAL_IRQ_HANDLER(AT32_DMA2_CH1_HANDLER) {
 
@@ -347,9 +347,9 @@ OSAL_IRQ_HANDLER(AT32_DMA2_CH1_HANDLER) {
 
 #if defined(AT32_DMA2_CH2_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA2 stream 2 shared STS.
+ * @brief   DMA2 stream 2 shared interrupt handler.
  *
- * @sts
+ * @isr
  */
 OSAL_IRQ_HANDLER(AT32_DMA2_CH2_HANDLER) {
 
@@ -363,9 +363,9 @@ OSAL_IRQ_HANDLER(AT32_DMA2_CH2_HANDLER) {
 
 #if defined(AT32_DMA2_CH3_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA2 stream 3 shared STS.
+ * @brief   DMA2 stream 3 shared interrupt handler.
  *
- * @sts
+ * @isr
  */
 OSAL_IRQ_HANDLER(AT32_DMA2_CH3_HANDLER) {
 
@@ -379,9 +379,9 @@ OSAL_IRQ_HANDLER(AT32_DMA2_CH3_HANDLER) {
 
 #if defined(AT32_DMA2_CH4_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA2 stream 4 shared STS.
+ * @brief   DMA2 stream 4 shared interrupt handler.
  *
- * @sts
+ * @isr
  */
 OSAL_IRQ_HANDLER(AT32_DMA2_CH4_HANDLER) {
 
@@ -395,9 +395,9 @@ OSAL_IRQ_HANDLER(AT32_DMA2_CH4_HANDLER) {
 
 #if defined(AT32_DMA2_CH5_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA2 stream 5 shared STS.
+ * @brief   DMA2 stream 5 shared interrupt handler.
  *
- * @sts
+ * @isr
  */
 OSAL_IRQ_HANDLER(AT32_DMA2_CH5_HANDLER) {
 
@@ -411,9 +411,9 @@ OSAL_IRQ_HANDLER(AT32_DMA2_CH5_HANDLER) {
 
 #if defined(AT32_DMA2_CH6_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA2 stream 6 shared STS.
+ * @brief   DMA2 stream 6 shared interrupt handler.
  *
- * @sts
+ * @isr
  */
 OSAL_IRQ_HANDLER(AT32_DMA2_CH6_HANDLER) {
 
@@ -427,9 +427,9 @@ OSAL_IRQ_HANDLER(AT32_DMA2_CH6_HANDLER) {
 
 #if defined(AT32_DMA2_CH7_HANDLER) || defined(__DOXYGEN__)
 /**
- * @brief   DMA2 stream 7 shared STS.
+ * @brief   DMA2 stream 7 shared interrupt handler.
  *
- * @sts
+ * @isr
  */
 OSAL_IRQ_HANDLER(AT32_DMA2_CH7_HANDLER) {
 
