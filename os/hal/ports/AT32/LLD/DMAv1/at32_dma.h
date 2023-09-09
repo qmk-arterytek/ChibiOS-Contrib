@@ -227,6 +227,15 @@
 #define AT32_DMA_CCTRL_CHPL(n)      ((n) << 12U)
 /** @} */
 
+/**
+ * @name    Status flags passed to the ISR callbacks
+ * @{
+ */
+#define AT32_DMA_STS_DTERRF    (0x1U << 3)
+#define AT32_DMA_STS_HDTF        (0x1U << 2)
+#define AT32_DMA_STS_FDTF         (0x1U << 1)
+/** @} */
+
 /*===========================================================================*/
 /* Driver pre-compile time settings.                                         */
 /*===========================================================================*/
