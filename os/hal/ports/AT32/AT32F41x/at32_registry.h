@@ -66,7 +66,7 @@
 #define AT32_CAN_MAX_FILTERS               14
 
 /* DMA attributes.*/
-#define AT32_DMA_SUPPORTS_DMAMUX           TRUE 
+#define AT32_DMA_SUPPORTS_DMAMUX           TRUE
 
 #define AT32_DMA1_NUM_CHANNELS             7
 #define AT32_DMA1_CH1_HANDLER              Vector6C
@@ -235,7 +235,7 @@
 #define AT32_CAN_MAX_FILTERS               14
 
 /* DMA attributes.*/
-#define AT32_DMA_SUPPORTS_DMAMUX           TRUE 
+#define AT32_DMA_SUPPORTS_DMAMUX           TRUE
 
 #define AT32_DMA1_NUM_CHANNELS             7
 #define AT32_DMA1_CH1_HANDLER              Vector6C
@@ -404,7 +404,7 @@
 #define AT32_CAN_MAX_FILTERS               14
 
 /* DMA attributes.*/
-#define AT32_DMA_SUPPORTS_DMAMUX           TRUE 
+#define AT32_DMA_SUPPORTS_DMAMUX           TRUE
 
 #define AT32_DMA1_NUM_CHANNELS             7
 #define AT32_DMA1_CH1_HANDLER              Vector6C
@@ -573,7 +573,7 @@
 #define AT32_CAN_MAX_FILTERS               14
 
 /* DMA attributes.*/
-#define AT32_DMA_SUPPORTS_DMAMUX           TRUE 
+#define AT32_DMA_SUPPORTS_DMAMUX           TRUE
 
 #define AT32_DMA1_NUM_CHANNELS             7
 #define AT32_DMA1_CH1_HANDLER              Vector6C
@@ -742,7 +742,7 @@
 #define AT32_CAN_MAX_FILTERS               14
 
 /* DMA attributes.*/
-#define AT32_DMA_SUPPORTS_DMAMUX           TRUE 
+#define AT32_DMA_SUPPORTS_DMAMUX           TRUE
 
 #define AT32_DMA1_NUM_CHANNELS             7
 #define AT32_DMA1_CH1_HANDLER              Vector6C
@@ -911,7 +911,7 @@
 #define AT32_CAN_MAX_FILTERS               14
 
 /* DMA attributes.*/
-#define AT32_DMA_SUPPORTS_DMAMUX           TRUE 
+#define AT32_DMA_SUPPORTS_DMAMUX           TRUE
 
 #define AT32_DMA1_NUM_CHANNELS             7
 #define AT32_DMA1_CH1_HANDLER              Vector6C
