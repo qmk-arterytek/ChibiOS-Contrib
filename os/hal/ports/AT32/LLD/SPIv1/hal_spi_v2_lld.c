@@ -300,6 +300,10 @@ msg_t spi_lld_start(SPIDriver *spip) {
       }
       crmEnableSPI1(true);
       crmResetSPI1();
+#if AT32_DMA_SUPPORTS_DMAMUX && AT32_DMA_USE_DMAMUX
+      dmaSetRequestSource(spip->dmarx, AT32_SPI_SPI1_RX_DMAMUX_CHANNEL, AT32_DMAMUX_SPI1_RX);
+      dmaSetRequestSource(spip->dmatx, AT32_SPI_SPI1_TX_DMAMUX_CHANNEL, AT32_DMAMUX_SPI1_TX);
+#endif
     }
 #endif
 
@@ -314,6 +318,10 @@ msg_t spi_lld_start(SPIDriver *spip) {
       }
       crmEnableSPI2(true);
       crmResetSPI2();
+#if AT32_DMA_SUPPORTS_DMAMUX && AT32_DMA_USE_DMAMUX
+      dmaSetRequestSource(spip->dmarx, AT32_SPI_SPI2_RX_DMAMUX_CHANNEL, AT32_DMAMUX_SPI2_RX);
+      dmaSetRequestSource(spip->dmatx, AT32_SPI_SPI2_TX_DMAMUX_CHANNEL, AT32_DMAMUX_SPI2_TX);
+#endif
     }
 #endif
 

@@ -21,6 +21,13 @@
  * @brief   DMA helper driver code.
  *
  * @addtogroup AT32_DMA
+ * @details DMA sharing helper driver. In the AT32 the DMA streams are a
+ *          shared resource, this driver allows to allocate and free DMA
+ *          streams at runtime in order to allow all the other device
+ *          drivers to coordinate the access to the resource.
+ * @note    The DMA STS handlers are all declared into this module because
+ *          sharing, the various device drivers can associate a callback to
+ *          STSs when allocating streams.
  * @{
  */
 
@@ -37,12 +44,12 @@
 /**
  * @brief   Mask of the DMA1 streams in @p dma_streams_mask.
  */
-#define AT32_DMA1_STREAMS_MASK     ((1U << AT32_DMA1_NUM_CHANNELS) - 1U)
+#define AT32_DMA1_STREAMS_MASK      ((1U << AT32_DMA1_NUM_CHANNELS) - 1U)
 
 /**
  * @brief   Mask of the DMA2 streams in @p dma_streams_mask.
  */
-#define AT32_DMA2_STREAMS_MASK     (((1U << AT32_DMA2_NUM_CHANNELS) -     \
+#define AT32_DMA2_STREAMS_MASK      (((1U << AT32_DMA2_NUM_CHANNELS) -      \
                                       1U) << AT32_DMA1_NUM_CHANNELS)
 
 #define DMA1_CH1_VARIANT            0
@@ -537,13 +544,6 @@ const at32_dma_stream_t *dmaStreamAllocI(uint32_t id,
       }
 #endif
 
-#if (AT32_DMA_SUPPORTS_DMAMUX == TRUE) && defined(crmEnableDMAMUX)
-      /* Enabling DMAMUX if present.*/
-      if (dma.allocated_mask != 0U) {
-        crmEnableDMAMUX(true);
-      }
-#endif
-
       /* Enables the associated IRQ vector if not already enabled and if a
          callback is defined.*/
       if (func != NULL) {
@@ -638,13 +638,6 @@ void dmaStreamFreeI(const at32_dma_stream_t *dmastp) {
 #if AT32_DMA2_NUM_CHANNELS > 0
   if ((dma.allocated_mask & AT32_DMA2_STREAMS_MASK) == 0U) {
     crmDisableDMA2();
-  }
-#endif
-
-#if (AT32_DMA_SUPPORTS_DMAMUX == TRUE) && defined(crmDisableDMAMUX)
-  /* Shutting down DMAMUX if present.*/
-  if (dma.allocated_mask == 0U) {
-    crmDisableDMAMUX();
   }
 #endif
 }

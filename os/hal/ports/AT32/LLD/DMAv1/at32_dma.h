@@ -36,19 +36,24 @@
  * @details if @p TRUE then the DMA is able of burst transfers, FIFOs,
  *          scatter gather and other advanced features.
  */
-#define AT32_DMA_ADVANCED          FALSE
+#define AT32_DMA_ADVANCED           FALSE
+
+/**
+ * @brief   Maximum number of transfers in a single operation.
+ */
+#define AT32_DMA_MAX_TRANSFER       65535
 
 /**
  * @brief   Total number of DMA streams.
  * @details This is the total number of streams among all the DMA units.
  */
-#define AT32_DMA_STREAMS           (AT32_DMA1_NUM_CHANNELS +              \
+#define AT32_DMA_STREAMS            (AT32_DMA1_NUM_CHANNELS +               \
                                      AT32_DMA2_NUM_CHANNELS)
 
 /**
  * @brief   Mask of the STS bits passed to the DMA callback functions.
  */
-#define AT32_DMA_STS_MASK          0x0E
+#define AT32_DMA_STS_MASK           0x0E
 
 /**
  * @brief   Returns the request line associated to the specified stream.
@@ -73,27 +78,6 @@
  */
 #define AT32_DMA_IS_VALID_PRIORITY(prio) (((prio) >= 0U) && ((prio) <= 3U))
 
-#if (AT32_DMA_SUPPORTS_DMAMUX == FALSE) || defined(_DOXYGEN__)
-/**
- * @brief   Checks if a DMA stream id is within the valid range.
- *
- * @param[in] id        DMA stream id
- * @retval              The check result.
- * @retval false        invalid DMA channel.
- * @retval true         correct DMA channel.
- */
-#define AT32_DMA_IS_VALID_STREAM(id) (((id) >= 0U) &&                      \
-                                       ((id) < AT32_DMA_STREAMS))
-#else /* AT32_DMA_SUPPORTS_DMAMUX == FALSE */
-#if AT32_DMA2_NUM_CHANNELS > 0
-#define AT32_DMA_IS_VALID_STREAM(id) (((id) >= 0U) &&                      \
-                                       ((id) <= (AT32_DMA_STREAMS + 2)))
-#else
-#define AT32_DMA_IS_VALID_STREAM(id) (((id) >= 0U) &&                      \
-                                       ((id) <= (AT32_DMA_STREAMS + 1)))
-#endif
-#endif /* AT32_DMA_SUPPORTS_DMAMUX == FALSE */
-
 /**
  * @brief   Returns an unique numeric identifier for a DMA stream.
  *
@@ -103,29 +87,6 @@
  */
 #define AT32_DMA_STREAM_ID(dma, stream)                                    \
   ((((dma) - 1) * AT32_DMA1_NUM_CHANNELS) + ((stream) - 1))
-
-/**
- * @brief   Returns a DMA stream identifier mask.
- *
- *
- * @param[in] dma       the DMA unit number
- * @param[in] stream    the stream number
- * @return              A DMA stream identifier mask.
- */
-#define AT32_DMA_STREAM_ID_MSK(dma, stream)                                \
-  (1U << AT32_DMA_STREAM_ID(dma, stream))
-
-/**
- * @brief   Checks if a DMA stream unique identifier belongs to a mask.
- *
- * @param[in] id        the stream numeric identifier
- * @param[in] mask      the stream numeric identifiers mask
- *
- * @retval              The check result.
- * @retval false        id does not belong to the mask.
- * @retval true         id belongs to the mask.
- */
-#define AT32_DMA_IS_VALID_ID(id, mask) (((1U << (id)) & (mask)))
 
 #if (AT32_DMA_SUPPORTS_DMAMUX == TRUE) || defined(_DOXYGEN__)
 /**
@@ -228,12 +189,12 @@
 /** @} */
 
 /**
- * @name    Status flags passed to the ISR callbacks
+ * @name    Status flags passed to the STS callbacks
  * @{
  */
-#define AT32_DMA_STS_DTERRF    (0x1U << 3)
-#define AT32_DMA_STS_HDTF        (0x1U << 2)
-#define AT32_DMA_STS_FDTF         (0x1U << 1)
+#define AT32_DMA_STS_DTERRF         DMA_STS_DTERRF1
+#define AT32_DMA_STS_HDTF           DMA_STS_HDTF1
+#define AT32_DMA_STS_FDTF           DMA_STS_FDTF1
 /** @} */
 
 /*===========================================================================*/
@@ -256,11 +217,11 @@
 #error "AT32_DMA2_NUM_CHANNELS not defined in registry"
 #endif
 
-#if (AT32_DMA1_NUM_CHANNELS < 0) || (AT32_DMA1_NUM_CHANNELS > 8)
+#if (AT32_DMA1_NUM_CHANNELS < 0) || (AT32_DMA1_NUM_CHANNELS > 7)
 #error "unsupported channels configuration"
 #endif
 
-#if (AT32_DMA2_NUM_CHANNELS < 0) || (AT32_DMA2_NUM_CHANNELS > 8)
+#if (AT32_DMA2_NUM_CHANNELS < 0) || (AT32_DMA2_NUM_CHANNELS > 7)
 #error "unsupported channels configuration"
 #endif
 
@@ -292,7 +253,7 @@ typedef struct {
   DMA_TypeDef           *dma;           /**< @brief Associated DMA.         */
   DMA_Channel_TypeDef   *channel;       /**< @brief Associated DMA channel. */
   uint32_t              cmask;          /**< @brief Mask of streams sharing
-                                             the same ISR.                  */
+                                             the same STS.                  */
   uint8_t               dummy;          /**< @brief Filler.                 */
   uint8_t               shift;          /**< @brief Bit offset in STS, CLR  */
   uint8_t               selfindex;      /**< @brief Index to self in array. */
@@ -319,7 +280,7 @@ typedef struct {
  * @special
  */
 #define dmaStreamSetPeripheral(dmastp, addr) {                              \
-  (dmastp)->channel->CPADDR = (uint32_t)(addr);                               \
+  (dmastp)->channel->CPADDR = (uint32_t)(addr);                             \
 }
 
 /**
@@ -334,7 +295,7 @@ typedef struct {
  * @special
  */
 #define dmaStreamSetMemory0(dmastp, addr) {                                 \
-  (dmastp)->channel->CMADDR = (uint32_t)(addr);                               \
+  (dmastp)->channel->CMADDR = (uint32_t)(addr);                             \
 }
 
 /**
@@ -349,7 +310,7 @@ typedef struct {
  * @special
  */
 #define dmaStreamSetTransactionSize(dmastp, size) {                         \
-  (dmastp)->channel->CDTCNT = (uint32_t)(size);                              \
+  (dmastp)->channel->CDTCNT = (uint32_t)(size);                             \
 }
 
 /**
@@ -427,7 +388,7 @@ typedef struct {
  * @special
  */
 #define dmaStreamClearInterrupt(dmastp) {                                   \
-  (dmastp)->dma->CLR = AT32_DMA_STS_MASK << (dmastp)->shift;              \
+  (dmastp)->dma->CLR = AT32_DMA_STS_MASK << (dmastp)->shift;                \
 }
 
 /**
@@ -466,7 +427,7 @@ typedef struct {
  * @param[in] dmastp    pointer to a at32_dma_stream_t structure
  */
 #define dmaWaitCompletion(dmastp) {                                         \
-  while ((dmastp)->channel->CDTCNT > 0U)                                     \
+  while ((dmastp)->channel->CDTCNT > 0U)                                    \
     ;                                                                       \
   dmaStreamDisable(dmastp);                                                 \
 }

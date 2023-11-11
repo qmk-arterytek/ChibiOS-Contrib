@@ -117,6 +117,28 @@
 #if !defined(AT32_SPI_DMA_ERROR_HOOK) || defined(__DOXYGEN__)
 #define AT32_SPI_DMA_ERROR_HOOK(spip)      osalSysHalt("DMA failure")
 #endif
+
+#if AT32_DMA_SUPPORTS_DMAMUX && AT32_DMA_USE_DMAMUX
+
+/**
+ * @brief   SPI1 DMA MUX setting.
+ */
+#if !defined(AT32_SPI_SPI1_RX_DMAMUX_CHANNEL) || \
+    !defined(AT32_SPI_SPI1_TX_DMAMUX_CHANNEL) || defined(__DOXYGEN__)
+#define AT32_SPI_SPI1_RX_DMAMUX_CHANNEL     0
+#define AT32_SPI_SPI1_TX_DMAMUX_CHANNEL     0
+#endif
+
+/**
+ * @brief   SPI2 DMA MUX setting.
+ */
+#if !defined(AT32_SPI_SPI2_RX_DMAMUX_CHANNEL) || \
+    !defined(AT32_SPI_SPI2_TX_DMAMUX_CHANNEL) || defined(__DOXYGEN__)
+#define AT32_SPI_SPI2_RX_DMAMUX_CHANNEL     0
+#define AT32_SPI_SPI2_TX_DMAMUX_CHANNEL     0
+#endif
+
+#endif
 /** @} */
 
 /*===========================================================================*/
