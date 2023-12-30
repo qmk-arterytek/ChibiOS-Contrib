@@ -17,10 +17,10 @@
 */
 
 /**
- * @file    AT32F41x/at32_isr.c
- * @brief   AT32F41x ISR handler code.
+ * @file    AT32F415/at32_isr.c
+ * @brief   AT32F415 ISR handler code.
  *
- * @addtogroup AT32F41x_ISR
+ * @addtogroup AT32F415_ISR
  * @{
  */
 

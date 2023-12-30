@@ -17,10 +17,10 @@
 */
 
 /**
- * @file    AT32F41x/at32_isr.h
- * @brief   AT32F41x ISR handler header.
+ * @file    AT32F415/at32_isr.h
+ * @brief   AT32F415 ISR handler header.
  *
- * @addtogroup AT32F41x_ISR
+ * @addtogroup AT32F415_ISR
  * @{
  */
 
@@ -111,10 +111,10 @@
 #define AT32_UART5_NUMBER           53
 
 /*
- * RTC unit
+ * ERTC unit
  */
-#define AT32_RTC_HANDLER            Vector4C
-#define AT32_RTC_NUMBER             3
+#define AT32_ERTC_HANDLER           Vector4C
+#define AT32_ERTC_NUMBER            3
 
 /** @} */
 

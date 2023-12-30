@@ -17,8 +17,8 @@
 */
 
 /**
- * @file    AT32F41x/at32_registry.h
- * @brief   AT32F41x capabilities registry.
+ * @file    AT32F415/at32_registry.h
+ * @brief   AT32F415 capabilities registry.
  *
  * @addtogroup HAL
  * @{
@@ -46,7 +46,7 @@
 #define AT32F415R_HD
 
 #else
-#error "unsupported or unrecognized AT32F41x member"
+#error "unsupported or unrecognized AT32F415 member"
 #endif
 
 /*===========================================================================*/
@@ -132,10 +132,10 @@
 #define AT32_I2C_I2C2_RX_DMA_STREAM        AT32_DMA_STREAM_ID(1, 5)
 #define AT32_I2C_I2C2_TX_DMA_STREAM        AT32_DMA_STREAM_ID(1, 4)
 
-/* RTC attributes.*/
-#define AT32_HAS_RTC                       TRUE
-#define AT32_RTC_HAS_SUBSECONDS            TRUE
-#define AT32_RTC_IS_CALENDAR               TRUE
+/* ERTC attributes.*/
+#define AT32_HAS_ERTC                      TRUE
+#define AT32_ERTC_HAS_SUBSECONDS           TRUE
+#define AT32_ERTC_IS_CALENDAR              TRUE
 
 /* SDIO attributes.*/
 #define AT32_HAS_SDIO1                     TRUE
@@ -300,10 +300,10 @@
 #define AT32_I2C_I2C2_RX_DMA_STREAM        AT32_DMA_STREAM_ID(1, 5)
 #define AT32_I2C_I2C2_TX_DMA_STREAM        AT32_DMA_STREAM_ID(1, 4)
 
-/* RTC attributes.*/
-#define AT32_HAS_RTC                       TRUE
-#define AT32_RTC_HAS_SUBSECONDS            TRUE
-#define AT32_RTC_IS_CALENDAR               TRUE
+/* ERTC attributes.*/
+#define AT32_HAS_ERTC                      TRUE
+#define AT32_ERTC_HAS_SUBSECONDS           TRUE
+#define AT32_ERTC_IS_CALENDAR              TRUE
 
 /* SDIO attributes.*/
 #define AT32_HAS_SDIO1                     TRUE
@@ -468,10 +468,10 @@
 #define AT32_I2C_I2C2_RX_DMA_STREAM        AT32_DMA_STREAM_ID(1, 5)
 #define AT32_I2C_I2C2_TX_DMA_STREAM        AT32_DMA_STREAM_ID(1, 4)
 
-/* RTC attributes.*/
-#define AT32_HAS_RTC                       TRUE
-#define AT32_RTC_HAS_SUBSECONDS            TRUE
-#define AT32_RTC_IS_CALENDAR               TRUE
+/* ERTC attributes.*/
+#define AT32_HAS_ERTC                      TRUE
+#define AT32_ERTC_HAS_SUBSECONDS           TRUE
+#define AT32_ERTC_IS_CALENDAR              TRUE
 
 /* SDIO attributes.*/
 #define AT32_HAS_SDIO1                     TRUE
@@ -636,10 +636,10 @@
 #define AT32_I2C_I2C2_RX_DMA_STREAM        AT32_DMA_STREAM_ID(1, 5)
 #define AT32_I2C_I2C2_TX_DMA_STREAM        AT32_DMA_STREAM_ID(1, 4)
 
-/* RTC attributes.*/
-#define AT32_HAS_RTC                       TRUE
-#define AT32_RTC_HAS_SUBSECONDS            TRUE
-#define AT32_RTC_IS_CALENDAR               TRUE
+/* ERTC attributes.*/
+#define AT32_HAS_ERTC                      TRUE
+#define AT32_ERTC_HAS_SUBSECONDS           TRUE
+#define AT32_ERTC_IS_CALENDAR              TRUE
 
 /* SDIO attributes.*/
 #define AT32_HAS_SDIO1                     TRUE
@@ -804,10 +804,10 @@
 #define AT32_I2C_I2C2_RX_DMA_STREAM        AT32_DMA_STREAM_ID(1, 5)
 #define AT32_I2C_I2C2_TX_DMA_STREAM        AT32_DMA_STREAM_ID(1, 4)
 
-/* RTC attributes.*/
-#define AT32_HAS_RTC                       TRUE
-#define AT32_RTC_HAS_SUBSECONDS            TRUE
-#define AT32_RTC_IS_CALENDAR               TRUE
+/* ERTC attributes.*/
+#define AT32_HAS_ERTC                      TRUE
+#define AT32_ERTC_HAS_SUBSECONDS           TRUE
+#define AT32_ERTC_IS_CALENDAR              TRUE
 
 /* SDIO attributes.*/
 #define AT32_HAS_SDIO1                     TRUE
@@ -972,10 +972,10 @@
 #define AT32_I2C_I2C2_RX_DMA_STREAM        AT32_DMA_STREAM_ID(1, 5)
 #define AT32_I2C_I2C2_TX_DMA_STREAM        AT32_DMA_STREAM_ID(1, 4)
 
-/* RTC attributes.*/
-#define AT32_HAS_RTC                       TRUE
-#define AT32_RTC_HAS_SUBSECONDS            TRUE
-#define AT32_RTC_IS_CALENDAR               TRUE
+/* ERTC attributes.*/
+#define AT32_HAS_ERTC                      TRUE
+#define AT32_ERTC_HAS_SUBSECONDS           TRUE
+#define AT32_ERTC_IS_CALENDAR              TRUE
 
 /* SDIO attributes.*/
 #define AT32_HAS_SDIO1                     TRUE
