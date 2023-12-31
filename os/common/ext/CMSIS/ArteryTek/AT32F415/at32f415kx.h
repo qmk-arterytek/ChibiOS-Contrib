@@ -100,9 +100,9 @@ typedef enum
 
 /******  AT32 specific Interrupt Numbers **********************************************************/
   WWDT_IRQn                   = 0,      /*!< Window WatchDog Timer Interrupt                      */
-  PVM_IRQn                    = 1,      /*!< PVM through EXINT Line detection Interrupt           */
-  TAMPER_IRQn                 = 2,      /*!< Tamper Interrupt                                     */
-  ERTC_IRQn                   = 3,      /*!< ERTC global Interrupt                                */
+  PVM_IRQn                    = 1,      /*!< PVM Interrupt linked to EXINT16                      */
+  TAMPER_IRQn                 = 2,      /*!< Tamper Interrupt linked to EXINT21                   */
+  ERTC_IRQn                   = 3,      /*!< ERTC Interrupt linked to EXINT22                     */
   FLASH_IRQn                  = 4,      /*!< FLASH global Interrupt                               */
   CRM_IRQn                    = 5,      /*!< CRM global Interrupt                                 */
   EXINT0_IRQn                 = 6,      /*!< EXINT Line 0 Interrupt                               */
@@ -139,8 +139,8 @@ typedef enum
   USART1_IRQn                 = 37,     /*!< USART1 global Interrupt                              */
   USART2_IRQn                 = 38,     /*!< USART2 global Interrupt                              */
   EXINT15_10_IRQn             = 40,     /*!< EXINT Line[15:10] Interrupts                         */
-  ERTCAlarm_IRQn              = 41,     /*!< ERTC Alarm through EXINT Line Interrupt              */
-  OTGFS_WKUP_IRQn             = 42,     /*!< OTGFS WakeUp through EXINT Line Interrupt            */
+  ERTCAlarm_IRQn              = 41,     /*!< ERTC Alarm Interrupt linked to EXINT17               */
+  OTGFS_WKUP_IRQn             = 42,     /*!< OTGFS Wake Up Interrupt linked to EXINT18            */
   SDIO_IRQn                   = 49,     /*!< SDIO global Interrupt                                */
   TMR5_GLOBAL_IRQn            = 50,     /*!< TMR5 global Interrupt                                */
   DMA2_Channel1_IRQn          = 56,     /*!< DMA2 Channel 1 global Interrupt                      */
@@ -148,8 +148,8 @@ typedef enum
   DMA2_Channel3_IRQn          = 58,     /*!< DMA2 Channel 3 global Interrupt                      */
   DMA2_Channel4_5_IRQn        = 59,     /*!< DMA2 Channel 4 and Channel 5 global Interrupt        */
   OTGFS_IRQn                  = 67,     /*!< OTGFS global Interrupt                               */
-  CMP1_IRQn                   = 70,     /*!< CMP1 global Interrupt                                */
-  CMP2_IRQn                   = 71,     /*!< CMP2 global Interrupt                                */
+  CMP1_IRQn                   = 70,     /*!< CMP1 Interrupt linked to EXINT19                     */
+  CMP2_IRQn                   = 71,     /*!< CMP2 Interrupt linked to EXINT20                     */
   DMA2_Channel6_7_IRQn        = 75,     /*!< DMA2 Channel 6 and Channel 7 global Interrupt        */
 } IRQn_Type;
 

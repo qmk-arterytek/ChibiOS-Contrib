@@ -62,48 +62,13 @@
 #define AT32_HAS_ADC1                      TRUE
 
 /* CAN attributes.*/
-#define AT32_HAS_CAN                       TRUE
+#define AT32_HAS_CAN1                      TRUE
 #define AT32_CAN_MAX_FILTERS               14
 
 /* DMA attributes.*/
 #define AT32_DMA_SUPPORTS_DMAMUX           TRUE
 #define AT32_DMA1_NUM_CHANNELS             7
-#define AT32_DMA1_CH1_HANDLER              Vector6C
-#define AT32_DMA1_CH2_HANDLER              Vector70
-#define AT32_DMA1_CH3_HANDLER              Vector74
-#define AT32_DMA1_CH4_HANDLER              Vector78
-#define AT32_DMA1_CH5_HANDLER              Vector7C
-#define AT32_DMA1_CH6_HANDLER              Vector80
-#define AT32_DMA1_CH7_HANDLER              Vector84
-#define AT32_DMA1_CH1_NUMBER               11
-#define AT32_DMA1_CH2_NUMBER               12
-#define AT32_DMA1_CH3_NUMBER               13
-#define AT32_DMA1_CH4_NUMBER               14
-#define AT32_DMA1_CH5_NUMBER               15
-#define AT32_DMA1_CH6_NUMBER               16
-#define AT32_DMA1_CH7_NUMBER               17
-
 #define AT32_DMA2_NUM_CHANNELS             7
-#define AT32_DMA2_CH1_HANDLER              Vector120
-#define AT32_DMA2_CH2_HANDLER              Vector124
-#define AT32_DMA2_CH3_HANDLER              Vector128
-#define AT32_DMA2_CH4_5_HANDLER            Vector12C
-#define AT32_DMA2_CH6_7_HANDLER            Vector16C
-#define AT32_DMA2_CH1_NUMBER               56
-#define AT32_DMA2_CH2_NUMBER               57
-#define AT32_DMA2_CH3_NUMBER               58
-#define AT32_DMA2_CH4_5_NUMBER             59
-#define AT32_DMA2_CH6_7_NUMBER             75
-
-#define AT32_DMA2_CH4_NUMBER               AT32_DMA2_CH4_5_NUMBER
-#define AT32_DMA2_CH5_NUMBER               AT32_DMA2_CH4_5_NUMBER
-#define AT32_DMA2_CH6_NUMBER               AT32_DMA2_CH6_7_NUMBER
-#define AT32_DMA2_CH7_NUMBER               AT32_DMA2_CH6_7_NUMBER
-
-#define AT32_DMA2_CH4_CMASK                0x00000C00U
-#define AT32_DMA2_CH5_CMASK                0x00000C00U
-#define AT32_DMA2_CH6_CMASK                0x00003000U
-#define AT32_DMA2_CH7_CMASK                0x00003000U
 
 /* EXINT attributes.*/
 #define AT32_EXINT_NUM_LINES               23
@@ -230,48 +195,13 @@
 #define AT32_HAS_ADC1                      TRUE
 
 /* CAN attributes.*/
-#define AT32_HAS_CAN                       TRUE
+#define AT32_HAS_CAN1                      TRUE
 #define AT32_CAN_MAX_FILTERS               14
 
 /* DMA attributes.*/
 #define AT32_DMA_SUPPORTS_DMAMUX           TRUE
 #define AT32_DMA1_NUM_CHANNELS             7
-#define AT32_DMA1_CH1_HANDLER              Vector6C
-#define AT32_DMA1_CH2_HANDLER              Vector70
-#define AT32_DMA1_CH3_HANDLER              Vector74
-#define AT32_DMA1_CH4_HANDLER              Vector78
-#define AT32_DMA1_CH5_HANDLER              Vector7C
-#define AT32_DMA1_CH6_HANDLER              Vector80
-#define AT32_DMA1_CH7_HANDLER              Vector84
-#define AT32_DMA1_CH1_NUMBER               11
-#define AT32_DMA1_CH2_NUMBER               12
-#define AT32_DMA1_CH3_NUMBER               13
-#define AT32_DMA1_CH4_NUMBER               14
-#define AT32_DMA1_CH5_NUMBER               15
-#define AT32_DMA1_CH6_NUMBER               16
-#define AT32_DMA1_CH7_NUMBER               17
-
 #define AT32_DMA2_NUM_CHANNELS             7
-#define AT32_DMA2_CH1_HANDLER              Vector120
-#define AT32_DMA2_CH2_HANDLER              Vector124
-#define AT32_DMA2_CH3_HANDLER              Vector128
-#define AT32_DMA2_CH4_5_HANDLER            Vector12C
-#define AT32_DMA2_CH6_7_HANDLER            Vector16C
-#define AT32_DMA2_CH1_NUMBER               56
-#define AT32_DMA2_CH2_NUMBER               57
-#define AT32_DMA2_CH3_NUMBER               58
-#define AT32_DMA2_CH4_5_NUMBER             59
-#define AT32_DMA2_CH6_7_NUMBER             75
-
-#define AT32_DMA2_CH4_NUMBER               AT32_DMA2_CH4_5_NUMBER
-#define AT32_DMA2_CH5_NUMBER               AT32_DMA2_CH4_5_NUMBER
-#define AT32_DMA2_CH6_NUMBER               AT32_DMA2_CH6_7_NUMBER
-#define AT32_DMA2_CH7_NUMBER               AT32_DMA2_CH6_7_NUMBER
-
-#define AT32_DMA2_CH4_CMASK                0x00000C00U
-#define AT32_DMA2_CH5_CMASK                0x00000C00U
-#define AT32_DMA2_CH6_CMASK                0x00003000U
-#define AT32_DMA2_CH7_CMASK                0x00003000U
 
 /* EXINT attributes.*/
 #define AT32_EXINT_NUM_LINES               23
@@ -398,48 +328,13 @@
 #define AT32_HAS_ADC1                      TRUE
 
 /* CAN attributes.*/
-#define AT32_HAS_CAN                       TRUE
+#define AT32_HAS_CAN1                      TRUE
 #define AT32_CAN_MAX_FILTERS               14
 
 /* DMA attributes.*/
 #define AT32_DMA_SUPPORTS_DMAMUX           TRUE
 #define AT32_DMA1_NUM_CHANNELS             7
-#define AT32_DMA1_CH1_HANDLER              Vector6C
-#define AT32_DMA1_CH2_HANDLER              Vector70
-#define AT32_DMA1_CH3_HANDLER              Vector74
-#define AT32_DMA1_CH4_HANDLER              Vector78
-#define AT32_DMA1_CH5_HANDLER              Vector7C
-#define AT32_DMA1_CH6_HANDLER              Vector80
-#define AT32_DMA1_CH7_HANDLER              Vector84
-#define AT32_DMA1_CH1_NUMBER               11
-#define AT32_DMA1_CH2_NUMBER               12
-#define AT32_DMA1_CH3_NUMBER               13
-#define AT32_DMA1_CH4_NUMBER               14
-#define AT32_DMA1_CH5_NUMBER               15
-#define AT32_DMA1_CH6_NUMBER               16
-#define AT32_DMA1_CH7_NUMBER               17
-
 #define AT32_DMA2_NUM_CHANNELS             7
-#define AT32_DMA2_CH1_HANDLER              Vector120
-#define AT32_DMA2_CH2_HANDLER              Vector124
-#define AT32_DMA2_CH3_HANDLER              Vector128
-#define AT32_DMA2_CH4_5_HANDLER            Vector12C
-#define AT32_DMA2_CH6_7_HANDLER            Vector16C
-#define AT32_DMA2_CH1_NUMBER               56
-#define AT32_DMA2_CH2_NUMBER               57
-#define AT32_DMA2_CH3_NUMBER               58
-#define AT32_DMA2_CH4_5_NUMBER             59
-#define AT32_DMA2_CH6_7_NUMBER             75
-
-#define AT32_DMA2_CH4_NUMBER               AT32_DMA2_CH4_5_NUMBER
-#define AT32_DMA2_CH5_NUMBER               AT32_DMA2_CH4_5_NUMBER
-#define AT32_DMA2_CH6_NUMBER               AT32_DMA2_CH6_7_NUMBER
-#define AT32_DMA2_CH7_NUMBER               AT32_DMA2_CH6_7_NUMBER
-
-#define AT32_DMA2_CH4_CMASK                0x00000C00U
-#define AT32_DMA2_CH5_CMASK                0x00000C00U
-#define AT32_DMA2_CH6_CMASK                0x00003000U
-#define AT32_DMA2_CH7_CMASK                0x00003000U
 
 /* EXINT attributes.*/
 #define AT32_EXINT_NUM_LINES               23
@@ -566,48 +461,13 @@
 #define AT32_HAS_ADC1                      TRUE
 
 /* CAN attributes.*/
-#define AT32_HAS_CAN                       TRUE
+#define AT32_HAS_CAN1                      TRUE
 #define AT32_CAN_MAX_FILTERS               14
 
 /* DMA attributes.*/
 #define AT32_DMA_SUPPORTS_DMAMUX           TRUE
 #define AT32_DMA1_NUM_CHANNELS             7
-#define AT32_DMA1_CH1_HANDLER              Vector6C
-#define AT32_DMA1_CH2_HANDLER              Vector70
-#define AT32_DMA1_CH3_HANDLER              Vector74
-#define AT32_DMA1_CH4_HANDLER              Vector78
-#define AT32_DMA1_CH5_HANDLER              Vector7C
-#define AT32_DMA1_CH6_HANDLER              Vector80
-#define AT32_DMA1_CH7_HANDLER              Vector84
-#define AT32_DMA1_CH1_NUMBER               11
-#define AT32_DMA1_CH2_NUMBER               12
-#define AT32_DMA1_CH3_NUMBER               13
-#define AT32_DMA1_CH4_NUMBER               14
-#define AT32_DMA1_CH5_NUMBER               15
-#define AT32_DMA1_CH6_NUMBER               16
-#define AT32_DMA1_CH7_NUMBER               17
-
 #define AT32_DMA2_NUM_CHANNELS             7
-#define AT32_DMA2_CH1_HANDLER              Vector120
-#define AT32_DMA2_CH2_HANDLER              Vector124
-#define AT32_DMA2_CH3_HANDLER              Vector128
-#define AT32_DMA2_CH4_5_HANDLER            Vector12C
-#define AT32_DMA2_CH6_7_HANDLER            Vector16C
-#define AT32_DMA2_CH1_NUMBER               56
-#define AT32_DMA2_CH2_NUMBER               57
-#define AT32_DMA2_CH3_NUMBER               58
-#define AT32_DMA2_CH4_5_NUMBER             59
-#define AT32_DMA2_CH6_7_NUMBER             75
-
-#define AT32_DMA2_CH4_NUMBER               AT32_DMA2_CH4_5_NUMBER
-#define AT32_DMA2_CH5_NUMBER               AT32_DMA2_CH4_5_NUMBER
-#define AT32_DMA2_CH6_NUMBER               AT32_DMA2_CH6_7_NUMBER
-#define AT32_DMA2_CH7_NUMBER               AT32_DMA2_CH6_7_NUMBER
-
-#define AT32_DMA2_CH4_CMASK                0x00000C00U
-#define AT32_DMA2_CH5_CMASK                0x00000C00U
-#define AT32_DMA2_CH6_CMASK                0x00003000U
-#define AT32_DMA2_CH7_CMASK                0x00003000U
 
 /* EXINT attributes.*/
 #define AT32_EXINT_NUM_LINES               23
@@ -734,48 +594,13 @@
 #define AT32_HAS_ADC1                      TRUE
 
 /* CAN attributes.*/
-#define AT32_HAS_CAN                       TRUE
+#define AT32_HAS_CAN1                      TRUE
 #define AT32_CAN_MAX_FILTERS               14
 
 /* DMA attributes.*/
 #define AT32_DMA_SUPPORTS_DMAMUX           TRUE
 #define AT32_DMA1_NUM_CHANNELS             7
-#define AT32_DMA1_CH1_HANDLER              Vector6C
-#define AT32_DMA1_CH2_HANDLER              Vector70
-#define AT32_DMA1_CH3_HANDLER              Vector74
-#define AT32_DMA1_CH4_HANDLER              Vector78
-#define AT32_DMA1_CH5_HANDLER              Vector7C
-#define AT32_DMA1_CH6_HANDLER              Vector80
-#define AT32_DMA1_CH7_HANDLER              Vector84
-#define AT32_DMA1_CH1_NUMBER               11
-#define AT32_DMA1_CH2_NUMBER               12
-#define AT32_DMA1_CH3_NUMBER               13
-#define AT32_DMA1_CH4_NUMBER               14
-#define AT32_DMA1_CH5_NUMBER               15
-#define AT32_DMA1_CH6_NUMBER               16
-#define AT32_DMA1_CH7_NUMBER               17
-
 #define AT32_DMA2_NUM_CHANNELS             7
-#define AT32_DMA2_CH1_HANDLER              Vector120
-#define AT32_DMA2_CH2_HANDLER              Vector124
-#define AT32_DMA2_CH3_HANDLER              Vector128
-#define AT32_DMA2_CH4_5_HANDLER            Vector12C
-#define AT32_DMA2_CH6_7_HANDLER            Vector16C
-#define AT32_DMA2_CH1_NUMBER               56
-#define AT32_DMA2_CH2_NUMBER               57
-#define AT32_DMA2_CH3_NUMBER               58
-#define AT32_DMA2_CH4_5_NUMBER             59
-#define AT32_DMA2_CH6_7_NUMBER             75
-
-#define AT32_DMA2_CH4_NUMBER               AT32_DMA2_CH4_5_NUMBER
-#define AT32_DMA2_CH5_NUMBER               AT32_DMA2_CH4_5_NUMBER
-#define AT32_DMA2_CH6_NUMBER               AT32_DMA2_CH6_7_NUMBER
-#define AT32_DMA2_CH7_NUMBER               AT32_DMA2_CH6_7_NUMBER
-
-#define AT32_DMA2_CH4_CMASK                0x00000C00U
-#define AT32_DMA2_CH5_CMASK                0x00000C00U
-#define AT32_DMA2_CH6_CMASK                0x00003000U
-#define AT32_DMA2_CH7_CMASK                0x00003000U
 
 /* EXINT attributes.*/
 #define AT32_EXINT_NUM_LINES               23
@@ -902,48 +727,13 @@
 #define AT32_HAS_ADC1                      TRUE
 
 /* CAN attributes.*/
-#define AT32_HAS_CAN                       TRUE
+#define AT32_HAS_CAN1                      TRUE
 #define AT32_CAN_MAX_FILTERS               14
 
 /* DMA attributes.*/
 #define AT32_DMA_SUPPORTS_DMAMUX           TRUE
 #define AT32_DMA1_NUM_CHANNELS             7
-#define AT32_DMA1_CH1_HANDLER              Vector6C
-#define AT32_DMA1_CH2_HANDLER              Vector70
-#define AT32_DMA1_CH3_HANDLER              Vector74
-#define AT32_DMA1_CH4_HANDLER              Vector78
-#define AT32_DMA1_CH5_HANDLER              Vector7C
-#define AT32_DMA1_CH6_HANDLER              Vector80
-#define AT32_DMA1_CH7_HANDLER              Vector84
-#define AT32_DMA1_CH1_NUMBER               11
-#define AT32_DMA1_CH2_NUMBER               12
-#define AT32_DMA1_CH3_NUMBER               13
-#define AT32_DMA1_CH4_NUMBER               14
-#define AT32_DMA1_CH5_NUMBER               15
-#define AT32_DMA1_CH6_NUMBER               16
-#define AT32_DMA1_CH7_NUMBER               17
-
 #define AT32_DMA2_NUM_CHANNELS             7
-#define AT32_DMA2_CH1_HANDLER              Vector120
-#define AT32_DMA2_CH2_HANDLER              Vector124
-#define AT32_DMA2_CH3_HANDLER              Vector128
-#define AT32_DMA2_CH4_5_HANDLER            Vector12C
-#define AT32_DMA2_CH6_7_HANDLER            Vector16C
-#define AT32_DMA2_CH1_NUMBER               56
-#define AT32_DMA2_CH2_NUMBER               57
-#define AT32_DMA2_CH3_NUMBER               58
-#define AT32_DMA2_CH4_5_NUMBER             59
-#define AT32_DMA2_CH6_7_NUMBER             75
-
-#define AT32_DMA2_CH4_NUMBER               AT32_DMA2_CH4_5_NUMBER
-#define AT32_DMA2_CH5_NUMBER               AT32_DMA2_CH4_5_NUMBER
-#define AT32_DMA2_CH6_NUMBER               AT32_DMA2_CH6_7_NUMBER
-#define AT32_DMA2_CH7_NUMBER               AT32_DMA2_CH6_7_NUMBER
-
-#define AT32_DMA2_CH4_CMASK                0x00000C00U
-#define AT32_DMA2_CH5_CMASK                0x00000C00U
-#define AT32_DMA2_CH6_CMASK                0x00003000U
-#define AT32_DMA2_CH7_CMASK                0x00003000U
 
 /* EXINT attributes.*/
 #define AT32_EXINT_NUM_LINES               23
