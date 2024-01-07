@@ -68,8 +68,8 @@
  * @details If set to @p TRUE the support for WDG is included.
  * @note    The default is @p FALSE.
  */
-#if !defined(AT32_WDT_USE_WDG) || defined(__DOXYGEN__)
-#define AT32_WDT_USE_WDG                    FALSE
+#if !defined(AT32_WDG_USE_WDT) || defined(__DOXYGEN__)
+#define AT32_WDG_USE_WDT                    FALSE
 #endif
 /** @} */
 
@@ -77,11 +77,11 @@
 /* Derived constants and error checks.                                       */
 /*===========================================================================*/
 
-#if AT32_WDT_USE_WDG && !AT32_HAS_WDT
+#if AT32_WDG_USE_WDT && !AT32_HAS_WDT
 #error "WDG not present in the selected device"
 #endif
 
-#if !AT32_WDT_USE_WDG
+#if !AT32_WDG_USE_WDT
 #error "WDG driver activated but no xWDG peripheral assigned"
 #endif
 
@@ -89,7 +89,7 @@
 #error "AT32_LICK_ENABLED not defined"
 #endif
 
-#if (AT32_WDT_USE_WDG == TRUE) && (AT32_LICK_ENABLED == FALSE)
+#if (AT32_WDG_USE_WDT == TRUE) && (AT32_LICK_ENABLED == FALSE)
 #error "WDG requires LICK clock"
 #endif
 
@@ -146,7 +146,7 @@ struct WDGDriver {
 /* External declarations.                                                    */
 /*===========================================================================*/
 
-#if AT32_WDT_USE_WDG && !defined(__DOXYGEN__)
+#if AT32_WDG_USE_WDT && !defined(__DOXYGEN__)
 extern WDGDriver WDGD1;
 #endif
 

@@ -45,7 +45,7 @@
 /* Driver exported variables.                                                */
 /*===========================================================================*/
 
-#if AT32_WDT_USE_WDG || defined(__DOXYGEN__)
+#if AT32_WDG_USE_WDT || defined(__DOXYGEN__)
 WDGDriver WDGD1;
 #endif
 
@@ -72,7 +72,7 @@ WDGDriver WDGD1;
  */
 void wdg_lld_init(void) {
 
-#if AT32_WDT_USE_WDG
+#if AT32_WDG_USE_WDT
   WDGD1.state = WDG_STOP;
   WDGD1.wdg   = WDT;
 #endif
