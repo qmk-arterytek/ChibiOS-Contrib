@@ -49,6 +49,8 @@
 
 #define AT32_TMR_CTRL1_CLKDIV_MASK          (3U << 8)
 #define AT32_TMR_CTRL1_CLKDIV(n)            ((n) << 8)
+
+#define AT32_TMR_CTRL1_PMEN                 (1U << 10)
 /** @} */
 
 /**
