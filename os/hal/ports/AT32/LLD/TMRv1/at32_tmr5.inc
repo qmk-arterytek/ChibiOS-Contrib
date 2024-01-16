@@ -11,7 +11,7 @@
 
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIENS OR CONDITIONS OF ANY KIND, either express or implied.
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
 */
@@ -40,16 +40,16 @@
 /* Driver checks for robustness, undefined USE macros are defaulted to
    FALSE. This makes this module independent from drivers implementation.*/
 #if !defined(AT32_GPT_USE_TMR5)
-#define AT32_GPT_USE_TMR5                  FALSE
+#define AT32_GPT_USE_TMR5                   FALSE
 #endif
 #if !defined(AT32_ICU_USE_TMR5)
-#define AT32_ICU_USE_TMR5                  FALSE
+#define AT32_ICU_USE_TMR5                   FALSE
 #endif
 #if !defined(AT32_PWM_USE_TMR5)
-#define AT32_PWM_USE_TMR5                  FALSE
+#define AT32_PWM_USE_TMR5                   FALSE
 #endif
 #if !defined(AT32_ST_USE_TMR5)
-#define AT32_ST_USE_TMR5                   FALSE
+#define AT32_ST_USE_TMR5                    FALSE
 #endif
 
 #if AT32_HAS_TMR5

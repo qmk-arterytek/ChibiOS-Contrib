@@ -11,7 +11,7 @@
 
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIENS OR CONDITIONS OF ANY KIND, either express or implied.
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
 */
@@ -52,55 +52,55 @@
 /* Driver checks for robustness, undefined USE macros are defaulted to
    FALSE. This makes this module independent from drivers implementation.*/
 #if !defined(AT32_GPT_USE_TMR1)
-#define AT32_GPT_USE_TMR1                  FALSE
+#define AT32_GPT_USE_TMR1                   FALSE
 #endif
 #if !defined(AT32_ICU_USE_TMR1)
-#define AT32_ICU_USE_TMR1                  FALSE
+#define AT32_ICU_USE_TMR1                   FALSE
 #endif
 #if !defined(AT32_PWM_USE_TMR1)
-#define AT32_PWM_USE_TMR1                  FALSE
+#define AT32_PWM_USE_TMR1                   FALSE
 #endif
 #if !defined(AT32_ST_USE_TMR1)
-#define AT32_ST_USE_TMR1                   FALSE
+#define AT32_ST_USE_TMR1                    FALSE
 #endif
 
 #if !defined(AT32_GPT_USE_TMR9)
-#define AT32_GPT_USE_TMR9                  FALSE
+#define AT32_GPT_USE_TMR9                   FALSE
 #endif
 #if !defined(AT32_ICU_USE_TMR9)
-#define AT32_ICU_USE_TMR9                  FALSE
+#define AT32_ICU_USE_TMR9                   FALSE
 #endif
 #if !defined(AT32_PWM_USE_TMR9)
-#define AT32_PWM_USE_TMR9                  FALSE
+#define AT32_PWM_USE_TMR9                   FALSE
 #endif
 #if !defined(AT32_ST_USE_TMR9)
-#define AT32_ST_USE_TMR9                   FALSE
+#define AT32_ST_USE_TMR9                    FALSE
 #endif
 
 #if !defined(AT32_GPT_USE_TMR10)
-#define AT32_GPT_USE_TMR10                 FALSE
+#define AT32_GPT_USE_TMR10                  FALSE
 #endif
 #if !defined(AT32_ICU_USE_TMR10)
-#define AT32_ICU_USE_TMR10                 FALSE
+#define AT32_ICU_USE_TMR10                  FALSE
 #endif
 #if !defined(AT32_PWM_USE_TMR10)
-#define AT32_PWM_USE_TMR10                 FALSE
+#define AT32_PWM_USE_TMR10                  FALSE
 #endif
 #if !defined(AT32_ST_USE_TMR10)
-#define AT32_ST_USE_TMR10                  FALSE
+#define AT32_ST_USE_TMR10                   FALSE
 #endif
 
 #if !defined(AT32_GPT_USE_TMR11)
-#define AT32_GPT_USE_TMR11                 FALSE
+#define AT32_GPT_USE_TMR11                  FALSE
 #endif
 #if !defined(AT32_ICU_USE_TMR11)
-#define AT32_ICU_USE_TMR11                 FALSE
+#define AT32_ICU_USE_TMR11                  FALSE
 #endif
 #if !defined(AT32_PWM_USE_TMR11)
-#define AT32_PWM_USE_TMR11                 FALSE
+#define AT32_PWM_USE_TMR11                  FALSE
 #endif
 #if !defined(AT32_ST_USE_TMR11)
-#define AT32_ST_USE_TMR11                  FALSE
+#define AT32_ST_USE_TMR11                   FALSE
 #endif
 
 #if AT32_HAS_TMR1 || AT32_HAS_TMR9 || AT32_HAS_TMR10 || AT32_HAS_TMR11
@@ -114,8 +114,8 @@
 #error "AT32_IRQ_TMR1_OVF_TMR10_PRIORITY not defined in mcuconf.h"
 #endif
 
-#if !defined(AT32_IRQ_TMR1_TRG_HALL_TMR11_PRIORITY)
-#error "AT32_IRQ_TMR1_TRG_HALL_TMR11_PRIORITY not defined in mcuconf.h"
+#if !defined(AT32_IRQ_TMR1_HALL_TMR11_PRIORITY)
+#error "AT32_IRQ_TMR1_HALL_TMR11_PRIORITY not defined in mcuconf.h"
 #endif
 
 #if !defined(AT32_IRQ_TMR1_CH_PRIORITY)
@@ -130,8 +130,8 @@
 #error "Invalid IRQ priority assigned to AT32_IRQ_TMR1_OVF_TMR10_PRIORITY"
 #endif
 
-#if !OSAL_IRQ_IS_VALID_PRIORITY(AT32_IRQ_TMR1_TRG_HALL_TMR11_PRIORITY)
-#error "Invalid IRQ priority assigned to AT32_IRQ_TMR1_TRG_HALL_TMR11_PRIORITY"
+#if !OSAL_IRQ_IS_VALID_PRIORITY(AT32_IRQ_TMR1_HALL_TMR11_PRIORITY)
+#error "Invalid IRQ priority assigned to AT32_IRQ_TMR1_HALL_TMR11_PRIORITY"
 #endif
 
 #if !OSAL_IRQ_IS_VALID_PRIORITY(AT32_IRQ_TMR1_CH_PRIORITY)
@@ -162,8 +162,8 @@ static inline void tmr1_tmr9_tmr10_tmr11_irq_init(void) {
                    AT32_IRQ_TMR1_OVF_TMR10_PRIORITY);
 #endif
 #if defined(AT32_TMR1_IS_USED) || defined(AT32_TMR11_IS_USED)
-  nvicEnableVector(AT32_TMR1_TRG_HALL_TMR11_NUMBER,
-                   AT32_IRQ_TMR1_TRG_HALL_TMR11_PRIORITY);
+  nvicEnableVector(AT32_TMR1_HALL_TMR11_NUMBER,
+                   AT32_IRQ_TMR1_HALL_TMR11_PRIORITY);
 #endif
 #if defined(AT32_TMR1_IS_USED)
   nvicEnableVector(AT32_TMR1_CH_NUMBER,
@@ -179,7 +179,7 @@ static inline void tmr1_tmr9_tmr10_tmr11_irq_deinit(void) {
   nvicDisableVector(AT32_TMR1_OVF_TMR10_NUMBER);
 #endif
 #if defined(AT32_TMR1_IS_USED) || defined(AT32_TMR11_IS_USED)
-  nvicDisableVector(AT32_TMR1_TRG_HALL_TMR11_NUMBER);
+  nvicDisableVector(AT32_TMR1_HALL_TMR11_NUMBER);
 #endif
 #if defined(AT32_TMR1_IS_USED)
   nvicDisableVector(AT32_TMR1_CH_NUMBER);
@@ -281,7 +281,7 @@ OSAL_IRQ_HANDLER(AT32_TMR1_OVF_TMR10_HANDLER) {
  *
  * @isr
  */
-OSAL_IRQ_HANDLER(AT32_TMR1_TRG_HALL_TMR11_HANDLER) {
+OSAL_IRQ_HANDLER(AT32_TMR1_HALL_TMR11_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
