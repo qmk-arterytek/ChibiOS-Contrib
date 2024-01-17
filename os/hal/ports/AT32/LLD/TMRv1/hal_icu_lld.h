@@ -11,7 +11,7 @@
 
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIENS OR CONDITIONS OF ANY KIND, either express or implied.
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
 */
@@ -49,7 +49,7 @@
  * @note    The default is @p FALSE.
  */
 #if !defined(AT32_ICU_USE_TMR1) || defined(__DOXYGEN__)
-#define AT32_ICU_USE_TMR1                  FALSE
+#define AT32_ICU_USE_TMR1                   FALSE
 #endif
 
 /**
@@ -58,7 +58,7 @@
  * @note    The default is @p FALSE.
  */
 #if !defined(AT32_ICU_USE_TMR2) || defined(__DOXYGEN__)
-#define AT32_ICU_USE_TMR2                  FALSE
+#define AT32_ICU_USE_TMR2                   FALSE
 #endif
 
 /**
@@ -67,7 +67,7 @@
  * @note    The default is @p FALSE.
  */
 #if !defined(AT32_ICU_USE_TMR3) || defined(__DOXYGEN__)
-#define AT32_ICU_USE_TMR3                  FALSE
+#define AT32_ICU_USE_TMR3                   FALSE
 #endif
 
 /**
@@ -76,7 +76,7 @@
  * @note    The default is @p FALSE.
  */
 #if !defined(AT32_ICU_USE_TMR4) || defined(__DOXYGEN__)
-#define AT32_ICU_USE_TMR4                  FALSE
+#define AT32_ICU_USE_TMR4                   FALSE
 #endif
 
 /**
@@ -85,7 +85,7 @@
  * @note    The default is @p FALSE.
  */
 #if !defined(AT32_ICU_USE_TMR5) || defined(__DOXYGEN__)
-#define AT32_ICU_USE_TMR5                  FALSE
+#define AT32_ICU_USE_TMR5                   FALSE
 #endif
 
 /**
@@ -94,7 +94,7 @@
  * @note    The default is @p FALSE.
  */
 #if !defined(AT32_ICU_USE_TMR9) || defined(__DOXYGEN__)
-#define AT32_ICU_USE_TMR9                  FALSE
+#define AT32_ICU_USE_TMR9                   FALSE
 #endif
 
 /**
@@ -103,7 +103,7 @@
  * @note    The default is @p FALSE.
  */
 #if !defined(AT32_ICU_USE_TMR10) || defined(__DOXYGEN__)
-#define AT32_ICU_USE_TMR10                 FALSE
+#define AT32_ICU_USE_TMR10                  FALSE
 #endif
 
 /**
@@ -112,63 +112,63 @@
  * @note    The default is @p FALSE.
  */
 #if !defined(AT32_ICU_USE_TMR11) || defined(__DOXYGEN__)
-#define AT32_ICU_USE_TMR11                 FALSE
+#define AT32_ICU_USE_TMR11                  FALSE
 #endif
 
 /**
  * @brief   ICUD1 interrupt priority level setting.
  */
 #if !defined(AT32_ICU_TMR1_IRQ_PRIORITY) || defined(__DOXYGEN__)
-#define AT32_ICU_TMR1_IRQ_PRIORITY         7
+#define AT32_ICU_TMR1_IRQ_PRIORITY          7
 #endif
 
 /**
  * @brief   ICUD2 interrupt priority level setting.
  */
 #if !defined(AT32_ICU_TMR2_IRQ_PRIORITY) || defined(__DOXYGEN__)
-#define AT32_ICU_TMR2_IRQ_PRIORITY         7
+#define AT32_ICU_TMR2_IRQ_PRIORITY          7
 #endif
 
 /**
  * @brief   ICUD3 interrupt priority level setting.
  */
 #if !defined(AT32_ICU_TMR3_IRQ_PRIORITY) || defined(__DOXYGEN__)
-#define AT32_ICU_TMR3_IRQ_PRIORITY         7
+#define AT32_ICU_TMR3_IRQ_PRIORITY          7
 #endif
 
 /**
  * @brief   ICUD4 interrupt priority level setting.
  */
 #if !defined(AT32_ICU_TMR4_IRQ_PRIORITY) || defined(__DOXYGEN__)
-#define AT32_ICU_TMR4_IRQ_PRIORITY         7
+#define AT32_ICU_TMR4_IRQ_PRIORITY          7
 #endif
 
 /**
  * @brief   ICUD5 interrupt priority level setting.
  */
 #if !defined(AT32_ICU_TMR5_IRQ_PRIORITY) || defined(__DOXYGEN__)
-#define AT32_ICU_TMR5_IRQ_PRIORITY         7
+#define AT32_ICU_TMR5_IRQ_PRIORITY          7
 #endif
 
 /**
  * @brief   ICUD9 interrupt priority level setting.
  */
 #if !defined(AT32_ICU_TMR9_IRQ_PRIORITY) || defined(__DOXYGEN__)
-#define AT32_ICU_TMR9_IRQ_PRIORITY         7
+#define AT32_ICU_TMR9_IRQ_PRIORITY          7
 #endif
 
 /**
  * @brief   ICUD10 interrupt priority level setting.
  */
 #if !defined(AT32_ICU_TMR10_IRQ_PRIORITY) || defined(__DOXYGEN__)
-#define AT32_ICU_TMR10_IRQ_PRIORITY        7
+#define AT32_ICU_TMR10_IRQ_PRIORITY         7
 #endif
 
 /**
  * @brief   ICUD11 interrupt priority level setting.
  */
 #if !defined(AT32_ICU_TMR11_IRQ_PRIORITY) || defined(__DOXYGEN__)
-#define AT32_ICU_TMR11_IRQ_PRIORITY        7
+#define AT32_ICU_TMR11_IRQ_PRIORITY         7
 #endif
 /** @} */
 
@@ -177,35 +177,35 @@
 /*===========================================================================*/
 
 #if !defined(AT32_HAS_TMR1)
-#define AT32_HAS_TMR1                      FALSE
+#define AT32_HAS_TMR1                       FALSE
 #endif
 
 #if !defined(AT32_HAS_TMR2)
-#define AT32_HAS_TMR2                      FALSE
+#define AT32_HAS_TMR2                       FALSE
 #endif
 
 #if !defined(AT32_HAS_TMR3)
-#define AT32_HAS_TMR3                      FALSE
+#define AT32_HAS_TMR3                       FALSE
 #endif
 
 #if !defined(AT32_HAS_TMR4)
-#define AT32_HAS_TMR4                      FALSE
+#define AT32_HAS_TMR4                       FALSE
 #endif
 
 #if !defined(AT32_HAS_TMR5)
-#define AT32_HAS_TMR5                      FALSE
+#define AT32_HAS_TMR5                       FALSE
 #endif
 
 #if !defined(AT32_HAS_TMR9)
-#define AT32_HAS_TMR9                      FALSE
+#define AT32_HAS_TMR9                       FALSE
 #endif
 
 #if !defined(AT32_HAS_TMR10)
-#define AT32_HAS_TMR10                     FALSE
+#define AT32_HAS_TMR10                      FALSE
 #endif
 
 #if !defined(AT32_HAS_TMR11)
-#define AT32_HAS_TMR11                     FALSE
+#define AT32_HAS_TMR11                      FALSE
 #endif
 
 #if AT32_ICU_USE_TMR1 && !AT32_HAS_TMR1
@@ -240,9 +240,9 @@
 #error "TMR11 not present in the selected device"
 #endif
 
-#if !AT32_ICU_USE_TMR1  && !AT32_ICU_USE_TMR2  &&                         \
-    !AT32_ICU_USE_TMR3  && !AT32_ICU_USE_TMR4  &&                         \
-    !AT32_ICU_USE_TMR5  && !AT32_ICU_USE_TMR9  &&                         \
+#if !AT32_ICU_USE_TMR1  && !AT32_ICU_USE_TMR2  &&                           \
+    !AT32_ICU_USE_TMR3  && !AT32_ICU_USE_TMR4  &&                           \
+    !AT32_ICU_USE_TMR5  && !AT32_ICU_USE_TMR9  &&                           \
     !AT32_ICU_USE_TMR10 && !AT32_ICU_USE_TMR11
 #error "ICU driver activated but no TMR peripheral assigned"
 #endif
@@ -313,42 +313,42 @@
 #endif
 
 /* IRQ priority checks.*/
-#if AT32_ICU_USE_TMR1 && !defined(AT32_TMR1_SUPPRESS_ISR) &&              \
+#if AT32_ICU_USE_TMR1 && !defined(AT32_TMR1_SUPPRESS_ISR) &&                \
     !OSAL_IRQ_IS_VALID_PRIORITY(AT32_ICU_TMR1_IRQ_PRIORITY)
 #error "Invalid IRQ priority assigned to TMR1"
 #endif
 
-#if AT32_ICU_USE_TMR2 && !defined(AT32_TMR2_SUPPRESS_ISR) &&              \
+#if AT32_ICU_USE_TMR2 && !defined(AT32_TMR2_SUPPRESS_ISR) &&                \
     !OSAL_IRQ_IS_VALID_PRIORITY(AT32_ICU_TMR2_IRQ_PRIORITY)
 #error "Invalid IRQ priority assigned to TMR2"
 #endif
 
-#if AT32_ICU_USE_TMR3 && !defined(AT32_TMR3_SUPPRESS_ISR) &&              \
+#if AT32_ICU_USE_TMR3 && !defined(AT32_TMR3_SUPPRESS_ISR) &&                \
     !OSAL_IRQ_IS_VALID_PRIORITY(AT32_ICU_TMR3_IRQ_PRIORITY)
 #error "Invalid IRQ priority assigned to TMR3"
 #endif
 
-#if AT32_ICU_USE_TMR4 && !defined(AT32_TMR4_SUPPRESS_ISR) &&              \
+#if AT32_ICU_USE_TMR4 && !defined(AT32_TMR4_SUPPRESS_ISR) &&                \
     !OSAL_IRQ_IS_VALID_PRIORITY(AT32_ICU_TMR4_IRQ_PRIORITY)
 #error "Invalid IRQ priority assigned to TMR4"
 #endif
 
-#if AT32_ICU_USE_TMR5 && !defined(AT32_TMR5_SUPPRESS_ISR) &&              \
+#if AT32_ICU_USE_TMR5 && !defined(AT32_TMR5_SUPPRESS_ISR) &&                \
     !OSAL_IRQ_IS_VALID_PRIORITY(AT32_ICU_TMR5_IRQ_PRIORITY)
 #error "Invalid IRQ priority assigned to TMR5"
 #endif
 
-#if AT32_ICU_USE_TMR9 && !defined(AT32_TMR9_SUPPRESS_ISR) &&              \
+#if AT32_ICU_USE_TMR9 && !defined(AT32_TMR9_SUPPRESS_ISR) &&                \
     !OSAL_IRQ_IS_VALID_PRIORITY(AT32_ICU_TMR9_IRQ_PRIORITY)
 #error "Invalid IRQ priority assigned to TMR9"
 #endif
 
-#if AT32_ICU_USE_TMR10 && !defined(AT32_TMR10_SUPPRESS_ISR) &&            \
+#if AT32_ICU_USE_TMR10 && !defined(AT32_TMR10_SUPPRESS_ISR) &&              \
     !OSAL_IRQ_IS_VALID_PRIORITY(AT32_ICU_TMR10_IRQ_PRIORITY)
 #error "Invalid IRQ priority assigned to TMR10"
 #endif
 
-#if AT32_ICU_USE_TMR11 && !defined(AT32_TMR11_SUPPRESS_ISR) &&            \
+#if AT32_ICU_USE_TMR11 && !defined(AT32_TMR11_SUPPRESS_ISR) &&              \
     !OSAL_IRQ_IS_VALID_PRIORITY(AT32_ICU_TMR11_IRQ_PRIORITY)
 #error "Invalid IRQ priority assigned to TMR11"
 #endif

@@ -11,7 +11,7 @@
 
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIENS OR CONDITIONS OF ANY KIND, either express or implied.
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
 */
@@ -158,7 +158,7 @@ static bool icu_lld_wait_edge(ICUDriver *icup) {
 #error "AT32_TMR1_OVF_HANDLER not defined"
 #endif
 /**
- * @brief   TMR1 compare interrupt handler.
+ * @brief   TMR1 overflow interrupt handler.
  *
  * @isr
  */
@@ -175,7 +175,7 @@ OSAL_IRQ_HANDLER(AT32_TMR1_OVF_HANDLER) {
 #error "AT32_TMR1_CH_HANDLER not defined"
 #endif
 /**
- * @brief   TMR1 compare interrupt handler.
+ * @brief   TMR1 channel interrupt handler.
  *
  * @isr
  */
@@ -384,11 +384,7 @@ void icu_lld_start(ICUDriver *icup) {
       nvicEnableVector(AT32_TMR1_OVF_NUMBER, AT32_ICU_TMR1_IRQ_PRIORITY);
       nvicEnableVector(AT32_TMR1_CH_NUMBER, AT32_ICU_TMR1_IRQ_PRIORITY);
 #endif
-#if defined(AT32_TMR1CLK)
-      icup->clock = AT32_TMR1CLK;
-#else
       icup->clock = AT32_TMRCLK2;
-#endif
     }
 #endif
 
@@ -399,11 +395,7 @@ void icu_lld_start(ICUDriver *icup) {
 #if !defined(AT32_TMR2_SUPPRESS_ISR)
       nvicEnableVector(AT32_TMR2_NUMBER, AT32_ICU_TMR2_IRQ_PRIORITY);
 #endif
-#if defined(AT32_TMR2CLK)
-      icup->clock = AT32_TMR2CLK;
-#else
       icup->clock = AT32_TMRCLK1;
-#endif
     }
 #endif
 
@@ -414,11 +406,7 @@ void icu_lld_start(ICUDriver *icup) {
 #if !defined(AT32_TMR3_SUPPRESS_ISR)
       nvicEnableVector(AT32_TMR3_NUMBER, AT32_ICU_TMR3_IRQ_PRIORITY);
 #endif
-#if defined(AT32_TMR3CLK)
-      icup->clock = AT32_TMR3CLK;
-#else
      icup->clock = AT32_TMRCLK1;
-#endif
     }
 #endif
 
@@ -429,11 +417,7 @@ void icu_lld_start(ICUDriver *icup) {
 #if !defined(AT32_TMR4_SUPPRESS_ISR)
       nvicEnableVector(AT32_TMR4_NUMBER, AT32_ICU_TMR4_IRQ_PRIORITY);
 #endif
-#if defined(AT32_TMR4CLK)
-      icup->clock = AT32_TMR4CLK;
-#else
       icup->clock = AT32_TMRCLK1;
-#endif
     }
 #endif
 
@@ -444,11 +428,7 @@ void icu_lld_start(ICUDriver *icup) {
 #if !defined(AT32_TMR5_SUPPRESS_ISR)
       nvicEnableVector(AT32_TMR5_NUMBER, AT32_ICU_TMR5_IRQ_PRIORITY);
 #endif
-#if defined(AT32_TMR5CLK)
-      icup->clock = AT32_TMR5CLK;
-#else
       icup->clock = AT32_TMRCLK1;
-#endif
     }
 #endif
 
@@ -456,11 +436,7 @@ void icu_lld_start(ICUDriver *icup) {
     if (&ICUD9 == icup) {
       crmEnableTMR9(true);
       crmResetTMR9();
-#if defined(AT32_TMR9CLK)
-      icup->clock = AT32_TMR9CLK;
-#else
       icup->clock = AT32_TMRCLK2;
-#endif
     }
 #endif
 
@@ -468,11 +444,7 @@ void icu_lld_start(ICUDriver *icup) {
     if (&ICUD10 == icup) {
       crmEnableTMR10(true);
       crmResetTMR10();
-#if defined(AT32_TMR10CLK)
-      icup->clock = AT32_TMR10CLK;
-#else
       icup->clock = AT32_TMRCLK2;
-#endif
     }
 #endif
 
@@ -480,11 +452,7 @@ void icu_lld_start(ICUDriver *icup) {
     if (&ICUD11 == icup) {
       crmEnableTMR11(true);
       crmResetTMR11();
-#if defined(AT32_TMR11CLK)
-      icup->clock = AT32_TMR11CLK;
-#else
       icup->clock = AT32_TMRCLK2;
-#endif
     }
 #endif
   }
@@ -521,13 +489,13 @@ void icu_lld_start(ICUDriver *icup) {
 
   if (icup->config->channel == ICU_CHANNEL_1) {
     /* Selected input 1.
-       CM1_C1C = 01 = CH1 Input on TI1.
-       CM1_C2C = 10 = CH2 Input on TI1.*/
+       CM1_C1C = 01 = CH1 Input on C1IFP1.
+       CM1_C2C = 10 = CH2 Input on C1IFP2.*/
     icup->tmr->CM1 = AT32_TMR_CM1_C1C(1) | AT32_TMR_CM1_C2C(2);
 
-    /* STCTRL_STIS  = 101, input is TI1FP1.
+    /* STCTRL_STIS  = 101, input is C1IF1.
        STCTRL_SMSEL = 100, reset on rising edge.*/
-    icup->tmr->STCTRL  = AT32_TMR_STCTRL_STIS(5) | AT32_TMR_STCTRL_SMSEL(4);
+    icup->tmr->STCTRL = AT32_TMR_STCTRL_STIS(5) | AT32_TMR_STCTRL_SMSEL(4);
 
     /* The CCTRL settings depend on the selected trigger mode.
        ICU_INPUT_ACTIVE_HIGH: Active on rising edge, idle on falling edge.
@@ -546,13 +514,13 @@ void icu_lld_start(ICUDriver *icup) {
   }
   else {
     /* Selected input 2.
-       CM1_C1C = 10 = CH1 Input on TI2.
-       CM1_C2C = 01 = CH2 Input on TI2.*/
+       CM1_C1C = 10 = CH1 Input on C2IFP1.
+       CM1_C2C = 01 = CH2 Input on C2IFP2.*/
     icup->tmr->CM1 = AT32_TMR_CM1_C1C(2) | AT32_TMR_CM1_C2C(1);
 
-    /* STCTRL_STIS  = 110, input is TI2FP2.
+    /* STCTRL_STIS  = 110, input is C1IF2.
        STCTRL_SMSEL = 100, reset on rising edge.*/
-    icup->tmr->STCTRL  = AT32_TMR_STCTRL_STIS(6) | AT32_TMR_STCTRL_SMSEL(4);
+    icup->tmr->STCTRL = AT32_TMR_STCTRL_STIS(6) | AT32_TMR_STCTRL_SMSEL(4);
 
     /* The CCTRL settings depend on the selected trigger mode.
        ICU_INPUT_ACTIVE_HIGH: Active on rising edge, idle on falling edge.
@@ -582,9 +550,9 @@ void icu_lld_stop(ICUDriver *icup) {
 
   if (icup->state == ICU_READY) {
     /* Clock deactivation.*/
-    icup->tmr->CTRL1  = 0;                    /* Timer disabled.              */
-    icup->tmr->IDEN   = 0;                    /* All IRQs disabled.           */
-    icup->tmr->ISTS   = 0;                    /* Clear eventual pending IRQs. */
+    icup->tmr->CTRL1 = 0;                   /* Timer disabled.              */
+    icup->tmr->IDEN  = 0;                   /* All IRQs disabled.           */
+    icup->tmr->ISTS  = 0;                   /* Clear eventual pending IRQs. */
 
 #if AT32_ICU_USE_TMR1
     if (&ICUD1 == icup) {
