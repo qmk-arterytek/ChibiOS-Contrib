@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file    at32f415kx.h
-  * @author  Artery Technology & HorrorTroll
+  * @author  Artery Technology & HorrorTroll & Zhaqian
   * @version v2.1.1
   * @date    26-October-2023
   * @brief   AT32F415Kx header file.
