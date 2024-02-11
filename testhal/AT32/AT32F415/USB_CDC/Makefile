@@ -184,6 +184,7 @@ AOPT =
 
 # THUMB-specific options here
 TOPT = -mthumb -DTHUMB
+
 # Define C warning options here.
 CWARN = -Wall -Wextra -Wundef -Wstrict-prototypes
 
