@@ -61,8 +61,6 @@
 /* External declarations.                                                    */
 /*===========================================================================*/
 
-extern SDCConfig sdccfg;
-
 #ifdef __cplusplus
 extern "C" {
 #endif

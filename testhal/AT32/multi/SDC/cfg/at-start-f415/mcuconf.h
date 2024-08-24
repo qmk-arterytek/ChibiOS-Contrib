@@ -55,15 +55,15 @@
 #define AT32_PLL_FR_VALUE                   4
 #define AT32_PLL_MS_VALUE                   1
 #define AT32_PLL_NS_VALUE                   72
-#define AT32_AHBDIV                         AT32_AHBDIV_DIV1
-#define AT32_APB1DIV                        AT32_APB1DIV_DIV2
-#define AT32_APB2DIV                        AT32_APB2DIV_DIV2
+#define AT32_AHBDIV                         AT32_AHBDIV_DIV4
+#define AT32_APB1DIV                        AT32_APB1DIV_DIV1
+#define AT32_APB2DIV                        AT32_APB2DIV_DIV1
 #define AT32_ADCDIV                         AT32_ADCDIV_DIV4
 #define AT32_USB_CLOCK_REQUIRED             TRUE
 #define AT32_USBDIV                         AT32_USBDIV_DIV3
 #define AT32_CLKOUT_SEL                     AT32_CLKOUT_SEL_NOCLOCK
 #define AT32_CLKOUTDIV                      AT32_CLKOUTDIV_DIV1
-#define AT32_ERTCSEL                        AT32_ERTCSEL_HEXTDIV
+#define AT32_ERTCSEL                        AT32_ERTCSEL_NOCLOCK
 #define AT32_PVM_ENABLE                     FALSE
 #define AT32_PVMSEL                         AT32_PVMSEL_LEV1
 
@@ -216,9 +216,13 @@
 #define AT32_UART_USE_USART1                FALSE
 #define AT32_UART_USE_USART2                FALSE
 #define AT32_UART_USE_USART3                FALSE
+#define AT32_UART_USE_UART4                 FALSE
+#define AT32_UART_USE_UART5                 FALSE
 #define AT32_UART_USART1_DMA_PRIORITY       0
 #define AT32_UART_USART2_DMA_PRIORITY       0
 #define AT32_UART_USART3_DMA_PRIORITY       0
+#define AT32_UART_UART4_DMA_PRIORITY        0
+#define AT32_UART_UART5_DMA_PRIORITY        0
 #define AT32_UART_DMA_ERROR_HOOK(uartp)     osalSysHalt("DMA failure")
 
 /*

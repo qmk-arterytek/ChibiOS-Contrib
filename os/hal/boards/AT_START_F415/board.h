@@ -217,10 +217,15 @@
  * PC2  - Push Pull output          (GPIOC_LED_RED).
  * PC3  - Push Pull output          (GPIOC_LED_YELLOW).
  * PC5  - Push Pull output          (GPIOC_LED_GREEN).
+ * PC8  - Alternate output          (GPIOC_PIN8).
+ * PC9  - Alternate output          (GPIOC_PIN9).
+ * PC10 - Alternate output          (GPIOC_PIN10).
+ * PC11 - Alternate output          (GPIOC_PIN11).
+ * PC12 - Alternate output          (GPIOC_PIN12).
  * PC13 - Normal input              (GPIOC_BUTTON).
  */
 #define VAL_GPIOCCFGLR          0x88383388      /*  PC7...PC0 */
-#define VAL_GPIOCCFGHR          0x88488888      /* PC15...PC8 */
+#define VAL_GPIOCCFGHR          0x884BBBBB      /* PC15...PC8 */
 #define VAL_GPIOCODT            0xFFFFFFFF
 
 /*
@@ -228,8 +233,9 @@
  * Everything input with pull-up except:
  * PD0  - Normal input              (GPIOD_HEXT_IN).
  * PD1  - Normal input              (GPIOD_HEXT_OUT).
+ * PD2  - Alternate output          (GPIOD_PIN2).
  */
-#define VAL_GPIODCFGLR          0x88888844      /*  PD7...PD0 */
+#define VAL_GPIODCFGLR          0x88888B44      /*  PD7...PD0 */
 #define VAL_GPIODCFGHR          0x88888888      /* PD15...PD8 */
 #define VAL_GPIODODT            0xFFFFFFFF
 
