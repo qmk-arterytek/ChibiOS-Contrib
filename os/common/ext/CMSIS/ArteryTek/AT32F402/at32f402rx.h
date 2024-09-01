@@ -1447,9 +1447,9 @@ typedef struct
 #define CRM_APB2RST_USART6RST_Pos           (5U)
 #define CRM_APB2RST_USART6RST_Msk           (0x1U << CRM_APB2RST_USART6RST_Pos)     /*!< 0x00000020 */
 #define CRM_APB2RST_USART6RST               CRM_APB2RST_USART6RST_Msk               /*!< USART6 reset */
-#define CRM_APB2RST_ADC1RST_Pos             (8U)
-#define CRM_APB2RST_ADC1RST_Msk             (0x1U << CRM_APB2RST_ADC1RST_Pos)       /*!< 0x00000100 */
-#define CRM_APB2RST_ADC1RST                 CRM_APB2RST_ADC1RST_Msk                 /*!< ADC1 reset */
+#define CRM_APB2RST_ADCRST_Pos              (8U)
+#define CRM_APB2RST_ADCRST_Msk              (0x1U << CRM_APB2RST_ADCRST_Pos)        /*!< 0x00000100 */
+#define CRM_APB2RST_ADCRST                  CRM_APB2RST_ADCRST_Msk                  /*!< ADC reset */
 #define CRM_APB2RST_SPI1RST_Pos             (12U)
 #define CRM_APB2RST_SPI1RST_Msk             (0x1U << CRM_APB2RST_SPI1RST_Pos)       /*!< 0x00001000 */
 #define CRM_APB2RST_SPI1RST                 CRM_APB2RST_SPI1RST_Msk                 /*!< SPI1 reset */
