@@ -235,6 +235,15 @@
 #define AT32_TMR13_NUMBER            44
 #define AT32_TMR14_NUMBER            45
 
+/* Aliases.*/
+#define AT32_TMR9_HANDLER            VectorA0
+#define AT32_TMR10_HANDLER           VectorA4
+#define AT32_TMR11_HANDLER           VectorA8
+
+#define AT32_TMR9_NUMBER             24
+#define AT32_TMR10_NUMBER            25
+#define AT32_TMR11_NUMBER            26
+
 /*
  * USART units.
  */
