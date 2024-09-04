@@ -17,7 +17,7 @@
 */
 
 /**
- * @file    GPIOv1/hal_pal_lld.c
+ * @file    GPIOv2/hal_pal_lld.c
  * @brief   AT32 PAL low level driver code.
  *
  * @addtogroup PAL
@@ -31,19 +31,6 @@
 /*===========================================================================*/
 /* Driver local definitions.                                                 */
 /*===========================================================================*/
-
-#if AT32_HAS_GPIOF
-#define APB2_EN_MASK  (CRM_APB2EN_GPIOAEN | CRM_APB2EN_GPIOBEN |            \
-                       CRM_APB2EN_GPIOCEN | CRM_APB2EN_GPIODEN |            \
-                       CRM_APB2EN_GPIOFEN | CRM_APB2EN_IOMUXEN)
-#elif AT32_HAS_GPIOC
-#define APB2_EN_MASK  (CRM_APB2EN_GPIOAEN | CRM_APB2EN_GPIOBEN |            \
-                       CRM_APB2EN_GPIOCEN | CRM_APB2EN_GPIODEN |            \
-                       CRM_APB2EN_IOMUXEN)
-#else
-#define APB2_EN_MASK  (CRM_APB2EN_GPIOAEN | CRM_APB2EN_GPIOBEN |            \
-                       CRM_APB2EN_GPIODEN | CRM_APB2EN_IOMUXEN)
-#endif
 
 /*===========================================================================*/
 /* Driver exported variables.                                                */
@@ -73,14 +60,11 @@ palevent_t _pal_events[16];
 /*===========================================================================*/
 
 /**
- * @brief   AT32 I/O ports configuration.
- * @details Ports A, B, D(C, F) clocks enabled, IOMUX clock enabled.
- *
- * @param[in] config    the AT32 ports configuration
+ * @brief   PAL driver initialization.
  *
  * @notapi
  */
-void _pal_lld_init(const PALConfig *config) {
+void _pal_lld_init(void) {
 
 #if PAL_USE_CALLBACKS || PAL_USE_WAIT || defined(__DOXYGEN__)
   unsigned i;
@@ -89,44 +73,14 @@ void _pal_lld_init(const PALConfig *config) {
     _pal_init_event(i);
   }
 #endif
-
-  /*
-   * Enables the GPIO related clocks.
-   */
-  crmEnableAPB2(APB2_EN_MASK, true);
-
-  /*
-   * Initial GPIO setup.
-   */
-  GPIOA->ODT   = config->PAData.odt;
-  GPIOA->CFGHR = config->PAData.cfghr;
-  GPIOA->CFGLR = config->PAData.cfglr;
-  GPIOB->ODT   = config->PBData.odt;
-  GPIOB->CFGHR = config->PBData.cfghr;
-  GPIOB->CFGLR = config->PBData.cfglr;
-#if AT32_HAS_GPIOC || defined(__DOXYGEN__)
-  GPIOC->ODT   = config->PCData.odt;
-  GPIOC->CFGHR = config->PCData.cfghr;
-  GPIOC->CFGLR = config->PCData.cfglr;
-#endif
-  GPIOD->ODT   = config->PDData.odt;
-  GPIOD->CFGHR = config->PDData.cfghr;
-  GPIOD->CFGLR = config->PDData.cfglr;
-#if AT32_HAS_GPIOF || defined(__DOXYGEN__)
-  GPIOF->ODT   = config->PFData.odt;
-  GPIOF->CFGHR = config->PFData.cfghr;
-  GPIOF->CFGLR = config->PFData.cfglr;
-#endif
 }
 
 /**
  * @brief   Pads mode setup.
  * @details This function programs a pads group belonging to the same port
  *          with the specified mode.
- * @note    @p PAL_MODE_UNCONNECTED is implemented as push pull output at 2MHz.
- * @note    Writing on pads programmed as pull-up or pull-down has the side
- *          effect to modify the resistor setting because the output latched
- *          data is used for the resistor selection.
+ * @note    @p PAL_MODE_UNCONNECTED is implemented as push pull at minimum
+ *          speed.
  *
  * @param[in] port      the port identifier
  * @param[in] mask      the group mask
@@ -137,52 +91,55 @@ void _pal_lld_init(const PALConfig *config) {
 void _pal_lld_setgroupmode(ioportid_t port,
                            ioportmask_t mask,
                            iomode_t mode) {
-  static const uint8_t cfgtab[] = {
-    4,          /* PAL_MODE_RESET, implemented as input.*/
-    2,          /* PAL_MODE_UNCONNECTED, implemented as push pull output 2MHz.*/
-    4,          /* PAL_MODE_INPUT */
-    8,          /* PAL_MODE_INPUT_PULLUP */
-    8,          /* PAL_MODE_INPUT_PULLDOWN */
-    0,          /* PAL_MODE_INPUT_ANALOG */
-    3,          /* PAL_MODE_OUTPUT_PUSHPULL, 50MHz.*/
-    7,          /* PAL_MODE_OUTPUT_OPENDRAIN, 50MHz.*/
-    8,          /* Reserved.*/
-    8,          /* Reserved.*/
-    8,          /* Reserved.*/
-    8,          /* Reserved.*/
-    8,          /* Reserved.*/
-    8,          /* Reserved.*/
-    8,          /* Reserved.*/
-    8,          /* Reserved.*/
-    0xB,        /* PAL_MODE_AT32_MUX_PUSHPULL, 50MHz.*/
-    0xF,        /* PAL_MODE_AT32_MUX_OPENDRAIN, 50MHz.*/
-  };
-  uint32_t mh, ml, cfghr, cfglr, cfg;
-  unsigned i;
 
-  if (mode == PAL_MODE_INPUT_PULLUP)
-    port->SCR = mask;
-  else if (mode == PAL_MODE_INPUT_PULLDOWN)
-    port->CLR = mask;
-  cfg = cfgtab[mode];
-  mh = ml = cfghr = cfglr = 0;
-  for (i = 0; i < 8; i++) {
-    ml <<= 4;
-    mh <<= 4;
-    cfglr <<= 4;
-    cfghr <<= 4;
-    if ((mask & 0x0080) == 0)
-      ml |= 0xf;
-    else
-      cfglr |= cfg;
-    if ((mask & 0x8000) == 0)
-      mh |= 0xf;
-    else
-      cfghr |= cfg;
-    mask <<= 1;
+  uint32_t cfgr  = (mode & PAL_AT32_MODE_MASK) >> 0;
+  uint32_t omode = (mode & PAL_AT32_OMODE_MASK) >> 2;
+  uint32_t odrvr = (mode & PAL_AT32_ODRVR_MASK) >> 3;
+  uint32_t pull  = (mode & PAL_AT32_PULL_MASK) >> 5;
+  uint32_t mux   = (mode & PAL_AT32_MUX_MASK) >> 7;
+  uint32_t hdrv  = (mode & PAL_AT32_HDRV_MASK) >> 11;
+  uint32_t bit   = 0;
+
+  while (true) {
+    if ((mask & 1) != 0) {
+      uint32_t muxmask, m1, m2, m4;
+
+      muxmask = mux << ((bit & 7) * 4);
+      m1 = 1 << bit;
+      m2 = 3 << (bit * 2);
+      m4 = 15 << ((bit & 7) * 4);
+      port->OMODE = (port->OMODE & ~m1) | omode;
+      port->ODRVR = (port->ODRVR & ~m2) | odrvr;
+      port->PULL  = (port->PULL & ~m2) | pull;
+      port->HDRV  = (port->HDRV & ~m1) | hdrv;
+      if ((mode & PAL_AT32_MODE_MASK) == PAL_AT32_MODE_MUX) {
+        /* If going in multiplexing mode then the multiplexing number is set
+           before switching mode in order to avoid glitches.*/
+        if (bit < 8)
+          port->MUXL = (port->MUXL & ~m4) | muxmask;
+        else
+          port->MUXH = (port->MUXH & ~m4) | muxmask;
+        port->CFGR   = (port->CFGR & ~m2) | cfgr;
+      }
+      else {
+        /* If going into a non-multiplexing mode then the mode is switched
+           before setting the multiplexing mode in order to avoid glitches.*/
+        port->CFGR   = (port->CFGR & ~m2) | cfgr;
+        if (bit < 8)
+          port->MUXL = (port->MUXL & ~m4) | muxmask;
+        else
+          port->MUXH = (port->MUXH & ~m4) | muxmask;
+      }
+    }
+    mask >>= 1;
+    if (!mask)
+      return;
+    omode <<= 1;
+    odrvr <<= 2;
+    pull  <<= 2;
+    cfgr  <<= 2;
+    bit++;
   }
-  port->CFGHR = (port->CFGHR & mh) | cfghr;
-  port->CFGLR = (port->CFGLR & ml) | cfglr;
 }
 
 #if PAL_USE_CALLBACKS || PAL_USE_WAIT || defined(__DOXYGEN__)
@@ -211,17 +168,15 @@ void _pal_lld_enablepadevent(ioportid_t port,
   osalDbgAssert(((EXINT->POLCFG1 & padmask) == 0U) &&
                 ((EXINT->POLCFG2 & padmask) == 0U), "channel already in use");
 
-  /* Index and mask of the SYSCFG CR register to be used.*/
-  cridx  = (uint32_t)pad >> 2U;
-  croff = ((uint32_t)pad & 3U) * 4U;
-  crmask = ~(0xFU << croff);
-
   /* Port index is obtained assuming that GPIO ports are placed at regular
      0x400 intervals in memory space. So far this is true for all devices.*/
   portidx = (((uint32_t)port - (uint32_t)GPIOA) >> 10U) & 0xFU;
 
-  /* Port selection in SYSCFG.*/
-  IOMUX->EXINTC[cridx] = (IOMUX->EXINTC[cridx] & crmask) | (portidx << croff);
+  /* Index and mask of the EXINTC register to be used.*/
+  cridx  = (uint32_t)pad >> 2U;
+  croff  = ((uint32_t)pad & 3U) * 4U;
+  crmask = ~(0xFU << croff);
+  SCFG->EXINTC[cridx] = (SCFG->EXINTC[cridx] & crmask) | (portidx << croff);
 
   /* Programming edge registers.*/
   if (mode & PAL_EVENT_MODE_RISING_EDGE)
@@ -248,35 +203,34 @@ void _pal_lld_enablepadevent(ioportid_t port,
  * @notapi
  */
 void _pal_lld_disablepadevent(ioportid_t port, iopadid_t pad) {
-  uint32_t padmask, polcfg1_1, polcfg2_1;
+  uint32_t padmask, polcfg1, polcfg2;
 
-  polcfg1_1 = EXINT->POLCFG1;
-  polcfg2_1 = EXINT->POLCFG2;
+  polcfg1 = EXINT->POLCFG1;
+  polcfg2 = EXINT->POLCFG2;
 
   /* Mask of the pad.*/
   padmask = 1U << (uint32_t)pad;
 
-  /* If either POLCFG1_1 or POLCFG2_1 is enabled then the channel is in use.*/
-  if (((polcfg1_1 | polcfg2_1) & padmask) != 0U) {
+  /* If either POLCFG1 or POLCFG2 is enabled then the channel is in use.*/
+  if (((polcfg1 | polcfg2) & padmask) != 0U) {
     uint32_t cridx, croff, crport, portidx;
-
-    /* Index and mask of the SYSCFG CR register to be used.*/
-    cridx  = (uint32_t)pad >> 2U;
-    croff = ((uint32_t)pad & 3U) * 4U;
 
     /* Port index is obtained assuming that GPIO ports are placed at regular
        0x400 intervals in memory space. So far this is true for all devices.*/
     portidx = (((uint32_t)port - (uint32_t)GPIOA) >> 10U) & 0xFU;
 
-    crport = (IOMUX->EXINTC[cridx] >> croff) & 0xFU;
+    /* Index and mask of the EXINTC register to be used.*/
+    cridx  = (uint32_t)pad >> 2U;
+    croff  = ((uint32_t)pad & 3U) * 4U;
+    crport = (SCFG->EXINTC[cridx] >> croff) & 0xFU;
 
     osalDbgAssert(crport == portidx, "channel mapped on different port");
 
     /* Disabling channel.*/
     EXINT->INTEN   &= ~padmask;
     EXINT->EVTEN   &= ~padmask;
-    EXINT->POLCFG1  = polcfg1_1 & ~padmask;
-    EXINT->POLCFG2  = polcfg2_1 & ~padmask;
+    EXINT->POLCFG1  = polcfg1 & ~padmask;
+    EXINT->POLCFG2  = polcfg2 & ~padmask;
     EXINT->INTSTS   = padmask;
 
 #if PAL_USE_CALLBACKS || PAL_USE_WAIT

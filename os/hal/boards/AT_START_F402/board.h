@@ -177,7 +177,7 @@
  */
 #define PIN_MODE_INPUT(n)           (0U << ((n) * 2U))
 #define PIN_MODE_OUTPUT(n)          (1U << ((n) * 2U))
-#define PIN_MODE_ALTERNATE(n)       (2U << ((n) * 2U))
+#define PIN_MODE_MUX(n)             (2U << ((n) * 2U))
 #define PIN_MODE_ANALOG(n)          (3U << ((n) * 2U))
 #define PIN_ODT_LOW(n)              (0U << (n))
 #define PIN_ODT_HIGH(n)             (1U << (n))
@@ -206,12 +206,12 @@
  * PA6  - ARD_D12                   (input pullup).
  * PA7  - ARD_D11                   (input pullup).
  * PA8  - ARD_D7                    (input pullup).
- * PA9  - ARD_D8 USART1_TX          (alternate 7).
- * PA10 - ARD_D2 USART1_RX          (alternate 7).
+ * PA9  - ARD_D8 USART1_TX          (multiplexing 7).
+ * PA10 - ARD_D2 USART1_RX          (multiplexing 7).
  * PA11 - PIN11                     (input floating).
  * PA12 - PIN12                     (input floating).
- * PA13 - SWDIO                     (alternate 0).
- * PA14 - SWCLK                     (alternate 0).
+ * PA13 - SWDIO                     (multiplexing 0).
+ * PA14 - SWCLK                     (multiplexing 0).
  * PA15 - ARD_D10                   (input pullup).
  */
 #define VAL_GPIOA_CFGR              (PIN_MODE_INPUT(GPIOA_BUTTON) |         \
@@ -223,12 +223,12 @@
                                      PIN_MODE_INPUT(GPIOA_ARD_D12) |        \
                                      PIN_MODE_INPUT(GPIOA_ARD_D11) |        \
                                      PIN_MODE_INPUT(GPIOA_ARD_D7) |         \
-                                     PIN_MODE_ALTERNATE(GPIOA_ARD_D8) |     \
-                                     PIN_MODE_ALTERNATE(GPIOA_ARD_D2) |     \
+                                     PIN_MODE_MUX(GPIOA_ARD_D8) |           \
+                                     PIN_MODE_MUX(GPIOA_ARD_D2) |           \
                                      PIN_MODE_INPUT(GPIOA_PIN11) |          \
                                      PIN_MODE_INPUT(GPIOA_PIN12) |          \
-                                     PIN_MODE_ALTERNATE(GPIOA_SWDIO) |      \
-                                     PIN_MODE_ALTERNATE(GPIOA_SWCLK) |      \
+                                     PIN_MODE_MUX(GPIOA_SWDIO) |            \
+                                     PIN_MODE_MUX(GPIOA_SWCLK) |            \
                                      PIN_MODE_INPUT(GPIOA_ARD_D10))
 #define VAL_GPIOA_OMODE             (PIN_OMODE_PUSHPULL(GPIOA_BUTTON) |     \
                                      PIN_OMODE_PUSHPULL(GPIOA_ARD_A1) |     \
@@ -333,7 +333,7 @@
  * PB0  - ARD_A3                    (input pullup).
  * PB1  - PIN1                      (input pullup).
  * PB2  - PIN2                      (input pullup).
- * PB3  - SWO                       (alternate 0).
+ * PB3  - SWO                       (multiplexing 0).
  * PB4  - ARD_D5                    (input pullup).
  * PB5  - ARD_D4                    (input pullup).
  * PB6  - PIN6                      (input pullup).
@@ -350,7 +350,7 @@
 #define VAL_GPIOB_CFGR              (PIN_MODE_INPUT(GPIOB_ARD_A3) |         \
                                      PIN_MODE_INPUT(GPIOB_PIN1) |           \
                                      PIN_MODE_INPUT(GPIOB_PIN2) |           \
-                                     PIN_MODE_ALTERNATE(GPIOB_SWO) |        \
+                                     PIN_MODE_MUX(GPIOB_SWO) |              \
                                      PIN_MODE_INPUT(GPIOB_ARD_D5) |         \
                                      PIN_MODE_INPUT(GPIOB_ARD_D4) |         \
                                      PIN_MODE_INPUT(GPIOB_PIN6) |           \
