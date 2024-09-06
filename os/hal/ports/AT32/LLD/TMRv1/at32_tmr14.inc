@@ -77,13 +77,13 @@
 /* Driver local functions.                                                   */
 /*===========================================================================*/
 
-static inline void tmR14_irq_init(void) {
+static inline void tmr14_irq_init(void) {
 #if defined(AT32_TMR14_IS_USED)
   nvicEnableVector(AT32_TMR14_NUMBER, AT32_IRQ_TMR14_PRIORITY);
 #endif
 }
 
-static inline void tmR14_irq_deinit(void) {
+static inline void tmr14_irq_deinit(void) {
 #if defined(AT32_TMR14_IS_USED)
   nvicDisableVector(AT32_TMR14_NUMBER);
 #endif
