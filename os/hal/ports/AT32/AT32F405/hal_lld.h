@@ -909,8 +909,7 @@
 /**
  * @brief   System clock source.
  */
-#if AT32_NO_INIT || (AT32_SCLKSEL == AT32_SCLKSEL_HICK) ||                  \
-    defined(__DOXYGEN__)
+#if AT32_SCLKSEL == AT32_SCLKSEL_HICK
 
 #if (AT32_HICK_TO_SCLK == AT32_HICK_TO_SCLK_8M) || defined(__DOXYGEN__)
 #define AT32_SYSCLKIN               8000000
