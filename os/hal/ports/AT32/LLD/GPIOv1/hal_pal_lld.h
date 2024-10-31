@@ -38,14 +38,14 @@
  * @{
  */
 /**
- * @brief   AT32 specific alternate push-pull output mode.
+ * @brief   AT32 specific multiplexing push-pull output mode.
  */
-#define PAL_MODE_AT32_ALTERNATE_PUSHPULL   16
+#define PAL_MODE_AT32_MUX_PUSHPULL         16
 
 /**
- * @brief   AT32 specific alternate open-drain output mode.
+ * @brief   AT32 specific multiplexing open-drain output mode.
  */
-#define PAL_MODE_AT32_ALTERNATE_OPENDRAIN  17
+#define PAL_MODE_AT32_MUX_OPENDRAIN        17
 /** @} */
 
 /*===========================================================================*/

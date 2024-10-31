@@ -506,7 +506,7 @@
  * @brief   ERTC clock source.
  */
 #if !defined(AT32_ERTCSEL) || defined(__DOXYGEN__)
-#define AT32_ERTCSEL                AT32_ERTCSEL_LICK
+#define AT32_ERTCSEL                AT32_ERTCSEL_NOCLOCK
 #endif
 /** @} */
 

@@ -17,10 +17,10 @@
 */
 
 /**
- * @file    USART/at32_usart1.inc
- * @brief   Shared USART1 handler.
+ * @file    USART/at32_uart7.inc
+ * @brief   Shared UART7 handler.
  *
- * @addtogroup AT32_USART1_HANDLER
+ * @addtogroup AT32_UART7_HANDLER
  * @{
  */
 
@@ -33,22 +33,22 @@
 /*===========================================================================*/
 
 /* Registry checks for robustness.*/
-#if !defined(AT32_HAS_USART1)
-#error "AT32_HAS_USART1 not defined in registry"
+#if !defined(AT32_HAS_UART7)
+#error "AT32_HAS_UART7 not defined in registry"
 #endif
 
-#if AT32_HAS_USART1
+#if AT32_HAS_UART7
 
 /* Priority settings checks.*/
-#if !defined(AT32_IRQ_USART1_PRIORITY)
-#error "AT32_IRQ_USART1_PRIORITY not defined in mcuconf.h"
+#if !defined(AT32_IRQ_UART7_PRIORITY)
+#error "AT32_IRQ_UART7_PRIORITY not defined in mcuconf.h"
 #endif
 
-#if !OSAL_IRQ_IS_VALID_PRIORITY(AT32_IRQ_USART1_PRIORITY)
-#error "Invalid IRQ priority assigned to AT32_IRQ_USART1_PRIORITY"
+#if !OSAL_IRQ_IS_VALID_PRIORITY(AT32_IRQ_UART7_PRIORITY)
+#error "Invalid IRQ priority assigned to AT32_IRQ_UART7_PRIORITY"
 #endif
 
-#endif /* AT32_HAS_USART1 */
+#endif /* AT32_HAS_UART7 */
 
 /*===========================================================================*/
 /* Driver exported variables.                                                */
@@ -62,15 +62,15 @@
 /* Driver local functions.                                                   */
 /*===========================================================================*/
 
-static inline void usart1_irq_init(void) {
-#if defined(AT32_USART1_IS_USED)
-  nvicEnableVector(AT32_USART1_NUMBER, AT32_IRQ_USART1_PRIORITY);
+static inline void uart7_irq_init(void) {
+#if defined(AT32_UART7_IS_USED)
+  nvicEnableVector(AT32_UART7_NUMBER, AT32_IRQ_UART7_PRIORITY);
 #endif
 }
 
-static inline void usart1_irq_deinit(void) {
-#if defined(AT32_USART1_IS_USED)
-  nvicDisableVector(AT32_USART1_NUMBER);
+static inline void uart7_irq_deinit(void) {
+#if defined(AT32_UART7_IS_USED)
+  nvicDisableVector(AT32_UART7_NUMBER);
 #endif
 }
 
@@ -78,25 +78,31 @@ static inline void usart1_irq_deinit(void) {
 /* Driver interrupt handlers.                                                */
 /*===========================================================================*/
 
-#if defined(AT32_USART1_IS_USED) || defined(__DOXYGEN__)
+#if defined(AT32_UART7_IS_USED) || defined(__DOXYGEN__)
 /**
- * @brief   USART1 interrupt handler.
+ * @brief   UART7 interrupt handler.
  *
  * @isr
  */
-OSAL_IRQ_HANDLER(AT32_USART1_HANDLER) {
+OSAL_IRQ_HANDLER(AT32_UART7_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
 #if HAL_USE_SERIAL
-#if AT32_SERIAL_USE_USART1
-  sd_lld_serve_interrupt(&SD1);
+#if AT32_SERIAL_USE_UART7
+  sd_lld_serve_interrupt(&SD7);
+#endif
+#endif
+
+#if HAL_USE_SIO
+#if AT32_SIO_USE_UART7
+  sio_lld_serve_interrupt(&SIOD7);
 #endif
 #endif
 
 #if HAL_USE_UART
-#if AT32_UART_USE_USART1
-  uart_lld_serve_interrupt(&UARTD1);
+#if AT32_UART_USE_UART7
+  uart_lld_serve_interrupt(&UARTD7);
 #endif
 #endif
 

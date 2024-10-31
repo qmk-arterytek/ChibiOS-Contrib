@@ -17,10 +17,10 @@
 */
 
 /**
- * @file    USART/at32_uart4.inc
- * @brief   Shared UART4 handler.
+ * @file    TMRv1/at32_tmr14.inc
+ * @brief   Shared TMR14 handler.
  *
- * @addtogroup AT32_UART4_HANDLER
+ * @addtogroup AT32_TMR14_HANDLER
  * @{
  */
 
@@ -33,22 +33,37 @@
 /*===========================================================================*/
 
 /* Registry checks for robustness.*/
-#if !defined(AT32_HAS_UART4)
-#error "AT32_HAS_UART4 not defined in registry"
+#if !defined(AT32_HAS_TMR14)
+#error "AT32_HAS_TMR14 not defined in registry"
 #endif
 
-#if AT32_HAS_UART4
+/* Driver checks for robustness, undefined USE macros are defaulted to
+   FALSE. This makes this module independent from drivers implementation.*/
+#if !defined(AT32_GPT_USE_TMR14)
+#define AT32_GPT_USE_TMR14                  FALSE
+#endif
+#if !defined(AT32_ICU_USE_TMR14)
+#define AT32_ICU_USE_TMR14                  FALSE
+#endif
+#if !defined(AT32_PWM_USE_TMR14)
+#define AT32_PWM_USE_TMR14                  FALSE
+#endif
+#if !defined(AT32_ST_USE_TMR14)
+#define AT32_ST_USE_TMR14                   FALSE
+#endif
+
+#if AT32_HAS_TMR14
 
 /* Priority settings checks.*/
-#if !defined(AT32_IRQ_UART4_PRIORITY)
-#error "AT32_IRQ_UART4_PRIORITY not defined in mcuconf.h"
+#if !defined(AT32_IRQ_TMR14_PRIORITY)
+#error "AT32_IRQ_TMR14_PRIORITY not defined in mcuconf.h"
 #endif
 
-#if !OSAL_IRQ_IS_VALID_PRIORITY(AT32_IRQ_UART4_PRIORITY)
-#error "Invalid IRQ priority assigned to AT32_IRQ_UART4_PRIORITY"
+#if !OSAL_IRQ_IS_VALID_PRIORITY(AT32_IRQ_TMR14_PRIORITY)
+#error "Invalid IRQ priority assigned to AT32_IRQ_TMR14_PRIORITY"
 #endif
 
-#endif /* AT32_HAS_UART4 */
+#endif /* AT32_HAS_TMR14 */
 
 /*===========================================================================*/
 /* Driver exported variables.                                                */
@@ -62,15 +77,15 @@
 /* Driver local functions.                                                   */
 /*===========================================================================*/
 
-static inline void uart4_irq_init(void) {
-#if defined(AT32_UART4_IS_USED)
-  nvicEnableVector(AT32_UART4_NUMBER, AT32_IRQ_UART4_PRIORITY);
+static inline void tmr14_irq_init(void) {
+#if defined(AT32_TMR14_IS_USED)
+  nvicEnableVector(AT32_TMR14_NUMBER, AT32_IRQ_TMR14_PRIORITY);
 #endif
 }
 
-static inline void uart4_irq_deinit(void) {
-#if defined(AT32_UART4_IS_USED)
-  nvicDisableVector(AT32_UART4_NUMBER);
+static inline void tmr14_irq_deinit(void) {
+#if defined(AT32_TMR14_IS_USED)
+  nvicDisableVector(AT32_TMR14_NUMBER);
 #endif
 }
 
@@ -78,25 +93,34 @@ static inline void uart4_irq_deinit(void) {
 /* Driver interrupt handlers.                                                */
 /*===========================================================================*/
 
-#if defined(AT32_UART4_IS_USED) || defined(__DOXYGEN__)
+#if defined(AT32_TMR14_IS_USED) || defined(__DOXYGEN__)
 /**
- * @brief   UART4 interrupt handler.
+ * @brief   TMR14 interrupt handler.
  *
  * @isr
  */
-OSAL_IRQ_HANDLER(AT32_UART4_HANDLER) {
+OSAL_IRQ_HANDLER(AT32_TMR14_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
-#if HAL_USE_SERIAL
-#if AT32_SERIAL_USE_UART4
-  sd_lld_serve_interrupt(&SD4);
+#if HAL_USE_GPT
+#if AT32_GPT_USE_TMR14
+  gpt_lld_serve_interrupt(&GPTD14);
 #endif
 #endif
-
-#if HAL_USE_UART
-#if AT32_UART_USE_UART4
-  uart_lld_serve_interrupt(&UARTD4);
+#if HAL_USE_ICU
+#if AT32_ICU_USE_TMR14
+  icu_lld_serve_interrupt(&ICUD14);
+#endif
+#endif
+#if HAL_USE_PWM
+#if AT32_PWM_USE_TMR14
+  pwm_lld_serve_interrupt(&PWMD14);
+#endif
+#endif
+#if 1
+#if AT32_ST_USE_TMR14
+  st_lld_serve_interrupt();
 #endif
 #endif
 

@@ -94,6 +94,12 @@ OSAL_IRQ_HANDLER(AT32_USART2_HANDLER) {
 #endif
 #endif
 
+#if HAL_USE_SIO
+#if AT32_SIO_USE_USART2
+  sio_lld_serve_interrupt(&SIOD2);
+#endif
+#endif
+
 #if HAL_USE_UART
 #if AT32_UART_USE_USART2
   uart_lld_serve_interrupt(&UARTD2);

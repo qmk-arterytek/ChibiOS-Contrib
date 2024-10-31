@@ -154,8 +154,8 @@ void _pal_lld_setgroupmode(ioportid_t port,
     8,          /* Reserved.*/
     8,          /* Reserved.*/
     8,          /* Reserved.*/
-    0xB,        /* PAL_MODE_AT32_ALTERNATE_PUSHPULL, 50MHz.*/
-    0xF,        /* PAL_MODE_AT32_ALTERNATE_OPENDRAIN, 50MHz.*/
+    0xB,        /* PAL_MODE_AT32_MUX_PUSHPULL, 50MHz.*/
+    0xF,        /* PAL_MODE_AT32_MUX_OPENDRAIN, 50MHz.*/
   };
   uint32_t mh, ml, cfghr, cfglr, cfg;
   unsigned i;
