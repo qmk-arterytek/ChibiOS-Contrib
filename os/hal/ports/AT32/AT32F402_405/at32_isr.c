@@ -1,6 +1,8 @@
 /*
-    ChibiOS - Copyright (C) 2023..2024 Zhaqian
-    ChibiOS - Copyright (C) 2024 Maxjta
+    ChibiOS - Copyright (C) 2006..2018 Giovanni Di Sirio
+    ChibiOS - Copyright (C) 2023..2025 HorrorTroll
+    ChibiOS - Copyright (C) 2023..2025 Zhaqian
+    ChibiOS - Copyright (C) 2024..2025 Maxjta
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -16,10 +18,10 @@
 */
 
 /**
- * @file    AT32F405xx/at32_isr.c
- * @brief   AT32F405xx ISR handler code.
+ * @file    AT32F402_405/at32_isr.c
+ * @brief   AT32F402_405 ISR handler code.
  *
- * @addtogroup AT32F405xx_ISR
+ * @addtogroup AT32F402_405_ISR
  * @{
  */
 
@@ -41,9 +43,9 @@
 /* Driver local functions.                                                   */
 /*===========================================================================*/
 
-#define exint_serve_irq(intsts, channel) {                                       \
+#define exint_serve_irq(intsts, channel) {                                  \
                                                                             \
-  if ((intsts) & (1U << (channel))) {                                           \
+  if ((intsts) & (1U << (channel))) {                                       \
     _pal_isr_code(channel);                                                 \
   }                                                                         \
 }
@@ -51,6 +53,7 @@
 /*===========================================================================*/
 /* Driver interrupt handlers.                                                */
 /*===========================================================================*/
+
 #include "at32_exint0.inc"
 #include "at32_exint1.inc"
 #include "at32_exint2.inc"
@@ -61,8 +64,7 @@
 #include "at32_exint16.inc"
 #include "at32_exint17.inc"
 #include "at32_exint18.inc"
-#include "at32_exint19.inc"
-#include "at32_exint20.inc"
+#include "at32_exint20.inc"           /* Note: F405 only */
 #include "at32_exint21.inc"
 #include "at32_exint22.inc"
 
@@ -105,8 +107,7 @@ void irqInit(void) {
   exint16_irq_init();
   exint17_irq_init();
   exint18_irq_init();
-  exint19_irq_init();
-  exint20_irq_init();
+  exint20_irq_init();                 /* Note: F405 only */
   exint21_irq_init();
   exint22_irq_init();
 
@@ -146,8 +147,7 @@ void irqDeinit(void) {
   exint16_irq_deinit();
   exint17_irq_deinit();
   exint18_irq_deinit();
-  exint19_irq_deinit();
-  exint20_irq_deinit();
+  exint20_irq_deinit();               /* Note: F405 only */
   exint21_irq_deinit();
   exint22_irq_deinit();
 

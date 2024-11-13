@@ -1,6 +1,8 @@
 /*
-    ChibiOS - Copyright (C) 2023..2024 Zhaqian
-    ChibiOS - Copyright (C) 2024 Maxjta
+    ChibiOS - Copyright (C) 2006..2018 Giovanni Di Sirio
+    ChibiOS - Copyright (C) 2023..2025 HorrorTroll
+    ChibiOS - Copyright (C) 2023..2025 Zhaqian
+    ChibiOS - Copyright (C) 2024..2025 Maxjta
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -16,12 +18,12 @@
 */
 
 /**
- * @file    AT32F405xx/at32_crm.h
+ * @file    AT32F402_405/at32_crm.h
  * @brief   CRM helper driver header.
  * @note    This file requires definitions from the AT header file
- *          @p at32f402_405xx.h.
+ *          @p at32f402_405.h.
  *
- * @addtogroup AT32F405xx_CRM
+ * @addtogroup AT32F402_405_CRM
  * @{
  */
 
@@ -33,7 +35,7 @@
 /*===========================================================================*/
 
 /*===========================================================================*/
-/* Driver pre-compile TMRe settings.                                         */
+/* Driver pre-compile time settings.                                         */
 /*===========================================================================*/
 
 /*===========================================================================*/
@@ -54,34 +56,32 @@
  */
 /**
  * @brief   Enables the clock of one or more peripheral on the APB1 bus.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] mask      APB1 peripherals mask
  * @param[in] lp        low power enable flag
  *
  * @api
  */
-#define crmEnableAPB1(mask, lp) {                                          \
-  CRM->APB1EN |= (mask);                                                   \
-  if (lp)                                                                  \
-    CRM->APB1LPEN |= (mask);                                               \
-  else                                                                     \
-    CRM->APB1LPEN &= ~(mask);                                              \
-  (void)CRM->APB1LPEN;                                                     \
+#define crmEnableAPB1(mask, lp) {                                           \
+  CRM->APB1EN |= (mask);                                                    \
+  if (lp)                                                                   \
+    CRM->APB1LPEN |= (mask);                                                \
+  else                                                                      \
+    CRM->APB1LPEN &= ~(mask);                                               \
+  (void)CRM->APB1LPEN;                                                      \
 }
 
 /**
  * @brief   Disables the clock of one or more peripheral on the APB1 bus.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] mask      APB1 peripherals mask
  *
  * @api
  */
-#define crmDisableAPB1(mask) {                                             \
-  CRM->APB1EN &= ~(mask);                                                  \
-  CRM->APB1LPEN &= ~(mask);                                                \
-  (void)CRM->APB1LPEN;                                                     \
+#define crmDisableAPB1(mask) {                                              \
+  CRM->APB1EN &= ~(mask);                                                   \
+  CRM->APB1LPEN &= ~(mask);                                                 \
+  (void)CRM->APB1LPEN;                                                      \
 }
 
 /**
@@ -91,42 +91,40 @@
  *
  * @api
  */
-#define crmResetAPB1(mask) {                                               \
-  CRM->APB1RST |= (mask);                                                  \
-  CRM->APB1RST &= ~(mask);                                                 \
-  (void)CRM->APB1RST;                                                      \
+#define crmResetAPB1(mask) {                                                \
+  CRM->APB1RST |= (mask);                                                   \
+  CRM->APB1RST &= ~(mask);                                                  \
+  (void)CRM->APB1RST;                                                       \
 }
 
 /**
  * @brief   Enables the clock of one or more peripheral on the APB2 bus.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] mask      APB2 peripherals mask
  * @param[in] lp        low power enable flag
  *
  * @api
  */
-#define crmEnableAPB2(mask, lp) {                                          \
-  CRM->APB2EN |= (mask);                                                   \
-  if (lp)                                                                  \
-    CRM->APB2LPEN |= (mask);                                               \
-  else                                                                     \
-    CRM->APB2LPEN &= ~(mask);                                              \
-  (void)CRM->APB2LPEN;                                                     \
+#define crmEnableAPB2(mask, lp) {                                           \
+  CRM->APB2EN |= (mask);                                                    \
+  if (lp)                                                                   \
+    CRM->APB2LPEN |= (mask);                                                \
+  else                                                                      \
+    CRM->APB2LPEN &= ~(mask);                                               \
+  (void)CRM->APB2LPEN;                                                      \
 }
 
 /**
  * @brief   Disables the clock of one or more peripheral on the APB2 bus.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] mask      APB2 peripherals mask
  *
  * @api
  */
-#define crmDisableAPB2(mask) {                                             \
-  CRM->APB2EN &= ~(mask);                                                  \
-  CRM->APB2LPEN &= ~(mask);                                                \
-  (void)CRM->APB2LPEN;                                                     \
+#define crmDisableAPB2(mask) {                                              \
+  CRM->APB2EN &= ~(mask);                                                   \
+  CRM->APB2LPEN &= ~(mask);                                                 \
+  (void)CRM->APB2LPEN;                                                      \
 }
 
 /**
@@ -136,10 +134,10 @@
  *
  * @api
  */
-#define crmResetAPB2(mask) {                                               \
-  CRM->APB2RST |= (mask);                                                  \
-  CRM->APB2RST &= ~(mask);                                                 \
-  (void)CRM->APB2RST;                                                      \
+#define crmResetAPB2(mask) {                                                \
+  CRM->APB2RST |= (mask);                                                   \
+  CRM->APB2RST &= ~(mask);                                                  \
+  (void)CRM->APB2RST;                                                       \
 }
 
 /**
@@ -150,13 +148,13 @@
  *
  * @api
  */
-#define crmEnableAHB1(mask, lp) {                                          \
-  CRM->AHBEN1 |= (mask);                                                   \
-  if (lp)                                                                  \
-    CRM->AHBLPEN1 |= (mask);                                               \
-  else                                                                     \
-    CRM->AHBLPEN1 &= ~(mask);                                              \
-  (void)CRM->AHBLPEN1;                                                     \
+#define crmEnableAHB1(mask, lp) {                                           \
+  CRM->AHBEN1 |= (mask);                                                    \
+  if (lp)                                                                   \
+    CRM->AHBLPEN1 |= (mask);                                                \
+  else                                                                      \
+    CRM->AHBLPEN1 &= ~(mask);                                               \
+  (void)CRM->AHBLPEN1;                                                      \
 }
 
 /**
@@ -166,10 +164,10 @@
  *
  * @api
  */
-#define crmDisableAHB1(mask) {                                             \
-  CRM->AHBEN1 &= ~(mask);                                                  \
-  CRM->AHBLPEN1 &= ~(mask);                                                \
-  (void)CRM->AHBLPEN1;                                                     \
+#define crmDisableAHB1(mask) {                                              \
+  CRM->AHBEN1 &= ~(mask);                                                   \
+  CRM->AHBLPEN1 &= ~(mask);                                                 \
+  (void)CRM->AHBLPEN1;                                                      \
 }
 
 /**
@@ -179,10 +177,10 @@
  *
  * @api
  */
-#define crmResetAHB1(mask) {                                               \
-  CRM->AHBRST1 |= (mask);                                                  \
-  CRM->AHBRST1 &= ~(mask);                                                 \
-  (void)CRM->AHBRST1;                                                      \
+#define crmResetAHB1(mask) {                                                \
+  CRM->AHBRST1 |= (mask);                                                   \
+  CRM->AHBRST1 &= ~(mask);                                                  \
+  (void)CRM->AHBRST1;                                                       \
 }
 
 /**
@@ -193,13 +191,13 @@
  *
  * @api
  */
-#define crmEnableAHB2(mask, lp) {                                          \
-  CRM->AHBEN2 |= (mask);                                                   \
-  if (lp)                                                                  \
-    CRM->AHBLPEN2 |= (mask);                                               \
-  else                                                                     \
-    CRM->AHBLPEN2 &= ~(mask);                                              \
-  (void)CRM->AHBLPEN2;                                                     \
+#define crmEnableAHB2(mask, lp) {                                           \
+  CRM->AHBEN2 |= (mask);                                                    \
+  if (lp)                                                                   \
+    CRM->AHBLPEN2 |= (mask);                                                \
+  else                                                                      \
+    CRM->AHBLPEN2 &= ~(mask);                                               \
+  (void)CRM->AHBLPEN2;                                                      \
 }
 
 /**
@@ -209,10 +207,10 @@
  *
  * @api
  */
-#define crmDisableAHB2(mask) {                                             \
-  CRM->AHBEN2 &= ~(mask);                                                  \
-  CRM->AHBLPEN2 &= ~(mask);                                                \
-  (void)CRM->AHBLPEN2;                                                     \
+#define crmDisableAHB2(mask) {                                              \
+  CRM->AHBEN2 &= ~(mask);                                                   \
+  CRM->AHBLPEN2 &= ~(mask);                                                 \
+  (void)CRM->AHBLPEN2;                                                      \
 }
 
 /**
@@ -222,53 +220,53 @@
  *
  * @api
  */
-#define crmResetAHB2(mask) {                                               \
-  CRM->AHBRST2 |= (mask);                                                  \
-  CRM->AHBRST2 &= ~(mask);                                                 \
-  (void)CRM->AHBRST2;                                                      \
+#define crmResetAHB2(mask) {                                                \
+  CRM->AHBRST2 |= (mask);                                                   \
+  CRM->AHBRST2 &= ~(mask);                                                  \
+  (void)CRM->AHBRST2;                                                       \
 }
 
 /**
- * @brief   Enables the clock of one or more peripheral on the AHB3 (FSMC) bus.
+ * @brief   Enables the clock of one or more peripheral on the AHB3 bus.
  *
  * @param[in] mask      AHB3 peripherals mask
  * @param[in] lp        low power enable flag
  *
  * @api
  */
-#define crmEnableAHB3(mask, lp) {                                          \
-  CRM->AHBEN3 |= (mask);                                                   \
-  if (lp)                                                                  \
-    CRM->AHBLPEN3 |= (mask);                                               \
-  else                                                                     \
-    CRM->AHBLPEN3 &= ~(mask);                                              \
-  (void)CRM->AHBLPEN3;                                                     \
+#define crmEnableAHB3(mask, lp) {                                           \
+  CRM->AHBEN3 |= (mask);                                                    \
+  if (lp)                                                                   \
+    CRM->AHBLPEN3 |= (mask);                                                \
+  else                                                                      \
+    CRM->AHBLPEN3 &= ~(mask);                                               \
+  (void)CRM->AHBLPEN3;                                                      \
 }
 
 /**
- * @brief   Disables the clock of one or more peripheral on the AHB3 (FSMC) bus.
+ * @brief   Disables the clock of one or more peripheral on the AHB3 bus.
  *
  * @param[in] mask      AHB3 peripherals mask
  *
  * @api
  */
-#define crmDisableAHB3(mask) {                                             \
-  CRM->AHBEN3 &= ~(mask);                                                  \
-  CRM->AHBLPEN3 &= ~(mask);                                                \
-  (void)CRM->AHBLPEN3;                                                     \
+#define crmDisableAHB3(mask) {                                              \
+  CRM->AHBEN3 &= ~(mask);                                                   \
+  CRM->AHBLPEN3 &= ~(mask);                                                 \
+  (void)CRM->AHBLPEN3;                                                      \
 }
 
 /**
- * @brief   Resets one or more peripheral on the AHB3 (FSMC) bus.
+ * @brief   Resets one or more peripheral on the AHB3 bus.
  *
  * @param[in] mask      AHB3 peripherals mask
  *
  * @api
  */
-#define crmResetAHB3(mask) {                                               \
-  CRM->AHBRST3 |= (mask);                                                  \
-  CRM->AHBRST3 &= ~(mask);                                                 \
-  (void)CRM->AHBRST3;                                                      \
+#define crmResetAHB3(mask) {                                                \
+  CRM->AHBRST3 |= (mask);                                                   \
+  CRM->AHBRST3 &= ~(mask);                                                  \
+  (void)CRM->AHBRST3;                                                       \
 }
 /** @} */
 
@@ -277,8 +275,14 @@
  * @{
  */
 /**
+ * @brief   Resets ADC peripherals.
+ *
+ * @api
+ */
+#define crmResetADC() crmResetAPB2(CRM_APB2RST_ADCRST)
+
+/**
  * @brief   Enables the ADC1 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -292,13 +296,6 @@
  * @api
  */
 #define crmDisableADC1() crmDisableAPB2(CRM_APB2EN_ADC1EN)
-
-/**
- * @brief   Resets the ADC1 peripheral.
- *
- * @api
- */
-#define crmResetADC1() crmResetAPB2(CRM_APB2RST_ADC1RST)
 /** @} */
 
 /**
@@ -307,7 +304,6 @@
  */
 /**
  * @brief   Enables the PWC interface clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -336,7 +332,6 @@
  */
 /**
  * @brief   Enables the CAN1 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -357,6 +352,7 @@
  * @api
  */
 #define crmResetCAN1() crmResetAPB1(CRM_APB1RST_CAN1RST)
+/** @} */
 
 /**
  * @name    DMA peripherals specific CRM operations
@@ -364,7 +360,6 @@
  */
 /**
  * @brief   Enables the DMA1 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -381,7 +376,6 @@
 
 /**
  * @brief   Resets the DMA1 peripheral.
- * @note    Not supported in this family, does nothing.
  *
  * @api
  */
@@ -389,7 +383,6 @@
 
 /**
  * @brief   Enables the DMA2 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -406,7 +399,6 @@
 
 /**
  * @brief   Resets the DMA2 peripheral.
- * @note    Not supported in this family, does nothing.
  *
  * @api
  */
@@ -419,7 +411,6 @@
  */
 /**
  * @brief   Enables the I2C1 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -443,7 +434,6 @@
 
 /**
  * @brief   Enables the I2C2 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -467,7 +457,6 @@
 
 /**
  * @brief   Enables the I2C3 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -501,26 +490,24 @@
  *
  * @api
  */
-#define crmEnableOTG_FS1(lp) crmEnableAHB2(CRM_AHBEN2_OTGFS1EN, lp)
-#define crmEnableOTG_FS(lp)  crmEnableOTG_FS1(lp)
+#define crmEnableOTG_FS(lp) crmEnableAHB2(CRM_AHBEN2_OTGFSEN, lp)
 
 /**
  * @brief   Disables the OTG_FS peripheral clock.
  *
  * @api
  */
-#define crmDisableOTG_FS1() crmDisableAHB2(CRM_AHBEN2_OTGFS1EN)
-#define crmDisableOTG_FS()  crmDisableOTG_FS1()
+#define crmDisableOTG_FS() crmDisableAHB2(CRM_AHBEN2_OTGFSEN)
 
 /**
  * @brief   Resets the OTG_FS peripheral.
  *
  * @api
  */
-#define crmResetOTG_FS1() crmResetAHB2(CRM_AHBRST2_OTGFS1RST)
-#define crmResetOTG_FS()  crmResetOTG_FS1()
+#define crmResetOTG_FS() crmResetAHB2(CRM_AHBRST2_OTGFSRST)
+
 /**
- * @brief   Enables the OTG_HS peripheral clock.
+ * @brief   Enables the OTG_HS peripheral clock (F405 only).
  *
  * @param[in] lp        low power enable flag
  *
@@ -529,14 +516,14 @@
 #define crmEnableOTG_HS(lp) crmEnableAHB1(CRM_AHBEN1_OTGHSEN, lp)
 
 /**
- * @brief   Disables the OTG_HS peripheral clock.
+ * @brief   Disables the OTG_HS peripheral clock (F405 only).
  *
  * @api
  */
 #define crmDisableOTG_HS() crmDisableAHB1(CRM_AHBEN1_OTGHSEN)
 
 /**
- * @brief   Resets the OTG_HS peripheral.
+ * @brief   Resets the OTG_HS peripheral (F405 only).
  *
  * @api
  */
@@ -577,7 +564,6 @@
  */
 /**
  * @brief   Enables the SPI1 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -601,7 +587,6 @@
 
 /**
  * @brief   Enables the SPI2 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -625,7 +610,6 @@
 
 /**
  * @brief   Enables the SPI3 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -654,7 +638,6 @@
  */
 /**
  * @brief   Enables the TMR1 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -678,7 +661,6 @@
 
 /**
  * @brief   Enables the TMR2 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -702,7 +684,6 @@
 
 /**
  * @brief   Enables the TMR3 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -726,7 +707,6 @@
 
 /**
  * @brief   Enables the TMR4 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -750,7 +730,6 @@
 
 /**
  * @brief   Enables the TMR6 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -774,7 +753,6 @@
 
 /**
  * @brief   Enables the TMR7 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -797,11 +775,7 @@
 #define crmResetTMR7() crmResetAPB1(CRM_APB1RST_TMR7RST)
 
 /**
-
  * @brief   Enables the TMR9 peripheral clock.
-
- * @note    The @p lp parameter is ignored in this family.
-
  *
  * @param[in] lp        low power enable flag
  *
@@ -825,7 +799,6 @@
 
 /**
  * @brief   Enables the TMR10 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -849,7 +822,6 @@
 
 /**
  * @brief   Enables the TMR11 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -873,7 +845,6 @@
 
 /**
  * @brief   Enables the TMR13 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -897,7 +868,6 @@
 
 /**
  * @brief   Enables the TMR14 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -926,7 +896,6 @@
  */
 /**
  * @brief   Enables the USART1 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -950,7 +919,6 @@
 
 /**
  * @brief   Enables the USART2 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -974,7 +942,6 @@
 
 /**
  * @brief   Enables the USART3 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -995,11 +962,9 @@
  * @api
  */
 #define crmResetUSART3() crmResetAPB1(CRM_APB1RST_USART3RST)
-/** @} */
 
 /**
  * @brief   Enables the UART4 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -1023,7 +988,6 @@
 
 /**
  * @brief   Enables the UART5 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -1047,7 +1011,6 @@
 
 /**
  * @brief   Enables the USART6 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -1071,7 +1034,6 @@
 
 /**
  * @brief   Enables the UART7 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -1095,7 +1057,6 @@
 
 /**
  * @brief   Enables the UART8 peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -1124,7 +1085,6 @@
  */
 /**
  * @brief   Enables the ACC peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
  *
  * @param[in] lp        low power enable flag
  *
@@ -1148,32 +1108,31 @@
 /** @} */
 
 /**
- * @name    SCFG peripherals specific CRM operations
+ * @name    CRC peripherals specific CRM operations
  * @{
  */
 /**
- * @brief   Enables the SCFG peripheral clock.
- * @note    The @p lp parameter is ignored in this family.
+ * @brief   Enables the CRC peripheral clock.
  *
  * @param[in] lp        low power enable flag
  *
  * @api
  */
-#define crmEnableSCFG(lp) crmEnableAPB2(CRM_APB2EN_SCFGEN, lp)
+#define crmEnableCRC(lp) crmEnableAHB1(CRM_AHBEN1_CRCEN, lp)
 
 /**
- * @brief   Disables the SCFG peripheral clock.
+ * @brief   Disables the CRC peripheral clock.
  *
  * @api
  */
-#define crmDisableSCFG() crmDisableAPB2(CRM_APB2EN_SCFGEN)
+#define crmDisableCRC() crmDisableAHB1(CRM_AHBEN1_CRCEN)
 
 /**
- * @brief   Resets the SCFG peripheral.
+ * @brief   Resets the CRC peripheral.
  *
  * @api
  */
-#define crmResetSCFG() crmResetAPB2(CRM_APB2RST_SCFGRST)
+#define crmResetCRC() crmResetAHB1(CRM_AHBRST1_CRCRST)
 /** @} */
 
 /*===========================================================================*/

@@ -1,6 +1,8 @@
 /*
-    ChibiOS - Copyright (C) 2023..2024 Zhaqian
-    ChibiOS - Copyright (C) 2024 Maxjta
+    ChibiOS - Copyright (C) 2006..2018 Giovanni Di Sirio
+    ChibiOS - Copyright (C) 2023..2025 HorrorTroll
+    ChibiOS - Copyright (C) 2023..2025 Zhaqian
+    ChibiOS - Copyright (C) 2024..2025 Maxjta
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -16,8 +18,8 @@
 */
 
 /**
- * @file    AT32F405xx/hal_efl_lld.h
- * @brief   AT32F405xx Embedded Flash subsystem low level driver header.
+ * @file    hal_efl_lld.h
+ * @brief   AT32F402_405 Embedded Flash subsystem low level driver header.
  *
  * @addtogroup HAL_EFL
  * @{
@@ -37,14 +39,14 @@
 /*===========================================================================*/
 
 /**
- * @name    AT32F402_5xx configuration options
+ * @name    AT32F402_405 configuration options
  * @{
  */
 /**
  * @brief   Suggested wait time during erase operations polling.
  */
 #if !defined(AT32_FLASH_WAIT_TIME_MS) || defined(__DOXYGEN__)
-#define AT32_FLASH_WAIT_TIME_MS            10
+#define AT32_FLASH_WAIT_TIME_MS            1
 #endif
 /** @} */
 

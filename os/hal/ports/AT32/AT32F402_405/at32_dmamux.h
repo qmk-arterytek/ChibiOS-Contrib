@@ -1,6 +1,8 @@
 /*
-    ChibiOS - Copyright (C) 2023..2024 Zhaqian
-    ChibiOS - Copyright (C) 2024 Maxjta
+    ChibiOS - Copyright (C) 2006..2018 Giovanni Di Sirio
+    ChibiOS - Copyright (C) 2023..2025 HorrorTroll
+    ChibiOS - Copyright (C) 2023..2025 Zhaqian
+    ChibiOS - Copyright (C) 2024..2025 Maxjta
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -16,10 +18,10 @@
 */
 
 /**
- * @file    AT32F405xx/at32_dmamux.h
- * @brief   AT32F405xx DMAMUX handler header.
+ * @file    AT32F402_405/at32_dmamux.h
+ * @brief   AT32F402_405 DMAMUX handler header.
  *
- * @addtogroup AT32F405xx_DMAMUX
+ * @addtogroup AT32F402_405_DMAMUX
  * @{
  */
 
@@ -35,10 +37,12 @@
  * @{
  */
 #define AT32_DMAMUX_MUXREQG1       1
-#define AT32_DMAMUX_MUXREQG2       2 
+#define AT32_DMAMUX_MUXREQG2       2
 #define AT32_DMAMUX_MUXREQG3       3
 #define AT32_DMAMUX_MUXREQG4       4
 #define AT32_DMAMUX_ADC1           5
+#define AT32_DMAMUX_TMR6_OVERFLOW  8
+#define AT32_DMAMUX_TMR7_OVERFLOW  9
 #define AT32_DMAMUX_SPI1_RX        10
 #define AT32_DMAMUX_SPI1_TX        11
 #define AT32_DMAMUX_SPI2_RX        12

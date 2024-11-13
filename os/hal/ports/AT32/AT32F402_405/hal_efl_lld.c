@@ -1,6 +1,8 @@
 /*
-    ChibiOS - Copyright (C) 2023..2024 Zhaqian
-    ChibiOS - Copyright (C) 2024 Maxjta
+    ChibiOS - Copyright (C) 2006..2018 Giovanni Di Sirio
+    ChibiOS - Copyright (C) 2023..2025 HorrorTroll
+    ChibiOS - Copyright (C) 2023..2025 Zhaqian
+    ChibiOS - Copyright (C) 2024..2025 Maxjta
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -16,8 +18,8 @@
 */
 
 /**
- * @file    AT32F405xx/hal_efl_lld.c
- * @brief   AT32F405xx Embedded Flash subsystem low level driver source.
+ * @file    hal_efl_lld.c
+ * @brief   AT32F402_405 Embedded Flash subsystem low level driver source.
  *
  * @addtogroup HAL_EFL
  * @{
@@ -73,9 +75,9 @@ static inline void at32_flash_lock(EFlashDriver *eflp) {
 }
 
 static inline void at32_flash_unlock(EFlashDriver *eflp) {
-  
-  eflp->flash->UNLOCK = FLASH_UNLOCK_KEY1;
-  eflp->flash->UNLOCK = FLASH_UNLOCK_KEY2;
+
+  eflp->flash->UNLOCK = FLASH_KEY1;
+  eflp->flash->UNLOCK = FLASH_KEY2;
 }
 
 static inline void at32_flash_enable_pgm(EFlashDriver *eflp) {
@@ -89,8 +91,8 @@ static inline void at32_flash_disable_pgm(EFlashDriver *eflp) {
 }
 
 static inline void at32_flash_clear_status(EFlashDriver *eflp) {
-  
-  eflp->flash->STS = FLASH_STS_PRGMERR | FLASH_STS_EPPERR;
+
+  eflp->flash->STS = 0x0000001FU;
 }
 
 static inline uint32_t at32_flash_is_busy(EFlashDriver *eflp) {
@@ -103,6 +105,24 @@ static inline void at32_flash_wait_busy(EFlashDriver *eflp) {
   /* Wait for busy bit clear.*/
   while (at32_flash_is_busy(eflp) != 0U) {
   }
+}
+
+static inline flash_error_t at32_flash_check_errors(EFlashDriver *eflp) {
+  uint32_t sts = eflp->flash->STS;
+
+  /* Clearing error conditions.*/
+  eflp->flash->STS = sts & 0x0000001FU;
+
+  /* Decoding relevant errors.*/
+  if ((sts & FLASH_STS_EPPERR) != 0U) {
+    return FLASH_ERROR_HW_FAILURE;
+  }
+
+  if ((sts & FLASH_STS_PRGMERR) != 0U) {
+    return FLASH_ERROR_PROGRAM; /* There is no error on erase.*/
+  }
+
+  return FLASH_NO_ERROR;
 }
 
 /*===========================================================================*/
@@ -135,7 +155,7 @@ void efl_lld_init(void) {
 void efl_lld_start(EFlashDriver *eflp) {
 
   at32_flash_unlock(eflp);
-  eflp->flash->CTRL = 0x00000000U;
+  FLASH->CTRL = 0x00000000U;
 }
 
 /**
@@ -202,7 +222,7 @@ flash_error_t efl_lld_read(void *instance, flash_offset_t offset,
   at32_flash_clear_status(devp);
 
   /* Actual read implementation.*/
-  memcpy((void *)rp, (const void *)(efl_lld_descriptor.address + offset), n);
+  memcpy((void *)rp, (const void *)efl_lld_descriptor.address + offset, n);
 
   /* Ready state again.*/
   devp->state = FLASH_READY;
@@ -276,26 +296,13 @@ flash_error_t efl_lld_program(void *instance, flash_offset_t offset,
       pp++;
     }
     while ((n > 0U) & ((offset & AT32_FLASH_LINE_MASK) != 0U));
+
     /* Programming line.*/
     address[0] = line.hw[0];
     at32_flash_wait_busy(devp);
 
-    uint32_t sts = devp->flash->STS;
-
-    /* Clearing error status bits.*/
-    at32_flash_clear_status(devp);
-
-    /* Decoding relevant errors.*/
-    if ((sts & FLASH_STS_EPPERR) != 0U) {
-      err = FLASH_ERROR_HW_FAILURE;
-      break;
-    }
-    else if ((sts & FLASH_STS_PRGMERR) != 0U) {
-      err = FLASH_ERROR_PROGRAM;
-      break;
-    }
-    else if ((sts & FLASH_STS_ODF) == 0U) {
-      err = FLASH_ERROR_PROGRAM;
+    err = at32_flash_check_errors(devp);
+    if (err != FLASH_NO_ERROR) {
       break;
     }
 
@@ -371,7 +378,7 @@ flash_error_t efl_lld_start_erase_sector(void *instance,
 
   /* Set the page.*/
   devp->flash->ADDR = (uint32_t)(efl_lld_descriptor.address +
-                         flashGetSectorOffset(getBaseFlash(devp), sector));
+                           flashGetSectorOffset(getBaseFlash(devp), sector));
 
   /* Start the erase.*/
   devp->flash->CTRL |= FLASH_CTRL_ERSTR;
