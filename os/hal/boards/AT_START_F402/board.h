@@ -2,7 +2,6 @@
     ChibiOS - Copyright (C) 2006..2020 Giovanni Di Sirio
     ChibiOS - Copyright (C) 2023..2025 HorrorTroll
     ChibiOS - Copyright (C) 2023..2025 Zhaqian
-    ChibiOS - Copyright (C) 2024..2025 Maxjta
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -25,19 +24,14 @@
 /*===========================================================================*/
 
 /*
- * Setup for a AT-START-F405 board.
+ * Setup for a AT-START-F402 board.
  */
 
 /*
  * Board identifier.
  */
-#define BOARD_AT_START_F405
-#define BOARD_NAME                  "Artery AT-START-F405"
-
-/*
- * The board has an ULPI USB PHY.
- */
-#define BOARD_OTG2_USES_ULPI
+#define BOARD_AT_START_F402
+#define BOARD_NAME                  "Artery AT-START-F402"
 
 /*
  * Board oscillators-related settings.
@@ -53,7 +47,7 @@
 /*
  * MCU type, supported types are defined in ./os/hal/platforms/hal_lld.h.
  */
-#define AT32F405RC
+#define AT32F402RC
 
 /*
  * IO pins assignments.
@@ -86,8 +80,11 @@
 #define GPIOB_ARD_SCL               8U
 #define GPIOB_ARD_SDA               9U
 #define GPIOB_ARD_D6                10U
+#define GPIOB_PIN11                 11U
 #define GPIOB_ARD_NSS               12U
 #define GPIOB_ARD_SCK               13U
+#define GPIOB_PIN14                 14U
+#define GPIOB_PIN15                 15U
 
 #define GPIOC_ARD_A5                0U
 #define GPIOC_ARD_A4                1U
@@ -344,8 +341,11 @@
  * PB8  - ARD_SCL                   (input pullup).
  * PB9  - ARD_SDA                   (input pullup).
  * PB10 - ARD_D6                    (input pullup).
+ * PB11 - PIN11                     (input pullup).
  * PB12 - ARD_NSS                   (input pullup).
  * PB13 - ARD_SCK                   (input pullup).
+ * PB14 - PIN14                     (input pullup).
+ * PB15 - PIN15                     (input pullup).
  */
 #define VAL_GPIOB_CFGR              (PIN_MODE_INPUT(GPIOB_ARD_A3) |         \
                                      PIN_MODE_INPUT(GPIOB_PIN1) |           \
@@ -358,8 +358,11 @@
                                      PIN_MODE_INPUT(GPIOB_ARD_SCL) |        \
                                      PIN_MODE_INPUT(GPIOB_ARD_SDA) |        \
                                      PIN_MODE_INPUT(GPIOB_ARD_D6) |         \
+                                     PIN_MODE_INPUT(GPIOB_PIN11) |          \
                                      PIN_MODE_INPUT(GPIOB_ARD_NSS) |        \
-                                     PIN_MODE_INPUT(GPIOB_ARD_SCK))
+                                     PIN_MODE_INPUT(GPIOB_ARD_SCK) |        \
+                                     PIN_MODE_INPUT(GPIOB_PIN14) |          \
+                                     PIN_MODE_INPUT(GPIOB_PIN15))
 #define VAL_GPIOB_OMODE             (PIN_OMODE_PUSHPULL(GPIOB_ARD_A3) |     \
                                      PIN_OMODE_PUSHPULL(GPIOB_PIN1) |       \
                                      PIN_OMODE_PUSHPULL(GPIOB_PIN2) |       \
@@ -371,8 +374,11 @@
                                      PIN_OMODE_PUSHPULL(GPIOB_ARD_SCL) |    \
                                      PIN_OMODE_PUSHPULL(GPIOB_ARD_SDA) |    \
                                      PIN_OMODE_PUSHPULL(GPIOB_ARD_D6) |     \
+                                     PIN_OMODE_PUSHPULL(GPIOB_PIN11) |      \
                                      PIN_OMODE_PUSHPULL(GPIOB_ARD_NSS) |    \
-                                     PIN_OMODE_PUSHPULL(GPIOB_ARD_SCK))
+                                     PIN_OMODE_PUSHPULL(GPIOB_ARD_SCK) |    \
+                                     PIN_OMODE_PUSHPULL(GPIOB_PIN14) |      \
+                                     PIN_OMODE_PUSHPULL(GPIOB_PIN15))
 #define VAL_GPIOB_ODRVR             (PIN_ODRVR_STRONGER(GPIOB_ARD_A3) |     \
                                      PIN_ODRVR_STRONGER(GPIOB_PIN1) |       \
                                      PIN_ODRVR_STRONGER(GPIOB_PIN2) |       \
@@ -384,8 +390,11 @@
                                      PIN_ODRVR_STRONGER(GPIOB_ARD_SCL) |    \
                                      PIN_ODRVR_STRONGER(GPIOB_ARD_SDA) |    \
                                      PIN_ODRVR_STRONGER(GPIOB_ARD_D6) |     \
+                                     PIN_ODRVR_STRONGER(GPIOB_PIN11) |      \
                                      PIN_ODRVR_STRONGER(GPIOB_ARD_NSS) |    \
-                                     PIN_ODRVR_STRONGER(GPIOB_ARD_SCK))
+                                     PIN_ODRVR_STRONGER(GPIOB_ARD_SCK) |    \
+                                     PIN_ODRVR_STRONGER(GPIOB_PIN14) |      \
+                                     PIN_ODRVR_STRONGER(GPIOB_PIN15))
 #define VAL_GPIOB_PULL              (PIN_PULL_PULLUP(GPIOB_ARD_A3) |        \
                                      PIN_PULL_PULLUP(GPIOB_PIN1) |          \
                                      PIN_PULL_PULLUP(GPIOB_PIN2) |          \
@@ -397,8 +406,11 @@
                                      PIN_PULL_PULLUP(GPIOB_ARD_SCL) |       \
                                      PIN_PULL_PULLUP(GPIOB_ARD_SDA) |       \
                                      PIN_PULL_PULLUP(GPIOB_ARD_D6) |        \
+                                     PIN_PULL_PULLUP(GPIOB_PIN11) |         \
                                      PIN_PULL_PULLUP(GPIOB_ARD_NSS) |       \
-                                     PIN_PULL_PULLUP(GPIOB_ARD_SCK))
+                                     PIN_PULL_PULLUP(GPIOB_ARD_SCK) |       \
+                                     PIN_PULL_PULLUP(GPIOB_PIN14) |         \
+                                     PIN_PULL_PULLUP(GPIOB_PIN15))
 #define VAL_GPIOB_ODT               (PIN_ODT_HIGH(GPIOB_ARD_A3) |           \
                                      PIN_ODT_HIGH(GPIOB_PIN1) |             \
                                      PIN_ODT_HIGH(GPIOB_PIN2) |             \
@@ -410,8 +422,11 @@
                                      PIN_ODT_HIGH(GPIOB_ARD_SCL) |          \
                                      PIN_ODT_HIGH(GPIOB_ARD_SDA) |          \
                                      PIN_ODT_HIGH(GPIOB_ARD_D6) |           \
+                                     PIN_ODT_HIGH(GPIOB_PIN11) |            \
                                      PIN_ODT_HIGH(GPIOB_ARD_NSS) |          \
-                                     PIN_ODT_HIGH(GPIOB_ARD_SCK))
+                                     PIN_ODT_HIGH(GPIOB_ARD_SCK) |          \
+                                     PIN_ODT_HIGH(GPIOB_PIN14) |            \
+                                     PIN_ODT_HIGH(GPIOB_PIN15))
 #define VAL_GPIOB_MUXL              (PIN_IOMUX_MUX(GPIOB_ARD_A3, 0U) |      \
                                      PIN_IOMUX_MUX(GPIOB_PIN1, 0U) |        \
                                      PIN_IOMUX_MUX(GPIOB_PIN2, 0U) |        \
@@ -423,8 +438,11 @@
 #define VAL_GPIOB_MUXH              (PIN_IOMUX_MUX(GPIOB_ARD_SCL, 0U) |     \
                                      PIN_IOMUX_MUX(GPIOB_ARD_SDA, 0U) |     \
                                      PIN_IOMUX_MUX(GPIOB_ARD_D6, 0U) |      \
+                                     PIN_IOMUX_MUX(GPIOB_PIN11, 0U) |       \
                                      PIN_IOMUX_MUX(GPIOB_ARD_NSS, 0U) |     \
-                                     PIN_IOMUX_MUX(GPIOB_ARD_SCK, 0U))
+                                     PIN_IOMUX_MUX(GPIOB_ARD_SCK, 0U) |     \
+                                     PIN_IOMUX_MUX(GPIOB_PIN14, 0U) |       \
+                                     PIN_IOMUX_MUX(GPIOB_PIN15, 0U))
 #define VAL_GPIOB_HDRV              (PIN_HDRV_DISABLED(GPIOB_ARD_A3) |      \
                                      PIN_HDRV_DISABLED(GPIOB_PIN1) |        \
                                      PIN_HDRV_DISABLED(GPIOB_PIN2) |        \
@@ -436,8 +454,11 @@
                                      PIN_HDRV_DISABLED(GPIOB_ARD_SCL) |     \
                                      PIN_HDRV_DISABLED(GPIOB_ARD_SDA) |     \
                                      PIN_HDRV_DISABLED(GPIOB_ARD_D6) |      \
+                                     PIN_HDRV_DISABLED(GPIOB_PIN11) |       \
                                      PIN_HDRV_DISABLED(GPIOB_ARD_NSS) |     \
-                                     PIN_HDRV_DISABLED(GPIOB_ARD_SCK))
+                                     PIN_HDRV_DISABLED(GPIOB_ARD_SCK) |     \
+                                     PIN_HDRV_DISABLED(GPIOB_PIN14) |       \
+                                     PIN_HDRV_DISABLED(GPIOB_PIN15))
 
 /*
  * Port C setup.
