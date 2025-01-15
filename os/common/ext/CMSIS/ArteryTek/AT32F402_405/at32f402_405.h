@@ -1,8 +1,8 @@
 /**
   **************************************************************************
-  * @file    at32f415.h
-  * @author  Artery Technology & HorrorTroll & Zhaqian
-  * @brief   AT32F415 header file
+  * @file    at32f402_405.h
+  * @author  Artery Technology & HorrorTroll & Zhaqian & Maxjta
+  * @brief   AT32F402_405 header file
   *
   **************************************************************************
   *                       Copyright notice & Disclaimer
@@ -28,12 +28,12 @@
   * @{
   */
 
-/** @addtogroup at32f415
+/** @addtogroup at32f402_405
   * @{
   */
     
-#ifndef __AT32F415_H
-#define __AT32F415_H
+#ifndef __AT32F402_405_H
+#define __AT32F402_405_H
 
 #ifdef __cplusplus
  extern "C" {
@@ -50,22 +50,32 @@
 /**
   * @brief AT32 Family
   */
-#if !defined (AT32F415)
-#define AT32F415
-#endif /* AT32F415 */
+#if !defined (AT32F402_405)
+#define AT32F402_405
+#endif /* AT32F402_405 */
 
 /* Uncomment the line below according to the target AT32 device used in your
    application 
   */
 
-#if !defined(AT32F415KB) && !defined(AT32F415KC) && !defined(AT32F415CB) && \
-    !defined(AT32F415CC) && !defined(AT32F415RB) && !defined(AT32F415RC)
-   /* #define AT32F415KB */     /*!< AT32F415K8 and AT32F415KB */
-   /* #define AT32F415KC */     /*!< AT32F415KC */
-   /* #define AT32F415CB */     /*!< AT32F415C8 and AT32F415CB */
-   /* #define AT32F415CC */     /*!< AT32F415CC */
-   /* #define AT32F415RB */     /*!< AT32F415R8 and AT32F415RB */
-   /* #define AT32F415RC */     /*!< AT32F415RC */
+#if !defined(AT32F402KB) && !defined(AT32F402KC) && !defined(AT32F402CB) && \
+    !defined(AT32F402CC) && !defined(AT32F402RB) && !defined(AT32F402RC)
+   /* #define AT32F402KB */     /*!< AT32F402KB */
+   /* #define AT32F402KC */     /*!< AT32F402KC */
+   /* #define AT32F402CB */     /*!< AT32F402CB */
+   /* #define AT32F402CC */     /*!< AT32F402CC */
+   /* #define AT32F402RB */     /*!< AT32F402RB */
+   /* #define AT32F402RC */     /*!< AT32F402RC */
+#endif
+
+#if !defined(AT32F405KB) && !defined(AT32F405KC) && !defined(AT32F405CB) && \
+    !defined(AT32F405CC) && !defined(AT32F405RB) && !defined(AT32F405RC)
+   /* #define AT32F405KB */     /*!< AT32F405KB */
+   /* #define AT32F405KC */     /*!< AT32F405KC */
+   /* #define AT32F405CB */     /*!< AT32F405CB */
+   /* #define AT32F405CC */     /*!< AT32F405CC */
+   /* #define AT32F405RB */     /*!< AT32F405RB */
+   /* #define AT32F405RC */     /*!< AT32F405RC */
 #endif
 
 /*  Tip: To avoid modifying this file each time you need to switch between these
@@ -90,14 +100,17 @@
   * @{
   */
 
-#if defined(AT32F415KB) || defined(AT32F415KC)
-   #include "at32f415kx.h"
-#elif defined(AT32F415CB) || defined(AT32F415CC)
-   #include "at32f415cx.h"
-#elif defined(AT32F415RB) || defined(AT32F415RC)
-   #include "at32f415rx.h"
+#if defined(AT32F402KB) || defined(AT32F402KC) ||                           \
+    defined(AT32F405KB) || defined(AT32F405KC)
+   #include "at32f402_405kx.h"
+#elif defined(AT32F402CB) || defined(AT32F402CC) ||                         \
+      defined(AT32F405CB) || defined(AT32F405CC)
+   #include "at32f402_405cx.h"
+#elif defined(AT32F402RB) || defined(AT32F402RC) ||                         \
+      defined(AT32F405RB) || defined(AT32F405RC)
+   #include "at32f402_405rx.h"
 #else
-   #error "Please select first the target AT32F415 device used in your application (in at32f415.h file)"
+   #error "Please select first the target AT32F402_405 device used in your application (in at32f402_405.h file)"
 #endif
 
 /**
@@ -188,7 +201,7 @@ typedef enum {ERROR = 0, SUCCESS = !ERROR} error_status;
 }
 #endif /* __cplusplus */
 
-#endif /* __AT32F415_H */
+#endif /* __AT32F402_405_H */
 
 /**
   * @}
