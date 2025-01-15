@@ -1,8 +1,7 @@
 /*
     ChibiOS - Copyright (C) 2006..2018 Giovanni Di Sirio
-    ChibiOS - Copyright (C) 2023..2024 HorrorTroll
-    ChibiOS - Copyright (C) 2023..2024 Zhaqian
-    ChibiOS - Copyright (C) 2023..2024 Maxjta
+    ChibiOS - Copyright (C) 2023..2025 HorrorTroll
+    ChibiOS - Copyright (C) 2023..2025 Zhaqian
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -18,10 +17,10 @@
 */
 
 /**
- * @file    USART/at32_uart7.inc
- * @brief   Shared UART7 handler.
+ * @file    USART/at32_uart5.inc
+ * @brief   Shared UART5 handler.
  *
- * @addtogroup AT32_UART7_HANDLER
+ * @addtogroup AT32_UART5_HANDLER
  * @{
  */
 
@@ -34,22 +33,22 @@
 /*===========================================================================*/
 
 /* Registry checks for robustness.*/
-#if !defined(AT32_HAS_UART7)
-#error "AT32_HAS_UART7 not defined in registry"
+#if !defined(AT32_HAS_UART5)
+#error "AT32_HAS_UART5 not defined in registry"
 #endif
 
-#if AT32_HAS_UART7
+#if AT32_HAS_UART5
 
 /* Priority settings checks.*/
-#if !defined(AT32_IRQ_UART7_PRIORITY)
-#error "AT32_IRQ_UART7_PRIORITY not defined in mcuconf.h"
+#if !defined(AT32_IRQ_UART5_PRIORITY)
+#error "AT32_IRQ_UART5_PRIORITY not defined in mcuconf.h"
 #endif
 
-#if !OSAL_IRQ_IS_VALID_PRIORITY(AT32_IRQ_UART7_PRIORITY)
-#error "Invalid IRQ priority assigned to AT32_IRQ_UART7_PRIORITY"
+#if !OSAL_IRQ_IS_VALID_PRIORITY(AT32_IRQ_UART5_PRIORITY)
+#error "Invalid IRQ priority assigned to AT32_IRQ_UART5_PRIORITY"
 #endif
 
-#endif /* AT32_HAS_UART7 */
+#endif /* AT32_HAS_UART5 */
 
 /*===========================================================================*/
 /* Driver exported variables.                                                */
@@ -63,15 +62,15 @@
 /* Driver local functions.                                                   */
 /*===========================================================================*/
 
-static inline void uart7_irq_init(void) {
-#if defined(AT32_UART7_IS_USED)
-  nvicEnableVector(AT32_UART7_NUMBER, AT32_IRQ_UART7_PRIORITY);
+static inline void uart5_irq_init(void) {
+#if defined(AT32_UART5_IS_USED)
+  nvicEnableVector(AT32_UART5_NUMBER, AT32_IRQ_UART5_PRIORITY);
 #endif
 }
 
-static inline void uart7_irq_deinit(void) {
-#if defined(AT32_UART7_IS_USED)
-  nvicDisableVector(AT32_UART7_NUMBER);
+static inline void uart5_irq_deinit(void) {
+#if defined(AT32_UART5_IS_USED)
+  nvicDisableVector(AT32_UART5_NUMBER);
 #endif
 }
 
@@ -79,25 +78,31 @@ static inline void uart7_irq_deinit(void) {
 /* Driver interrupt handlers.                                                */
 /*===========================================================================*/
 
-#if defined(AT32_UART7_IS_USED) || defined(__DOXYGEN__)
+#if defined(AT32_UART5_IS_USED) || defined(__DOXYGEN__)
 /**
- * @brief   UART7 interrupt handler.
+ * @brief   UART5 interrupt handler.
  *
  * @isr
  */
-OSAL_IRQ_HANDLER(AT32_UART7_HANDLER) {
+OSAL_IRQ_HANDLER(AT32_UART5_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
 #if HAL_USE_SERIAL
-#if AT32_SERIAL_USE_UART7
-  sd_lld_serve_interrupt(&SD7);
+#if AT32_SERIAL_USE_UART5
+  sd_lld_serve_interrupt(&SD5);
+#endif
+#endif
+
+#if HAL_USE_SIO
+#if AT32_SIO_USE_UART5
+  sio_lld_serve_interrupt(&SIOD5);
 #endif
 #endif
 
 #if HAL_USE_UART
-#if AT32_UART_USE_UART7
-  uart_lld_serve_interrupt(&UARTD7);
+#if AT32_UART_USE_UART5
+  uart_lld_serve_interrupt(&UARTD5);
 #endif
 #endif
 

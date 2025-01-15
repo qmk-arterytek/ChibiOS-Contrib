@@ -1,7 +1,7 @@
 /*
     ChibiOS - Copyright (C) 2006..2018 Giovanni Di Sirio
-    ChibiOS - Copyright (C) 2023..2024 HorrorTroll
-    ChibiOS - Copyright (C) 2023..2024 Zhaqian
+    ChibiOS - Copyright (C) 2023..2025 HorrorTroll
+    ChibiOS - Copyright (C) 2023..2025 Zhaqian
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -172,7 +172,7 @@
 #endif
 
 /**
- * @brief   USART DMA error hook.
+ * @brief   UART DMA error hook.
  * @note    The default action for DMA errors is a system halt because DMA
  *          error can only happen because programming errors.
  */
@@ -206,7 +206,7 @@
 #endif
 
 #if !AT32_UART_USE_USART1 && !AT32_UART_USE_USART2 &&                       \
-    !AT32_UART_USE_USART3 && !AT32_UART_USE_UART4 &&                        \
+    !AT32_UART_USE_USART3 && !AT32_UART_USE_UART4  &&                       \
     !AT32_UART_USE_UART5
 #error "UART driver activated but no USART/UART peripheral assigned"
 #endif
@@ -404,7 +404,7 @@ typedef struct hal_uart_config {
   /**
    * @brief   Receiver timeout callback.
    * @details Handles idle interrupts depending on configured
-   *          flags in CR registers and supported hardware features.
+   *          flags in CTRL registers and supported hardware features.
    */
   uartcb_t                  timeout_cb;
   /**

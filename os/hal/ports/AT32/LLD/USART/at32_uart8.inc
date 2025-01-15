@@ -1,7 +1,8 @@
 /*
     ChibiOS - Copyright (C) 2006..2018 Giovanni Di Sirio
-    ChibiOS - Copyright (C) 2023..2024 HorrorTroll
-    ChibiOS - Copyright (C) 2023..2024 Zhaqian
+    ChibiOS - Copyright (C) 2023..2025 HorrorTroll
+    ChibiOS - Copyright (C) 2023..2025 Zhaqian
+    ChibiOS - Copyright (C) 2024..2025 Maxjta
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -17,10 +18,10 @@
 */
 
 /**
- * @file    USART/at32_usart3.inc
- * @brief   Shared USART3 handler.
+ * @file    USART/at32_uart8.inc
+ * @brief   Shared UART8 handler.
  *
- * @addtogroup AT32_USART3_HANDLER
+ * @addtogroup AT32_UART8_HANDLER
  * @{
  */
 
@@ -33,22 +34,22 @@
 /*===========================================================================*/
 
 /* Registry checks for robustness.*/
-#if !defined(AT32_HAS_USART3)
-#error "AT32_HAS_USART3 not defined in registry"
+#if !defined(AT32_HAS_UART8)
+#error "AT32_HAS_UART8 not defined in registry"
 #endif
 
-#if AT32_HAS_USART3
+#if AT32_HAS_UART8
 
 /* Priority settings checks.*/
-#if !defined(AT32_IRQ_USART3_PRIORITY)
-#error "AT32_IRQ_USART3_PRIORITY not defined in mcuconf.h"
+#if !defined(AT32_IRQ_UART8_PRIORITY)
+#error "AT32_IRQ_UART8_PRIORITY not defined in mcuconf.h"
 #endif
 
-#if !OSAL_IRQ_IS_VALID_PRIORITY(AT32_IRQ_USART3_PRIORITY)
-#error "Invalid IRQ priority assigned to AT32_IRQ_USART3_PRIORITY"
+#if !OSAL_IRQ_IS_VALID_PRIORITY(AT32_IRQ_UART8_PRIORITY)
+#error "Invalid IRQ priority assigned to AT32_IRQ_UART8_PRIORITY"
 #endif
 
-#endif /* AT32_HAS_USART3 */
+#endif /* AT32_HAS_UART8 */
 
 /*===========================================================================*/
 /* Driver exported variables.                                                */
@@ -62,15 +63,15 @@
 /* Driver local functions.                                                   */
 /*===========================================================================*/
 
-static inline void usart3_irq_init(void) {
-#if defined(AT32_USART3_IS_USED)
-  nvicEnableVector(AT32_USART3_NUMBER, AT32_IRQ_USART3_PRIORITY);
+static inline void uart8_irq_init(void) {
+#if defined(AT32_UART8_IS_USED)
+  nvicEnableVector(AT32_UART8_NUMBER, AT32_IRQ_UART8_PRIORITY);
 #endif
 }
 
-static inline void usart3_irq_deinit(void) {
-#if defined(AT32_USART3_IS_USED)
-  nvicDisableVector(AT32_USART3_NUMBER);
+static inline void uart8_irq_deinit(void) {
+#if defined(AT32_UART8_IS_USED)
+  nvicDisableVector(AT32_UART8_NUMBER);
 #endif
 }
 
@@ -78,25 +79,31 @@ static inline void usart3_irq_deinit(void) {
 /* Driver interrupt handlers.                                                */
 /*===========================================================================*/
 
-#if defined(AT32_USART3_IS_USED) || defined(__DOXYGEN__)
+#if defined(AT32_UART8_IS_USED) || defined(__DOXYGEN__)
 /**
- * @brief   USART3 interrupt handler.
+ * @brief   UART8 interrupt handler.
  *
  * @isr
  */
-OSAL_IRQ_HANDLER(AT32_USART3_HANDLER) {
+OSAL_IRQ_HANDLER(AT32_UART8_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
 #if HAL_USE_SERIAL
-#if AT32_SERIAL_USE_USART3
-  sd_lld_serve_interrupt(&SD3);
+#if AT32_SERIAL_USE_UART8
+  sd_lld_serve_interrupt(&SD8);
+#endif
+#endif
+
+#if HAL_USE_SIO
+#if AT32_SIO_USE_UART8
+  sio_lld_serve_interrupt(&SIOD8);
 #endif
 #endif
 
 #if HAL_USE_UART
-#if AT32_UART_USE_USART3
-  uart_lld_serve_interrupt(&UARTD3);
+#if AT32_UART_USE_UART8
+  uart_lld_serve_interrupt(&UARTD8);
 #endif
 #endif
 
