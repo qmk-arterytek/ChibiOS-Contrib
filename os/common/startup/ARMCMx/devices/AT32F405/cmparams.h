@@ -3,6 +3,7 @@
                            (C) 2015 RedoX (https://github.com/RedoXyde)
                            (C) 2023-2025 HorrorTroll (https://github.com/HorrorTroll)
                            (C) 2023-2025 Zhaqian (https://github.com/zhaqian12)
+                           (C) 2024-2025 Maxjta (https://github.com/Maxjta)
 
     This file is part of ChibiOS/RT.
 
@@ -21,13 +22,13 @@
 */
 
 /**
- * @file        AT32F415/cmparams.h
- * @brief       ARM Cortex-M4 parameters for the Artery AT32F415
+ * @file        AT32F405/cmparams.h
+ * @brief       ARM Cortex-M4F parameters for the Artery AT32F405
  *
- * @defgroup    ARMCMx_AT32F415 Artery AT32F415 Specific Parameters
+ * @defgroup    ARMCMx_AT32F405 Artery AT32F405 Specific Parameters
  * @ingroup     ARMCMx_SPECIFIC
- * @details     This file contains the Cortex-M4 specific parameters for the
- *              Artery AT32F415 platform.
+ * @details     This file contains the Cortex-M4F specific parameters for the
+ *              Artery AT32F405 platform.
  * @{
  */
 
@@ -47,7 +48,7 @@
 /**
  * @brief   Floating Point unit presence.
  */
-#define CORTEX_HAS_FPU          FALSE
+#define CORTEX_HAS_FPU          TRUE
 
 /**
  * @brief   Number of bits in priority masks.
@@ -57,8 +58,8 @@
 /* If the device type is not externally defined, for example from the Makefile,
    then a file named board.h is included. This file must contain a device
    definition compatible with the include file.*/
-#if !defined(AT32F415KB) && !defined(AT32F415KC) && !defined(AT32F415CB) && \
-    !defined(AT32F415CC) && !defined(AT32F415RB) && !defined(AT32F415RC)
+#if !defined(AT32F405KB) && !defined(AT32F405KC) && !defined(AT32F405CB) && \
+    !defined(AT32F405CC) && !defined(AT32F405RB) && !defined(AT32F405RC)
 #include "board.h"
 #endif
 
@@ -67,7 +68,7 @@
  * @note    This number does not include the 16 system vectors and must be
  *          rounded to a multiple of 8.
  */
-#define CORTEX_NUM_VECTORS      80
+#define CORTEX_NUM_VECTORS      104
 
 /* The following code is not processed when the file is included from an
    asm module.*/
@@ -76,7 +77,7 @@
 /* Including the device CMSIS header. Note, we are not using the definitions
    from this header because we need this file to be usable also from
    assembler source files. We verify that the info matches instead.*/
-#include "at32f415.h"
+#include "at32f402_405.h"
 
 /*lint -save -e9029 [10.4] Signedness comes from external files, it is
   unpredictable but gives no problems.*/

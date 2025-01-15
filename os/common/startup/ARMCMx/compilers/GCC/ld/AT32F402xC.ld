@@ -2,7 +2,6 @@
     Copyright (C) 2023..2025 Artery Technology
     Copyright (C) 2023..2025 HorrorTroll (https://github.com/HorrorTroll)
     Copyright (C) 2023..2025 Zhaqian (https://github.com/zhaqian12)
-    Copyright (C) 2024..2025 Maxjta (https://github.com/Maxjta)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -18,7 +17,7 @@
 */
 
 /*
- * AT32F405xC memory setup.
+ * AT32F402xC memory setup.
  */
 MEMORY
 {

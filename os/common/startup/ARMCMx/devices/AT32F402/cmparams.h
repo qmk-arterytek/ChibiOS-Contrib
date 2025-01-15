@@ -1,7 +1,8 @@
 /*
     ChibiOS/RT - Copyright (C) 2006-2014 Giovanni Di Sirio.
-    ChibiOS/RT - Copyright (C) 2023..2024 Zhaqian
-    ChibiOS/RT - Copyright (C) 2023..2024 Maxjta
+                           (C) 2015 RedoX (https://github.com/RedoXyde)
+                           (C) 2023-2025 HorrorTroll (https://github.com/HorrorTroll)
+                           (C) 2023-2025 Zhaqian (https://github.com/zhaqian12)
 
     This file is part of ChibiOS/RT.
 
@@ -12,21 +13,21 @@
 
     ChibiOS/RT is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * @file        AT32F402_405xx/cmparams.h
- * @brief       ARM Cortex-M4 parameters for the ArteryTek AT32F402_405
+ * @file        AT32F402/cmparams.h
+ * @brief       ARM Cortex-M4F parameters for the Artery AT32F402
  *
- * @defgroup    ARMCMx_AT32F402_405 ArteryTek AT32F402_405 Specific Parameters
+ * @defgroup    ARMCMx_AT32F402 Artery AT32F402 Specific Parameters
  * @ingroup     ARMCMx_SPECIFIC
- * @details     This file contains the Cortex-M4 specific parameters for the
- *              ArteryTek AT32F402_405 platform.
+ * @details     This file contains the Cortex-M4F specific parameters for the
+ *              Artery AT32F402 platform.
  * @{
  */
 
@@ -53,26 +54,32 @@
  */
 #define CORTEX_PRIORITY_BITS    4
 
+/* If the device type is not externally defined, for example from the Makefile,
+   then a file named board.h is included. This file must contain a device
+   definition compatible with the include file.*/
+#if !defined(AT32F402KB) && !defined(AT32F402KC) && !defined(AT32F402CB) && \
+    !defined(AT32F402CC) && !defined(AT32F402RB) && !defined(AT32F402RC)
+#include "board.h"
+#endif
+
 /**
  * @brief   Number of interrupt vectors.
  * @note    This number does not include the 16 system vectors and must be
  *          rounded to a multiple of 8.
  */
-#define CORTEX_NUM_VECTORS      112
+#define CORTEX_NUM_VECTORS      104
 
 /* The following code is not processed when the file is included from an
    asm module.*/
 #if !defined(_FROM_ASM_)
 
-#if !defined (AT32F405xx) && !defined (AT32F402xx)
-    #include "board.h"
-#endif
-
 /* Including the device CMSIS header. Note, we are not using the definitions
    from this header because we need this file to be usable also from
    assembler source files. We verify that the info matches instead.*/
-#include "at32f402_405xx.h"
+#include "at32f402_405.h"
 
+/*lint -save -e9029 [10.4] Signedness comes from external files, it is
+  unpredictable but gives no problems.*/
 #if CORTEX_MODEL != __CORTEX_M
 #error "CMSIS __CORTEX_M mismatch"
 #endif
@@ -80,6 +87,7 @@
 #if CORTEX_PRIORITY_BITS != __NVIC_PRIO_BITS
 #error "CMSIS __NVIC_PRIO_BITS mismatch"
 #endif
+/*lint -restore*/
 
 #endif /* !defined(_FROM_ASM_) */
 
