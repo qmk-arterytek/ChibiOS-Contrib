@@ -103,11 +103,11 @@ DEPDIR   := ./.dep
 # Licensing files.
 include $(CHIBIOS)/os/license/license.mk
 # Startup files.
-include $(CHIBIOS_CONTRIB)/os/common/startup/ARMCMx/compilers/GCC/mk/startup_at32f405.mk
+include $(CHIBIOS_CONTRIB)/os/common/startup/ARMCMx/compilers/GCC/mk/startup_at32f402.mk
 # HAL-OSAL files (optional).
 include $(CHIBIOS_CONTRIB)/os/hal/hal.mk
 include $(CHIBIOS_CONTRIB)/os/hal/ports/AT32/AT32F402_405/platform.mk
-include $(CHIBIOS_CONTRIB)/os/hal/boards/AT_START_F405/board.mk
+include $(CHIBIOS_CONTRIB)/os/hal/boards/AT_START_F402/board.mk
 include $(CHIBIOS)/os/hal/osal/rt-nil/osal.mk
 # RTOS files (optional).
 include $(CHIBIOS)/os/rt/rt.mk
@@ -122,7 +122,7 @@ include $(CHIBIOS)/os/hal/lib/streams/streams.mk
 include $(CHIBIOS)/os/various/shell/shell.mk
 
 # Define linker script file here.
-LDSCRIPT= $(STARTUPLD_CONTRIB)/AT32F405xC.ld
+LDSCRIPT= $(STARTUPLD_CONTRIB)/AT32F402xC.ld
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
