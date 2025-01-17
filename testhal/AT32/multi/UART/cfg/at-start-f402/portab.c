@@ -17,62 +17,66 @@
 */
 
 /**
- * @file    portab.h
- * @brief   Application portability macros and structures.
+ * @file    portab.c
+ * @brief   Application portability module code.
  *
  * @addtogroup application_portability
  * @{
  */
 
-#ifndef PORTAB_H
-#define PORTAB_H
+#include "hal.h"
+
+#include "portab.h"
 
 /*===========================================================================*/
-/* Module constants.                                                         */
-/*===========================================================================*/
-
-#define PORTAB_UART1                UARTD1
-
-#define PORTAB_BLINK_LED1           LINE_LED_RED
-
-#define PORTAB_BLINK_LED2           LINE_LED_YELLOW
-
-#define PORTAB_BLINK_LED3           LINE_LED_GREEN
-
-/*===========================================================================*/
-/* Module pre-compile time settings.                                         */
+/* Module local definitions.                                                 */
 /*===========================================================================*/
 
 /*===========================================================================*/
-/* Derived constants and error checks.                                       */
+/* Module exported variables.                                                */
+/*===========================================================================*/
+
+void txend1(UARTDriver *uartp);
+void txend2(UARTDriver *uartp);
+void rxend(UARTDriver *uartp);
+void rxchar(UARTDriver *uartp, uint16_t c);
+void rxerr(UARTDriver *uartp, uartflags_t e);
+
+/*
+ * UART driver configuration structure.
+ */
+UARTConfig uartcfg = {
+  txend1,
+  txend2,
+  rxend,
+  rxchar,
+  rxerr,
+  NULL,
+  0,
+  38400,
+  0,
+  USART_CTRL2_LINEN,
+  0
+};
+
+/*===========================================================================*/
+/* Module local types.                                                       */
 /*===========================================================================*/
 
 /*===========================================================================*/
-/* Module data structures and types.                                         */
+/* Module local variables.                                                   */
 /*===========================================================================*/
 
 /*===========================================================================*/
-/* Module macros.                                                            */
+/* Module local functions.                                                   */
 /*===========================================================================*/
 
 /*===========================================================================*/
-/* External declarations.                                                    */
+/* Module exported functions.                                                */
 /*===========================================================================*/
 
-extern UARTConfig uartcfg;
+void portab_setup(void) {
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-  void portab_setup(void);
-#ifdef __cplusplus
 }
-#endif
-
-/*===========================================================================*/
-/* Module inline functions.                                                  */
-/*===========================================================================*/
-
-#endif /* PORTAB_H */
 
 /** @} */

@@ -31,13 +31,13 @@
 /* Module constants.                                                         */
 /*===========================================================================*/
 
-#define PORTAB_UART1                UARTD1
+#define PORTAB_SIO1                 SIOD1
 
-#define PORTAB_BLINK_LED1           LINE_LED_RED
+#define PORTAB_SIO2                 SIOD2
 
-#define PORTAB_BLINK_LED2           LINE_LED_YELLOW
+#define PORTAB_LINE_BUTTON          LINE_BUTTON
 
-#define PORTAB_BLINK_LED3           LINE_LED_GREEN
+#define PORTAB_BUTTON_PRESSED       PAL_HIGH
 
 /*===========================================================================*/
 /* Module pre-compile time settings.                                         */
@@ -58,8 +58,6 @@
 /*===========================================================================*/
 /* External declarations.                                                    */
 /*===========================================================================*/
-
-extern UARTConfig uartcfg;
 
 #ifdef __cplusplus
 extern "C" {
