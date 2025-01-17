@@ -1,7 +1,7 @@
 /*
     ChibiOS - Copyright (C) 2015 Michael D. Spradling
-    ChibiOS - Copyright (C) 2023..2024 HorrorTroll
-    ChibiOS - Copyright (C) 2023..2024 Zhaqian
+    ChibiOS - Copyright (C) 2023..2025 HorrorTroll
+    ChibiOS - Copyright (C) 2023..2025 Zhaqian
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@
  * @brief   CRC1 DMA interrupt priority level setting.
  */
 #if !defined(AT32_CRC_CRC1_IRQ_PRIORITY) || defined(__DOXYGEN__)
-#define AT32_CRC_CRC1_IRQ_PRIORITY          1
+#define AT32_CRC_CRC1_IRQ_PRIORITY          5
 #endif
 
 /**
