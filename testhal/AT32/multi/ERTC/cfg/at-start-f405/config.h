@@ -23,7 +23,7 @@
 #define CRC_USE_DMA                         FALSE
 #define AT32_CRC_CRC1_DMA_PRIORITY          2
 #define AT32_CRC_CRC1_IRQ_PRIORITY          5
-#define AT32_CRC_CRC1_DMA_STREAM            AT32_DMA1_STREAM2
+#define AT32_CRC_CRC1_DMA_STREAM            AT32_DMA_STREAM_ID_ANY
 
 /*
  * I2C fallback driver system settings.
