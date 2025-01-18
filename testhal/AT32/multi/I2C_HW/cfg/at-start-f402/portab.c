@@ -40,9 +40,11 @@
  * I2C driver configuration structure.
  */
 I2CConfig i2ccfg = {
-  OPMODE_I2C,
-  100000,
-  STD_DUTY_CYCLE
+  AT32_CLKCTRL_DIV(9U)   |
+  AT32_CLKCTRL_SCLD(14U) | AT32_CLKCTRL_SDAD(0U)  |
+  AT32_CLKCTRL_SCLH(49U) | AT32_CLKCTRL_SCLL(49U),
+  0,
+  0
 };
 
 /*===========================================================================*/
@@ -62,8 +64,8 @@ I2CConfig i2ccfg = {
 /*===========================================================================*/
 
 void portab_setup(void) {
-  palSetLineMode(PAL_LINE(GPIOB, 6U), PAL_MODE_AT32_MUX_OPENDRAIN);
-  palSetLineMode(PAL_LINE(GPIOB, 7U), PAL_MODE_AT32_MUX_OPENDRAIN);
+  palSetLineMode(PAL_LINE(GPIOB, 6U), PAL_MODE_MUX(4) | PAL_AT32_OMODE_OPENDRAIN);
+  palSetLineMode(PAL_LINE(GPIOB, 7U), PAL_MODE_MUX(4) | PAL_AT32_OMODE_OPENDRAIN);
 }
 
 /** @} */
