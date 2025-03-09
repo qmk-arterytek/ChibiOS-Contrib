@@ -1,7 +1,7 @@
 /*
     ChibiOS - Copyright (C) 2006..2020 Giovanni Di Sirio
-    ChibiOS - Copyright (C) 2023..2024 HorrorTroll
-    ChibiOS - Copyright (C) 2023..2024 Zhaqian
+    ChibiOS - Copyright (C) 2023..2025 HorrorTroll
+    ChibiOS - Copyright (C) 2023..2025 Zhaqian
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -106,6 +106,7 @@
 #define AT32_ADC_USE_ADC1                   FALSE
 #define AT32_ADC_ADC1_DMA_PRIORITY          2
 #define AT32_ADC_ADC1_IRQ_PRIORITY          6
+#define AT32_ADC_ADC1_DMA_IRQ_PRIORITY      6
 
 /*
  * CAN driver system settings.
